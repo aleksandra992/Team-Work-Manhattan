@@ -176,12 +176,14 @@ function createInputPage(selector) {
  $(document).ready(function () {
     $( "#pickInputNumber" ).on("keyup", function() {
         magicValue = $("input:text").val();
+
         // use value for potDealer.js
         // and fire staright to the next step of execution
     });
-    
+
     $("#btnDrawCard").on("click", function () {
         var currentCard = {};
+        // window.scrollBy(0, 200);  
         for (var i = 1; i <= 27; i += 1) {
             currentCard = drawRandomCard(cards);
             drawCard(currentCard, context ,20 + i * 30, 40);
