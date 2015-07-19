@@ -99,7 +99,7 @@
     }
 
 
-    function dealThreePots(deck) {
+    function dealThreePots(deck, context) {
         var firstPot = [],
         secondPot = [],
         thirdPot = [],
@@ -108,16 +108,15 @@
         for (i = 0; i < len; i += 1) {
             if (len < 9) {
                 firstPot.push(deck[i]);
-                drawCard(deck, 20 + i*10, 40);
+                drawCard(deck, context, 20 + i*10, 40);
 
-            } else
-            if (len >= 9 && len < 18) {
+            } else if (len >= 9 && len < 18) {
              secondPot.push(deck[i])
-             drawCard(deck, 20 + i*10, 100);
+             drawCard(deck,  context, 20 + i*10, 100);
 
          } else {
              thirdPot.push(deck[i]);
-             drawCard(deck, 20 + i*10, 360);
+             drawCard(deck, context,  20 + i*10, 360);
 
          }
      }
@@ -125,13 +124,11 @@
 
  var cards = fillDeckWithCards();
  var cards2=fillDeckWithCards();
-var cardCanvas = document.getElementById("cardCanvas");
-var context = cardCanvas.getContext("2d");
+ var cardCanvas = document.getElementById("cardCanvas");
+ var context = cardCanvas.getContext("2d");
 
 
  $(document).ready(function () {
-
-
     $("#btnDrawCard").on("click", function () {
         var currentCard = {};
         for (var i = 1; i <= 27; i += 1) {
@@ -143,10 +140,7 @@ var context = cardCanvas.getContext("2d");
         }
     });
     $("#btnDrawPots").on("click",function(){
-       dealThreePots(cards2);
-   });
-
-
-
-});
+       dealThreePots(cards2, context);
+    });
+  });
 }());
