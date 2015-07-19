@@ -157,9 +157,7 @@
         inputArea.style.fontSize = '76px';
         inputArea.style.textAlign = 'center';
 
-        inputBox.style.position = 'relative';
-        inputBox.style.left = "25%";
-        inputBox.style.top = "5%";
+        
         inputBox.innerHTML = '';
         inputBox.innerHTML += '<h1>Manhattan Project</h1></br> Chapter: Prediction</br>';
         inputBox.innerHTML += '<em>enter your favorite number within 1 and 27</em>';
@@ -170,6 +168,7 @@
         inputBox.style.margin = "50px";
         inputBox.style.textAlign = "center";
         inputBox.style.display = 'inline-block';
+        inputBox.style.align = 'center';
 
         form.appendChild(inputArea);
 

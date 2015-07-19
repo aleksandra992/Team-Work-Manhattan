@@ -7,16 +7,18 @@
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 </head>
 <body>
-	<div id="numberContainer"></div>
-	<input type="button" id="btnDrawCard" value="Shuffle the deck">
-	<input type="button" id="btnDrawPots" value="Deal three pots">
-	<div id="canvasContainer">
-		<canvas id="cardCanvas" width="1000px" height="1200px">
-			Your browser dos not support canvas!
-		</canvas>
+	<div id='wrapper'>
+		<div id="numberContainer"></div>
+		<input type="button" id="btnDrawCard" value="Shuffle the deck">
+		<input type="button" id="btnDrawPots" value="Deal three pots">
+		<div id="canvasContainer">
+			<canvas id="cardCanvas" width="1000px" height="1200px">
+				Your browser dos not support canvas!
+			</canvas>
+		</div>
+		
+		<script type="text/javascript" src="scripts/cardGame.js"></script>
 	</div>
-	
-	<script type="text/javascript" src="scripts/cardGame.js"></script>
 
 </body>
 </html>

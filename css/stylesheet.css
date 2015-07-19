@@ -3,10 +3,13 @@ blockquote,body,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,img,input,li,ol,p,t
 }
 em {font-size: 16px;}
 
-body {
+#wrapper {
+	position:absolute;
+	margin:20px;
+	padding: :20px;
     background-color: white;
     -webkit-animation-name: example; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 10s; /* Chrome, Safari, Opera */
     animation-name: example;
     animation-duration: 10s;
 }
@@ -19,8 +22,8 @@ body {
 
 /* Standard syntax */
 @keyframes example {
-    from {background-color: #1A1A1C;color:white;}
-    to {background-color: white; color:#1A1A1C;}
+    from {background-color: #1A1A1C;color:white; width:1px; height: 1px;}
+    to {background-color: white; color:#1A1A1C; width:1200px;height: 800px;}
 }
 #btnDrawCard {
 	width: 140px;
@@ -30,7 +33,7 @@ body {
 	font-style: italic;
 	font-family: Consolas;
 	position: absolute;
-	top: 10px;
+	top: 10px; left:5%;
 }
 #btnDrawPots {
 	width: 140px;
@@ -40,5 +43,5 @@ body {
 	font-style: italic;
 	font-family: Consolas;
 	position: absolute;
-	top: 10px; left: 150px;
+	top: 10px; left: 25%;
 }
