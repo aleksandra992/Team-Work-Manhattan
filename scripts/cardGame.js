@@ -7,7 +7,8 @@
         Clubs: 'Club'
     };
     var magicValue = 1;
-
+    var selectedButton = null; 
+    
     function Card(name, suitType, cardValue, picture, sound) {
         this.Name = name;
         this.SuitType = suitType;
@@ -124,9 +125,7 @@
             } else {
                 thirdPot.push(deck[i]);
                 drawCard(deck[i], context, -340 + i * 20, 370);
-
             }
-
         }
     }
 
@@ -159,8 +158,7 @@
         inputArea.style.border = '5px solid black';
         inputArea.style.fontSize = '76px';
         inputArea.style.textAlign = 'center';
-
-        
+   
         inputBox.innerHTML = '';
         inputBox.innerHTML += '<h1>Manhattan Project</h1></br> Chapter: Prediction</br>';
         inputBox.innerHTML += '<em>enter your favorite number within 1 and 27</em>';
@@ -180,6 +178,27 @@
         inputBox.appendChild(form);
 
         container.appendChild(inputBox);
+
+        var btn1 = document.getElementById('btnDrawCard');
+        var btn2 = document.getElementById('btnDrawPots');
+        var btn3 = document.getElementById('btnAnswer');
+        btn1.addEventListener('mouseout', onButtonMouseOut);
+        btn1.addEventListener('mouseover', onButtonMouseOver);
+        btn2.addEventListener('mouseout', onButtonMouseOut);
+        btn2.addEventListener('mouseover', onButtonMouseOver);
+        btn3.addEventListener('mouseout', onButtonMouseOut);
+        btn3.addEventListener('mouseover', onButtonMouseOver);
+
+        function onButtonMouseOver(event) {
+            if (selectedButton !== this) {
+                this.style.background = 'gold';
+            }
+        }
+        function onButtonMouseOut(event) {
+            if (selectedButton !== this) {
+                this.style.background = '';
+            }
+        }
     }
 
     createInputPage('#numberContainer');
