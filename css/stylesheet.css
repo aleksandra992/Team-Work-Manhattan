@@ -2,3 +2,41 @@ blockquote,body,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,img,input,li,ol,p,t
   margin:0;padding:0;border:0
 }
 em {font-size: 16px;}
+
+body {
+    background-color: white;
+    -webkit-animation-name: example; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+    animation-name: example;
+    animation-duration: 10s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes example {
+    from {background-color: #A8AAA9;}
+    to {background-color: white;}
+}
+
+/* Standard syntax */
+@keyframes example {
+    from {background-color: #A8AAA9;}
+    to {background-color: white;}
+}
+#btnDrawCard {
+	width: 140px;
+	height: 20px;
+	border:1px solid black;
+	background-color: white;
+	font-style: italic;
+	font-family: Consolas;
+	position: relative; left: 30%;top: -90px;
+}
+#btnDrawPots {
+	width: 140px;
+	height: 20px;
+	border:1px solid black;
+	background-color: white;
+	font-style: italic;
+	font-family: Consolas;
+	position: relative; left: 30%; top: -90px;
+}

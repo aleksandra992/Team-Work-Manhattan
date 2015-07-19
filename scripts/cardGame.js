@@ -133,7 +133,8 @@
 function createInputPage(selector) {
     var container = document.querySelector(selector);
     container.style.font= "24px Consolas";
-    container.style.width = '400px';
+    container.style.width = '1200px';
+    container.style.height = '500px';
     var inputBox = document.createElement('div');
     var form = document.createElement('form');
     var inputArea = document.createElement('input');
@@ -150,7 +151,9 @@ function createInputPage(selector) {
     inputArea.style.fontSize = '76px';
     inputArea.style.textAlign = 'center';
 
-
+    inputBox.style.position = 'relative';
+    inputBox.style.left = "25%";
+    inputBox.style.top = "5%";
     inputBox.innerHTML = '';
     inputBox.innerHTML += '<h1>Manhattan Project</h1></br> Chapter: Prediction</br>';
     inputBox.innerHTML += '<em>enter your favorite number within 1 and 27</em>'
@@ -163,7 +166,6 @@ function createInputPage(selector) {
     inputBox.style.display = 'inline-block';
 
     form.appendChild(inputArea);
-    form.appendChild(submitButton);
     
     inputBox.appendChild(form);
 
