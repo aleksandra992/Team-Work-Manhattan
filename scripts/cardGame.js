@@ -192,11 +192,13 @@
         function onButtonMouseOver(event) {
             if (selectedButton !== this) {
                 this.style.background = 'gold';
+                this.style.color = 'red';
             }
         }
         function onButtonMouseOut(event) {
             if (selectedButton !== this) {
                 this.style.background = '';
+                this.style.color = 'black';
             }
         }
     }
