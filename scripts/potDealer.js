@@ -1,4 +1,5 @@
 function potDealer(number) {
+        
     var logicForNumbers = ['000', '100', '200',
         '010', '110', '210',
         '020', '120', '220',
@@ -8,6 +9,7 @@ function potDealer(number) {
         '002', '102', '202',
         '012', '112', '212',
         '022', '122', '222'];
+        
     var logic = logicForNumbers[number - 1];
     var potTurns = '';
     for (var i = 0; i < logic.length; i++) {
@@ -26,4 +28,12 @@ function potDealer(number) {
     }
     return potTurns;
 }
-console.log(potDealer(1));
+
+$(document).ready(function () {
+
+
+    $("#pickInputNumber").on("click", function () {
+        var inputNumber = (document.getElementById("inputNumber").value)*1;
+        console.log(potDealer(inputNumber));
+    });
+});

@@ -7,13 +7,28 @@
 </head>
 <body>
 	<input type="button" id="btnDrawCard" value="Shuffle the deck">
-	<input type="button" id="btnDrawPots" value="Shuffle the deck">
+	<input type="button" id="pickInputNumber" value="Go">
+	<div>
+	<select id='inputNumber' value="1">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+		<option value="6">6</option>
+		<option value="7">7</option>
+		<option value="8">8</option>
+	</select>		
+	 </div>
 	<div id="canvasContainer">
-		<canvas id="cardCanvas" width="1000px" height="1200px">
+		<canvas id="cardCanvas" width="1000px" height="600px">
 			Your browser dos not support canvas!
 		</canvas>
 	</div>
+
 	
+	<script type="text/javascript" src="scripts/potDealer.js"></script>
 	<script type="text/javascript" src="scripts/cardGame.js"></script>
+	
 </body>
 </html>
