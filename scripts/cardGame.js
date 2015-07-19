@@ -1,7 +1,7 @@
 (function () {
 
     var suitType = {Diamond: 'Diamond', Heart: 'Heart', Spade: 'Spade', Clubs: 'Club'};
-
+    var magicValue = 1;
 
     function Card(name, suitType, cardValue, picture, sound) {
         this.Name = name;
@@ -130,7 +130,54 @@
  var cardCanvas = document.getElementById("cardCanvas");
  var context = cardCanvas.getContext("2d");
 
+function createInputPage(selector) {
+    var container = document.querySelector(selector);
+    container.style.font= "24px Consolas";
+    container.style.width = '400px';
+    var inputBox = document.createElement('div');
+    var form = document.createElement('form');
+    var inputArea = document.createElement('input');
+    var submitButton = document.createElement('input');
+
+    form.setAttribute('method', 'get');
+    form.id = 'pickInputNumber';
+
+    inputArea.setAttribute('type', 'text');
+    inputArea.style.width = '220px';
+    inputArea.style.height = '80px';
+    inputArea.style.marginTop = '5px';
+    inputArea.style.border = '5px solid black';
+    inputArea.style.fontSize = '76px';
+    inputArea.style.textAlign = 'center';
+
+
+    inputBox.innerHTML = '';
+    inputBox.innerHTML += '<h1>Manhattan Project</h1></br> Chapter: Prediction</br>';
+    inputBox.innerHTML += '<em>enter your favorite number within 1 and 27</em>'
+    inputBox.style.border = '1px solid black';
+    inputBox.style.borderRadius = '20px';
+    inputBox.style.width = '390px';
+    inputBox.style.height = '310px';
+    inputBox.style.margin = "50px";
+    inputBox.style.textAlign = "center";
+    inputBox.style.display = 'inline-block';
+
+    form.appendChild(inputArea);
+    form.appendChild(submitButton);
+    
+    inputBox.appendChild(form);
+
+    container.appendChild(inputBox);
+ }
+ createInputPage('#numberContainer');
+
  $(document).ready(function () {
+    $( "#pickInputNumber" ).on("keyup", function() {
+        magicValue = $("input:text").val();
+        // use value for potDealer.js
+        // and fire staright to the next step of execution
+    });
+    
     $("#btnDrawCard").on("click", function () {
         var currentCard = {};
         for (var i = 1; i <= 27; i += 1) {
@@ -141,8 +188,11 @@
         }
     });
     $("#btnDrawPots").on("click", function(){
-       context.clearRect(0,0,cardCanvas.width, cardCanvas.height);
-       dealThreePots(cards2, context);
+
+        console.log(magicValue); // magicValue is already ok here
+
+        context.clearRect(0,0,cardCanvas.width, cardCanvas.height);
+        dealThreePots(cards2, context);
     });
   });
 }());
