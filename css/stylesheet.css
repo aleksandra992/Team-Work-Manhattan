@@ -29,7 +29,8 @@ body {
 	background-color: white;
 	font-style: italic;
 	font-family: Consolas;
-	position: relative; left: 30%;top: -90px;
+	position: absolute;
+	top: 10px;
 }
 #btnDrawPots {
 	width: 140px;
@@ -38,5 +39,6 @@ body {
 	background-color: white;
 	font-style: italic;
 	font-family: Consolas;
-	position: relative; left: 30%; top: -90px;
+	position: absolute;
+	top: 10px; left: 150px;
 }

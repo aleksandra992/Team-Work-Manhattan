@@ -1,6 +1,11 @@
-(function () {
+(function() {
 
-    var suitType = {Diamond: 'Diamond', Heart: 'Heart', Spade: 'Spade', Clubs: 'Club'};
+    var suitType = {
+        Diamond: 'Diamond',
+        Heart: 'Heart',
+        Spade: 'Spade',
+        Clubs: 'Club'
+    };
     var magicValue = 1;
 
     function Card(name, suitType, cardValue, picture, sound) {
@@ -11,9 +16,10 @@
         this.Sound = sound;
     }
 
-    Card.prototype.toString = function () {
+    Card.prototype.toString = function() {
         return this.Name + ' of ' + this.SuitType + 's';
     };
+
     function fillDeckWithCards() {
         var deckOfCard = [];
         deckOfCard.push(new Card('Ace', suitType.Diamond, 14, 'images/classic-cards/4.png', 'sounds/cardPlace1.wav'));
@@ -55,10 +61,10 @@
 
     function deleteDrawedCard(deck, currentCard) {
         var currentIndex;
-         deck.some(function(item,index){
-            currentIndex=index;
-            return currentCard.Name===item.Name && currentCard.SuitType===item.SuitType;
-         });
+        deck.some(function(item, index) {
+            currentIndex = index;
+            return currentCard.Name === item.Name && currentCard.SuitType === item.SuitType;
+        });
         if (currentIndex > -1) {
             deck.splice(currentIndex, 1);
         }
@@ -83,10 +89,10 @@
     function drawCard(card, context, alignX, alignY) {
 
         if (context) {
-            
+
             if (card) {
                 var currentImage = new Image();
-                currentImage.onload = function () {
+                currentImage.onload = function() {
                     context.drawImage(currentImage, alignX, alignY, 108, 154);
                 };
                 currentImage.src = card.Picture;
@@ -97,106 +103,109 @@
         }
     }
 
-
     function dealThreePots(deck, context) {
         var firstPot = [],
-        secondPot = [],
-        thirdPot = [],
-        i,
-        len = deck.length;
+            secondPot = [],
+            thirdPot = [],
+            i,
+            len = deck.length;
         for (i = 0; i < len; i += 1) {
             console.log(deck[i]);
-            
+
             if (i < 9) {
                 firstPot.push(deck[i]);
-                drawCard(deck[i], context, 20 + i*20, 40);
+                drawCard(deck[i], context, 20 + i * 20, 40);
 
             } else if (i >= 9 && i < 18) {
 
-                 secondPot.push(deck[i]);
-                 drawCard(deck[i],  context, -160 + i*20, 210);
+                secondPot.push(deck[i]);
+                drawCard(deck[i], context, -160 + i * 20, 210);
 
-             } else {
-                 thirdPot.push(deck[i]);
-                 drawCard(deck[i], context,  -340 + i*20, 370);
+            } else {
+                thirdPot.push(deck[i]);
+                drawCard(deck[i], context, -340 + i * 20, 370);
 
-             }
-             
-     }
- }
+            }
 
- var cards = fillDeckWithCards();
- var cards2=fillDeckWithCards();
- var cardCanvas = document.getElementById("cardCanvas");
- var context = cardCanvas.getContext("2d");
-
-function createInputPage(selector) {
-    var container = document.querySelector(selector);
-    container.style.font= "24px Consolas";
-    container.style.width = '1200px';
-    container.style.height = '500px';
-    var inputBox = document.createElement('div');
-    var form = document.createElement('form');
-    var inputArea = document.createElement('input');
-    var submitButton = document.createElement('input');
-
-    form.setAttribute('method', 'get');
-    form.id = 'pickInputNumber';
-
-    inputArea.setAttribute('type', 'text');
-    inputArea.style.width = '220px';
-    inputArea.style.height = '80px';
-    inputArea.style.marginTop = '5px';
-    inputArea.style.border = '5px solid black';
-    inputArea.style.fontSize = '76px';
-    inputArea.style.textAlign = 'center';
-
-    inputBox.style.position = 'relative';
-    inputBox.style.left = "25%";
-    inputBox.style.top = "5%";
-    inputBox.innerHTML = '';
-    inputBox.innerHTML += '<h1>Manhattan Project</h1></br> Chapter: Prediction</br>';
-    inputBox.innerHTML += '<em>enter your favorite number within 1 and 27</em>'
-    inputBox.style.border = '1px solid black';
-    inputBox.style.borderRadius = '20px';
-    inputBox.style.width = '390px';
-    inputBox.style.height = '310px';
-    inputBox.style.margin = "50px";
-    inputBox.style.textAlign = "center";
-    inputBox.style.display = 'inline-block';
-
-    form.appendChild(inputArea);
-    
-    inputBox.appendChild(form);
-
-    container.appendChild(inputBox);
- }
- createInputPage('#numberContainer');
-
- $(document).ready(function () {
-    $( "#pickInputNumber" ).on("keyup", function() {
-        magicValue = $("input:text").val();
-
-        // use value for potDealer.js
-        // and fire staright to the next step of execution
-    });
-
-    $("#btnDrawCard").on("click", function () {
-        var currentCard = {};
-        // window.scrollBy(0, 200);  
-        for (var i = 1; i <= 27; i += 1) {
-            currentCard = drawRandomCard(cards);
-            drawCard(currentCard, context ,20 + i * 30, 40);
-            cards = deleteDrawedCard(cards, currentCard);
-            // hot to implement the fracking setTimeoit 
         }
-    });
-    $("#btnDrawPots").on("click", function(){
+    }
 
-        console.log(magicValue); // magicValue is already ok here
+    var cards = fillDeckWithCards();
+    var cards2 = fillDeckWithCards();
+    var cardCanvas = document.getElementById("cardCanvas");
+    var context = cardCanvas.getContext("2d");
 
-        context.clearRect(0,0,cardCanvas.width, cardCanvas.height);
-        dealThreePots(cards2, context);
+    function createInputPage(selector) {
+        var container = document.querySelector(selector);
+        container.style.font = "24px Consolas";
+        container.style.width = '1200px';
+        container.style.height = '500px';
+        container.style.display = 'visible';
+        var inputBox = document.createElement('div');
+        var form = document.createElement('form');
+        var inputArea = document.createElement('input');
+        var submitButton = document.createElement('input');
+
+        form.setAttribute('method', 'get');
+        form.id = 'pickInputNumber';
+
+        inputArea.setAttribute('type', 'text');
+        inputArea.style.width = '220px';
+        inputArea.style.height = '80px';
+        inputArea.style.marginTop = '5px';
+        inputArea.style.border = '5px solid black';
+        inputArea.style.fontSize = '76px';
+        inputArea.style.textAlign = 'center';
+
+        inputBox.style.position = 'relative';
+        inputBox.style.left = "25%";
+        inputBox.style.top = "5%";
+        inputBox.innerHTML = '';
+        inputBox.innerHTML += '<h1>Manhattan Project</h1></br> Chapter: Prediction</br>';
+        inputBox.innerHTML += '<em>enter your favorite number within 1 and 27</em>';
+        inputBox.style.border = '1px solid black';
+        inputBox.style.borderRadius = '20px';
+        inputBox.style.width = '390px';
+        inputBox.style.height = '310px';
+        inputBox.style.margin = "50px";
+        inputBox.style.textAlign = "center";
+        inputBox.style.display = 'inline-block';
+
+        form.appendChild(inputArea);
+
+        inputBox.appendChild(form);
+
+        container.appendChild(inputBox);
+    }
+
+    createInputPage('#numberContainer');
+
+    $(document).ready(function() {   
+
+        $("#pickInputNumber").on("keyup", function() {
+            magicValue = $("input:text").val();
+            // use value for potDealer.js
+            // and fire staright to the next step of execution
+        });
+        $("#btnDrawCard").on("click", function() {
+            var container = document.querySelector('#numberContainer');
+            container.style.display = 'none';
+
+            var currentCard = {};
+            // window.scrollBy(0, 200);  
+            for (var i = 1; i <= 27; i += 1) {
+                currentCard = drawRandomCard(cards);
+                drawCard(currentCard, context, 20 + i * 30, 40);
+                cards = deleteDrawedCard(cards, currentCard);
+                // hot to implement the fracking setTimeoit 
+            }
+        });
+        $("#btnDrawPots").on("click", function() {
+
+            console.log(magicValue); // magicValue is already ok here
+
+            context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
+            dealThreePots(cards2, context);
+        });
     });
-  });
 }());
