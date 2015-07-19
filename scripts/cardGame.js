@@ -168,7 +168,6 @@
         inputBox.style.margin = "50px";
         inputBox.style.textAlign = "center";
         inputBox.style.display = 'inline-block';
-        inputBox.style.align = 'center';
 
         form.appendChild(inputArea);
 
