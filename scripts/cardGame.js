@@ -48,7 +48,6 @@
 
     }
 
-
     function drawRandomCard(deck) {
         var currentCard = deck[Math.floor(Math.random() * deck.length)];
         return currentCard;
@@ -93,60 +92,57 @@
                 currentImage.src = card.Picture;
 
                 playCardGameSound(card.Sound);
-                //drawText(currentCard, context);
+                // drawText(currentCard, context);
             }
         }
     }
 
 
-    function dealThreePots(deck) {
+    function dealThreePots(deck, context) {
         var firstPot = [],
         secondPot = [],
         thirdPot = [],
         i,
         len = deck.length;
         for (i = 0; i < len; i += 1) {
-            if (len < 9) {
+            console.log(deck[i]);
+            
+            if (i < 9) {
                 firstPot.push(deck[i]);
-                drawCard(deck, 20 + i*10, 40);
+                drawCard(deck[i], context, 20 + i*20, 40);
 
-            } else
-            if (len >= 9 && len < 18) {
-             secondPot.push(deck[i])
-             drawCard(deck, 20 + i*10, 100);
+            } else if (i >= 9 && i < 18) {
 
-         } else {
-             thirdPot.push(deck[i]);
-             drawCard(deck, 20 + i*10, 360);
+                 secondPot.push(deck[i]);
+                 drawCard(deck[i],  context, -160 + i*20, 210);
 
-         }
+             } else {
+                 thirdPot.push(deck[i]);
+                 drawCard(deck[i], context,  -340 + i*20, 370);
+
+             }
+             
      }
  }
 
  var cards = fillDeckWithCards();
  var cards2=fillDeckWithCards();
-var cardCanvas = document.getElementById("cardCanvas");
-var context = cardCanvas.getContext("2d");
-
+ var cardCanvas = document.getElementById("cardCanvas");
+ var context = cardCanvas.getContext("2d");
 
  $(document).ready(function () {
-
-
     $("#btnDrawCard").on("click", function () {
         var currentCard = {};
         for (var i = 1; i <= 27; i += 1) {
-            console.log(cards[i]);
             currentCard = drawRandomCard(cards);
             drawCard(currentCard, context ,20 + i * 30, 40);
             cards = deleteDrawedCard(cards, currentCard);
             // hot to implement the fracking setTimeoit 
         }
     });
-    $("#btnDrawPots").on("click",function(){
-       dealThreePots(cards2);
-   });
-
-
-
-});
+    $("#btnDrawPots").on("click", function(){
+       context.clearRect(0,0,cardCanvas.width, cardCanvas.height);
+       dealThreePots(cards2, context);
+    });
+  });
 }());
