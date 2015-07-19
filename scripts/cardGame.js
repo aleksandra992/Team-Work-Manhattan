@@ -138,9 +138,9 @@
     function createInputPage(selector) {
         var container = document.querySelector(selector);
         container.style.font = "24px Consolas";
-        container.style.width = '1200px';
+        container.style.width = '1000px';
         container.style.height = '500px';
-        container.style.display = 'visible';
+        container.style.display = 'none';
         var inputBox = document.createElement('div');
         var form = document.createElement('form');
         var inputArea = document.createElement('input');
@@ -148,6 +148,8 @@
 
         form.setAttribute('method', 'get');
         form.id = 'pickInputNumber';
+        form.className = 'formBox';
+        form.style.display = 'none';
 
         inputArea.setAttribute('type', 'text');
         inputArea.style.width = '220px';
@@ -168,6 +170,7 @@
         inputBox.style.margin = "50px";
         inputBox.style.textAlign = "center";
         inputBox.style.display = 'inline-block';
+        inputBox.style.align = 'center';
 
         form.appendChild(inputArea);
 
@@ -179,7 +182,8 @@
     createInputPage('#numberContainer');
 
     $(document).ready(function() {   
-
+        $('#numberContainer').slideDown(2500);
+        $('.formBox').slideDown('slow');
         $("#pickInputNumber").on("keyup", function() {
             magicValue = $("input:text").val();
             // use value for potDealer.js
