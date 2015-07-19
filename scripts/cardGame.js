@@ -141,6 +141,7 @@
         container.style.width = '1000px';
         container.style.height = '500px';
         container.style.display = 'none';
+        container.style.marginLeft = '30px';
         var inputBox = document.createElement('div');
         var form = document.createElement('form');
         var inputArea = document.createElement('input');
@@ -163,14 +164,16 @@
         inputBox.innerHTML = '';
         inputBox.innerHTML += '<h1>Manhattan Project</h1></br> Chapter: Prediction</br>';
         inputBox.innerHTML += '<em>enter your favorite number within 1 and 27</em>';
-        inputBox.style.border = '1px solid black';
+        inputBox.style.borderLeft = '2px dotted black';
+        inputBox.style.borderRight= '2px dotted black';
+        inputBox.style.boxShadow = '0px 4px 7px rgba(0,0,0,0.6)';
         inputBox.style.borderRadius = '20px';
+        inputBox.style.background = '#FDF9E7';
         inputBox.style.width = '390px';
         inputBox.style.height = '310px';
         inputBox.style.margin = "50px";
         inputBox.style.textAlign = "center";
         inputBox.style.display = 'inline-block';
-        inputBox.style.align = 'center';
 
         form.appendChild(inputArea);
 
@@ -182,8 +185,8 @@
     createInputPage('#numberContainer');
 
     $(document).ready(function() {   
-        $('#numberContainer').slideDown(2500);
-        $('.formBox').slideDown('slow');
+        $('#numberContainer').slideDown(5000);
+        $('.formBox').slideDown(4000);
         $("#pickInputNumber").on("keyup", function() {
             magicValue = $("input:text").val();
             // use value for potDealer.js
