@@ -51,11 +51,19 @@
 
     function drawRandomCard(deck) {
         var currentCard = deck[Math.floor(Math.random() * deck.length)];
-        var index = deck.indexOf(currentCard);
-        if (index > -1) {
-            deck.splice(index, 1);
-        }
         return currentCard;
+    }
+
+    function deleteDrawedCard(deck, currentCard) {
+        var currentIndex;
+         deck.some(function(item,index){
+            currentIndex=index;
+            return currentCard.Name===item.Name && currentCard.SuitType===item.SuitType;
+         });
+        if (currentIndex > -1) {
+            deck.splice(currentIndex, 1);
+        }
+        return deck.slice();
     }
 
     function playCardGameSound(soundResource) {
@@ -73,22 +81,18 @@
         context.fillText(currentCard.toString(), 20, 240);
     }
 
-    function drawCard(deck, alignX, alignY) {
-
-        var cardCanvas = document.getElementById("cardCanvas");
-        var context = cardCanvas.getContext("2d");
+    function drawCard(card, context, alignX, alignY) {
 
         if (context) {
-            var currentCard = drawRandomCard(deck);
-            if (currentCard) {
+            
+            if (card) {
                 var currentImage = new Image();
                 currentImage.onload = function () {
                     context.drawImage(currentImage, alignX, alignY, 108, 154);
                 };
-                currentImage.src = currentCard.Picture;
+                currentImage.src = card.Picture;
 
-                playCardGameSound(currentCard.Sound);
-
+                playCardGameSound(card.Sound);
                 // drawText(currentCard, context);
             }
         }
@@ -97,49 +101,52 @@
 
     function dealThreePots(deck) {
         var firstPot = [],
-            secondPot = [],
-            thirdPot = [],
-            i,
-            len = deck.length;
+        secondPot = [],
+        thirdPot = [],
+        i,
+        len = deck.length;
         for (i = 0; i < len; i += 1) {
             if (len < 9) {
                 firstPot.push(deck[i]);
-                drawCard(deck, 20 + i, 40);
+                drawCard(deck, 20 + i*10, 40);
 
-           } else
-           if (len >= 9 && len < 18) {
-               secondPot.push(deck[i])
-                drawCard(deck, 20 + i, 100);
+            } else
+            if (len >= 9 && len < 18) {
+             secondPot.push(deck[i])
+             drawCard(deck, 20 + i*10, 100);
 
-            } else {
-               thirdPot.push(deck[i]);
-                drawCard(deck, 20 + i, 360);
+         } else {
+             thirdPot.push(deck[i]);
+             drawCard(deck, 20 + i*10, 360);
 
-            }
-        }
-    }
+         }
+     }
+ }
 
-    var cards = fillDeckWithCards();
-    var cards2=fillDeckWithCards();
-     $(document).ready(function () {
+ var cards = fillDeckWithCards();
+ var cards2=fillDeckWithCards();
+var cardCanvas = document.getElementById("cardCanvas");
+var context = cardCanvas.getContext("2d");
+
+
+ $(document).ready(function () {
 
 
     $("#btnDrawCard").on("click", function () {
-
-    for (var i = 1; i <= 27; i += 1) {
-        console.log(cards[i]);
-        drawCard(cards, 20 + i * 30, 40);
-        // hot to implement the fracking setTimeoit ?
-
-
-    }
-
-     });
-         $("#btnDrawPots").on("click",function(){
-             dealThreePots(cards2);
-         })
-
+        var currentCard = {};
+        for (var i = 1; i <= 27; i += 1) {
+            console.log(cards[i]);
+            currentCard = drawRandomCard(cards);
+            drawCard(currentCard, context ,20 + i * 30, 40);
+            cards = deleteDrawedCard(cards, currentCard);
+            // hot to implement the fracking setTimeoit 
+        }
+    });
+    $("#btnDrawPots").on("click",function(){
+       dealThreePots(cards2);
+   });
 
 
-      });
+
+});
 }());
