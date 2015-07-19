@@ -6,21 +6,21 @@ em {font-size: 16px;}
 body {
     background-color: white;
     -webkit-animation-name: example; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 4s; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 2s; /* Chrome, Safari, Opera */
     animation-name: example;
     animation-duration: 10s;
 }
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes example {
-    from {background-color: #A8AAA9;}
-    to {background-color: white;}
+    from {background-color: #1A1A1C; color:white;}
+    to {background-color: white; color:#1A1A1C;}
 }
 
 /* Standard syntax */
 @keyframes example {
-    from {background-color: #A8AAA9;}
-    to {background-color: white;}
+    from {background-color: #1A1A1C;color:white;}
+    to {background-color: white; color:#1A1A1C;}
 }
 #btnDrawCard {
 	width: 140px;
