@@ -411,6 +411,7 @@
                 // and fire staright to the next step of execution
             });
             $("#btnDrawCard").on("click", function () {
+                $(this).prop('disabled', true);
                 var container = document.querySelector('#numberContainer');
                 container.style.display = 'none';
                 var currentCardDeck = cardDeck.slice();
@@ -425,6 +426,7 @@
             });
             $("#btnDrawPots").on("click", function () {
 
+                $(this).prop('disabled', true);
                 // console.log(magicValue); // magicValue is already ok here
 
                 context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
@@ -479,11 +481,25 @@
 
                 });
                 $("#btnAnswer").on("click", function () {
+                    $("#btnChoosePot1").remove();
+                    $("#btnChoosePot2").remove();
+                    $("#btnChoosePot3").remove();
+
+                    var pot = currentThreePots.firstPot;
+                    for (var i = 0; i < 9; i++) {
+                        pot.push(currentThreePots.secondPot[i]);
+                    }
+                    for (var i = 0; i < 9; i++) {
+                        pot.push(currentThreePots.thirdPot[i]);
+                    }
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    drawCard(currentThreePots.firstPot[magicValue-1],context,50,40)
-                    console.log(currentThreePots.firstPot[magicValue - 1]);
 
-
+                    for (var i = 0; i < magicValue; i++) {
+                        drawCard(pot[i], context, 20 + i * 30, 40)
+                    }
+                   
+                    console.log(pot);
+                    console.log(pot[magicValue - 1]);
                 });
             });
 
