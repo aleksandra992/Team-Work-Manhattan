@@ -18,9 +18,6 @@
             secondPot: [],
             thirdPot: []
         };
-        var currentFirst = [];
-        var currentSecond = [];
-        var currentThird = [];
         var currentThreePots = {
             firstPot: threePots.firstPot,
             secondPot: threePots.secondPot,
@@ -201,10 +198,6 @@
             }
         }
 
-        function mixThreePots(potTurns) {
-
-        }
-
         var cardCanvas = document.getElementById("cardCanvas");
         var context = cardCanvas.getContext("2d");
 
@@ -321,6 +314,9 @@
             currentThreePots.firstPot = currentMixedPots.firstPot.slice();
             currentThreePots.secondPot = currentMixedPots.secondPot.slice();
             currentThreePots.thirdPot = currentMixedPots.thirdPot.slice();
+           threePots.firstPot = currentMixedPots.firstPot.slice();
+            threePots.secondPot = currentMixedPots.secondPot.slice();
+            threePots.thirdPot = currentMixedPots.thirdPot.slice();
         }
 
         function PutFirstOnPlace(turn) {
@@ -343,6 +339,9 @@
                 currentThreePots.firstPot = threePots.thirdPot.slice();
                 currentThreePots.secondPot = threePots.secondPot.slice();
             }
+            threePots.firstPot = currentThreePots.firstPot.slice();
+            threePots.secondPot = currentThreePots.secondPot.slice();
+            threePots.thirdPot = currentThreePots.thirdPot.slice();
 
         }
 
@@ -366,7 +365,9 @@
                 currentThreePots.firstPot = threePots.firstPot.slice();
                 currentThreePots.secondPot = threePots.thirdPot.slice();
             }
-
+            threePots.firstPot = currentThreePots.firstPot.slice();
+            threePots.secondPot = currentThreePots.secondPot.slice();
+            threePots.thirdPot = currentThreePots.thirdPot.slice();
 
         }
 
@@ -390,6 +391,9 @@
                 currentThreePots.firstPot = threePots.firstPot.slice();
                 currentThreePots.secondPot = threePots.secondPot.slice();
             }
+            threePots.firstPot = currentThreePots.firstPot.slice();
+            threePots.secondPot = currentThreePots.secondPot.slice();
+            threePots.thirdPot = currentThreePots.thirdPot.slice();
 
         }
 
@@ -432,35 +436,51 @@
                 $("#btnChoosePot1").on("click", function () {
 
                     PutFirstOnPlace(buttonClickCount);
-                    shuffleCards();
+                    console.log('pred shuffle');
+                    console.log(currentThreePots);
+                    if(buttonClickCount<2) {
+                        shuffleCards();
+                    }
                     buttonClickCount++;
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
                     dealThreePots(currentThreePots, context);
-                    console.log(threePots);
+                    //  console.log(threePots);
+                    console.log('sfter shuffle');
                     console.log(currentThreePots);
 
                 });
                 $("#btnChoosePot2").on("click", function () {
 
                     PutSecondOnPlace(buttonClickCount);
-                    shuffleCards();
+                    console.log('pred shuffle');
+                    console.log(currentThreePots);
+                    if(buttonClickCount<2) {
+                        shuffleCards();
+                    }
                     buttonClickCount++;
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
                     dealThreePots(currentThreePots, context);
-                    console.log(threePots);
+                    // console.log(threePots);
+                    console.log('sfter shuffle');
                     console.log(currentThreePots);
                 });
                 $("#btnChoosePot3").on("click", function () {
                     PutThirdOnPlace(buttonClickCount);
-                    shuffleCards();
+                    console.log('pred shuffle');
+                    console.log(currentThreePots);
+                    if(buttonClickCount<2) {
+                        shuffleCards();
+                    }
                     buttonClickCount++;
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
                     dealThreePots(currentThreePots, context);
-                    console.log(threePots);
+                    console.log('sfter shuffle');
                     console.log(currentThreePots);
 
                 });
                 $("#btnAnswer").on("click", function () {
+                    context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
+                    drawCard(currentThreePots.firstPot[magicValue-1],context,50,40)
                     console.log(currentThreePots.firstPot[magicValue - 1]);
 
 
