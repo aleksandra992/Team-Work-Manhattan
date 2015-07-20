@@ -497,7 +497,7 @@
                     for (var i = 0; i < magicValue; i++) {
                         drawCard(pot[i], context, 20 + i * 30, 40)
                     }
-                   
+                   drawCard(pot[magicValue-1],context,500,40);
                     console.log(pot);
                     console.log(pot[magicValue - 1]);
                 });
