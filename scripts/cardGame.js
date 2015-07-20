@@ -314,7 +314,7 @@
             currentThreePots.firstPot = currentMixedPots.firstPot.slice();
             currentThreePots.secondPot = currentMixedPots.secondPot.slice();
             currentThreePots.thirdPot = currentMixedPots.thirdPot.slice();
-           threePots.firstPot = currentMixedPots.firstPot.slice();
+            threePots.firstPot = currentMixedPots.firstPot.slice();
             threePots.secondPot = currentMixedPots.secondPot.slice();
             threePots.thirdPot = currentMixedPots.thirdPot.slice();
         }
@@ -440,7 +440,7 @@
                     PutFirstOnPlace(buttonClickCount);
                     console.log('pred shuffle');
                     console.log(currentThreePots);
-                    if(buttonClickCount<2) {
+                    if (buttonClickCount < 2) {
                         shuffleCards();
                     }
                     buttonClickCount++;
@@ -456,7 +456,7 @@
                     PutSecondOnPlace(buttonClickCount);
                     console.log('pred shuffle');
                     console.log(currentThreePots);
-                    if(buttonClickCount<2) {
+                    if (buttonClickCount < 2) {
                         shuffleCards();
                     }
                     buttonClickCount++;
@@ -470,7 +470,7 @@
                     PutThirdOnPlace(buttonClickCount);
                     console.log('pred shuffle');
                     console.log(currentThreePots);
-                    if(buttonClickCount<2) {
+                    if (buttonClickCount < 2) {
                         shuffleCards();
                     }
                     buttonClickCount++;
@@ -493,11 +493,11 @@
                         pot.push(currentThreePots.thirdPot[i]);
                     }
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-
-                    for (var i = 0; i < magicValue; i++) {
+                    var i;
+                    for (i = 0; i < magicValue; i++) {
                         drawCard(pot[i], context, 20 + i * 30, 40)
                     }
-                   drawCard(pot[magicValue-1],context,500,40);
+                    drawCard(pot[magicValue - 1], context, 20 + (i - 1) * 30, 100);
                     console.log(pot);
                     console.log(pot[magicValue - 1]);
                 });
