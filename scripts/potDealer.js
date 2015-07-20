@@ -26,4 +26,3 @@ function potDealer(number) {
     }
     return potTurns;
 }
-console.log(potDealer(1));
