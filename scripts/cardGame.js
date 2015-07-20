@@ -212,6 +212,42 @@
             var form = document.createElement('form');
             var inputArea = document.createElement('input');
             var submitButton = document.createElement('input');
+            var popUpLink = document.createElement('a');
+            var popUpDiv = document.createElement('div');
+
+            popUpDiv.setAttribute('id', 'popUpDiv');
+            popUpDiv.setAttribute('data-role', 'popup');
+            popUpDiv.style.width = '270px';
+            popUpDiv.style.height = '44px';
+           // popUpDiv.style.borderTop = '1px solid black';
+            popUpDiv.style.borderRight = '1px solid black';
+            popUpDiv.style.borderBottom = '1px solid black';
+            popUpDiv.style.borderRadius = '200px';
+            popUpDiv.style.display = 'none';
+            popUpDiv.style.position = 'relative';
+            popUpDiv.style.left = '368px';
+            popUpDiv.style.top = '0px';
+            popUpDiv.style.fontSize = '12px';
+            popUpDiv.innerHTML = '';
+            popUpDiv.innerHTML += '<ol><li>Enter a number within 1 - 27</li><li>Pick a card from the deck</li><li>Choose the pot with your card (3x)</li></ol>';
+
+            popUpLink.setAttribute('href', '#popUpDiv');
+            popUpLink.setAttribute('data-rel', 'popup');
+            popUpLink.setAttribute('data-role', 'button');
+            popUpLink.setAttribute('data-inline', 'true');
+            popUpLink.setAttribute('data-transition', 'pop');
+            popUpLink.id = 'popUpLink';
+            popUpLink.text += 'info';
+            popUpLink.style.textDecoration = 'none';
+            popUpLink.style.fontSize = '12px';
+            popUpLink.style.color = 'black';
+
+            popUpLink.style.position = 'relative';
+            popUpLink.style.top = '-10px';
+            popUpLink.style.left = '160px';
+            popUpLink.style.marginLeft = '3px';
+            popUpLink.style.marginRight = '3px';
+    
 
             form.setAttribute('method', 'get');
             form.id = 'pickInputNumber';
@@ -243,19 +279,36 @@
             form.appendChild(inputArea);
 
             inputBox.appendChild(form);
+            inputBox.appendChild(popUpLink);
+            inputBox.appendChild(popUpDiv);
+
+            popUpDiv.className = 'box e'
+            window.getComputedStyle(popUpDiv).opacity; // added
+            popUpDiv.className += ' in';
 
             container.appendChild(inputBox);
 
             var btn1 = document.getElementById('btnDrawCard');
             var btn2 = document.getElementById('btnDrawPots');
             var btn3 = document.getElementById('btnAnswer');
+            var popup1 = document.getElementById('popUpLink');
             btn1.addEventListener('mouseout', onButtonMouseOut);
             btn1.addEventListener('mouseover', onButtonMouseOver);
             btn2.addEventListener('mouseout', onButtonMouseOut);
             btn2.addEventListener('mouseover', onButtonMouseOver);
             btn3.addEventListener('mouseout', onButtonMouseOut);
             btn3.addEventListener('mouseover', onButtonMouseOver);
-            var choosePot1 = document.getElementById('btnChoosePot1')
+            popup1.addEventListener('mouseover', infoOnMouseOver);
+            popup1.addEventListener('mouseout', infoOnMouseOut);
+            var choosePot1 = document.getElementById('btnChoosePot1');
+
+            function infoOnMouseOver() {
+                popUpDiv.style.display = 'block';
+            }
+            function infoOnMouseOut() {
+                popUpDiv.style.display = 'none';
+            }
+
 
             function onButtonMouseOver(event) {
                 if (selectedButton !== this) {
