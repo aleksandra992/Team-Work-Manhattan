@@ -308,23 +308,27 @@
             var btn2 = document.getElementById('btnDrawPots');
             var btn3 = document.getElementById('btnAnswer');
             var popup1 = document.getElementById('popUpLink');
-            btn1.addEventListener('mouseout', onButtonMouseOut);
-            btn1.addEventListener('mouseover', onButtonMouseOver);
-            btn2.addEventListener('mouseout', onButtonMouseOut);
-            btn2.addEventListener('mouseover', onButtonMouseOver);
-            btn3.addEventListener('mouseout', onButtonMouseOut);
-            btn3.addEventListener('mouseover', onButtonMouseOver);
-            submitButton.addEventListener('mouseover', onButtonMouseOver);
-            submitButton.addEventListener('mouseout', onButtonMouseOut);
-            popup1.addEventListener('mouseover', infoOnMouseOver);
-            popup1.addEventListener('mouseout', infoOnMouseOut);
+            btn1.addEventListener('mouseout', onButtonMouseOut, false);
+            btn1.addEventListener('mouseover', onButtonMouseOver, false);
+            btn2.addEventListener('mouseout', onButtonMouseOut, false);
+            btn2.addEventListener('mouseover', onButtonMouseOver, false);
+            btn3.addEventListener('mouseout', onButtonMouseOut, false);
+            btn3.addEventListener('mouseover', onButtonMouseOver, false);
+            submitButton.addEventListener('mouseover', onButtonMouseOver, false);
+            submitButton.addEventListener('mouseout', onButtonMouseOut, false);
+            popup1.addEventListener('mouseover', infoOnMouseOver, false);
+            popup1.addEventListener('mouseout', infoOnMouseOut, false);
             var choosePot1 = document.getElementById('btnChoosePot1');
 
-            function infoOnMouseOver() {
-                popUpDiv.style.display = 'block';
+            function infoOnMouseOver(event) {
+                if (selectedButton !== this) {
+                    this.nextSibling.style.display = 'block';
+                }
             }
-            function infoOnMouseOut() {
-                popUpDiv.style.display = 'none';
+            function infoOnMouseOut(event) {
+                if (selectedButton !== this) {
+                    this.nextSibling.style.display = 'none';
+                }
             }
 
 
