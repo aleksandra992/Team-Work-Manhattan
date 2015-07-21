@@ -211,7 +211,7 @@
             var inputBox = document.createElement('div');
             var form = document.createElement('form');
             var inputArea = document.createElement('input');
-            var submitButton = document.createElement('input');
+            var submitButton = document.createElement('button');
             var popUpLink = document.createElement('a');
             var popUpDiv = document.createElement('div');
 
@@ -249,7 +249,7 @@
             popUpLink.style.marginRight = '3px';
     
 
-            form.setAttribute('method', 'get');
+            
             form.id = 'pickInputNumber';
             form.className = 'formBox';
             form.style.display = 'none';
@@ -261,6 +261,20 @@
             inputArea.style.border = '5px solid black';
             inputArea.style.fontSize = '76px';
             inputArea.style.textAlign = 'center';
+
+            submitButton.setAttribute('id', 'submit-btn');
+            submitButton.style.width = '60px';
+            submitButton.style.height = '60px';
+            submitButton.style.marginTop = '5px';
+            submitButton.style.border = '3px solid black';
+            submitButton.style.fontSize = '24px';
+            submitButton.style.textAlign = 'center';
+            submitButton.innerHTML = 'GO!';
+            submitButton.style.display = 'inline-block';
+            submitButton.style.padding = '3px';
+            submitButton.style.position = 'relative';
+            submitButton.style.top = '-20px';
+            submitButton.style.left = '20px';
 
             inputBox.innerHTML = '';
             inputBox.innerHTML += '<h1>Manhattan Project</h1></br> Chapter: Prediction</br>';
@@ -277,8 +291,10 @@
             inputBox.style.display = 'inline-block';
 
             form.appendChild(inputArea);
+            
 
             inputBox.appendChild(form);
+            inputBox.appendChild(submitButton);
             inputBox.appendChild(popUpLink);
             inputBox.appendChild(popUpDiv);
 
@@ -298,6 +314,8 @@
             btn2.addEventListener('mouseover', onButtonMouseOver);
             btn3.addEventListener('mouseout', onButtonMouseOut);
             btn3.addEventListener('mouseover', onButtonMouseOver);
+            submitButton.addEventListener('mouseover', onButtonMouseOver);
+            submitButton.addEventListener('mouseout', onButtonMouseOut);
             popup1.addEventListener('mouseover', infoOnMouseOver);
             popup1.addEventListener('mouseout', infoOnMouseOut);
             var choosePot1 = document.getElementById('btnChoosePot1');
@@ -312,8 +330,8 @@
 
             function onButtonMouseOver(event) {
                 if (selectedButton !== this) {
-                    this.style.background = 'gold';
-                    this.style.color = 'red';
+                    this.style.background = 'gray';
+                    this.style.color = 'white';
                 }
             }
 
@@ -455,6 +473,9 @@
         $(document).ready(function () {
             $('#numberContainer').slideDown(5000);
             $('.formBox').slideDown(4000);
+            $('#submit-btn').on("click", function() {
+                $("#btnDrawCard").trigger("click");
+            });
             $("#pickInputNumber").on("keyup", function () {
                 magicValue = $("input:text").val();
                 potTurns = potDealer(magicValue);
