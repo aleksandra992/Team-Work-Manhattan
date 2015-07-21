@@ -490,6 +490,7 @@
             });
             $("#btnDrawCard").on("click", function () {
                 $(this).prop('disabled', true);
+                $("#btnDrawPots").prop('disabled', false);
                 var container = document.querySelector('#numberContainer');
                 container.style.display = 'none';
                 var currentCardDeck = cardDeck.slice();
@@ -502,6 +503,10 @@
                     // hot to implement the fracking setTimeoit
                 }
             });
+
+            if ($("#btnDrawCard").prop('disabled') === false) {
+                $("#btnDrawPots").prop('disabled', true);
+            }
 
             $("#btnDrawPots").on("click", function () {
 
