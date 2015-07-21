@@ -565,6 +565,7 @@
                         console.log(currentThreePots);
                     }
                 });
+
                 $("#btnChoosePot3").on("click", function () {
 
                     if (buttonClickCount > 1) {
@@ -585,7 +586,7 @@
                     }
                 });
 
-
+                $("#btnAnswer").prop('disabled', true);
                 $("#btnAnswer").on("click", function () {
                     $("#btnChoosePot1").remove();
                     $("#btnChoosePot2").remove();
