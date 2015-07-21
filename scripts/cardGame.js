@@ -509,6 +509,9 @@
                 $('#wrapper').append('<input type="button" class="btnChoosePot" id="btnChoosePot2" value="2">');
                 $('#wrapper').append('<input type="button" class="btnChoosePot" id="btnChoosePot3" value="3">');
                 console.log(currentPotTurns);
+                if (currentPotTurns === undefined) {
+                    currentPotTurns = ['TOP','TOP','TOP'];
+                }
                 $("#btnChoosePot1").on("click", function () {
 
                     PutFirstOnPlace(buttonClickCount);
