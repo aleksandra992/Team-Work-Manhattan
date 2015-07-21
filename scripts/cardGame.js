@@ -502,6 +502,7 @@
                     // hot to implement the fracking setTimeoit
                 }
             });
+
             $("#btnDrawPots").on("click", function () {
 
                 $(this).prop('disabled', true);
@@ -516,51 +517,70 @@
                 if (currentPotTurns === undefined) {
                     currentPotTurns = ['TOP','TOP','TOP'];
                 }
+
+ 
                 $("#btnChoosePot1").on("click", function () {
 
-                    PutFirstOnPlace(buttonClickCount);
-                    console.log('pred shuffle');
-                    console.log(currentThreePots);
-                    if (buttonClickCount < 2) {
-                        shuffleCards();
+                    if (buttonClickCount > 1) {
+                        $("#btnAnswer").trigger("click");
                     }
-                    buttonClickCount++;
-                    context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    dealThreePots(currentThreePots, context);
-                    //  console.log(threePots);
-                    console.log('sfter shuffle');
-                    console.log(currentThreePots);
+                    else {
+                        PutFirstOnPlace(buttonClickCount);
+                        console.log('pred shuffle');
+                        console.log(currentThreePots);
+                        if (buttonClickCount < 2) {
+                            shuffleCards();
+                        }
+                        buttonClickCount++;
+                        context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
+                        dealThreePots(currentThreePots, context);
+                        //  console.log(threePots);
+                        console.log('sfter shuffle');
+                        console.log(currentThreePots);
+                    }
+                            
 
                 });
                 $("#btnChoosePot2").on("click", function () {
-
-                    PutSecondOnPlace(buttonClickCount);
-                    console.log('pred shuffle');
-                    console.log(currentThreePots);
-                    if (buttonClickCount < 2) {
-                        shuffleCards();
+                    if (buttonClickCount > 1) {
+                        $("#btnAnswer").trigger("click");
                     }
-                    buttonClickCount++;
-                    context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    dealThreePots(currentThreePots, context);
-                    // console.log(threePots);
-                    console.log('sfter shuffle');
-                    console.log(currentThreePots);
+                    else {
+                        PutSecondOnPlace(buttonClickCount);
+                        console.log('pred shuffle');
+                        console.log(currentThreePots);
+                        if (buttonClickCount < 2) {
+                            shuffleCards();
+                        }
+                        buttonClickCount++;
+                        context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
+                        dealThreePots(currentThreePots, context);
+                        // console.log(threePots);
+                        console.log('sfter shuffle');
+                        console.log(currentThreePots);
+                    }
                 });
                 $("#btnChoosePot3").on("click", function () {
-                    PutThirdOnPlace(buttonClickCount);
-                    console.log('pred shuffle');
-                    console.log(currentThreePots);
-                    if (buttonClickCount < 2) {
-                        shuffleCards();
-                    }
-                    buttonClickCount++;
-                    context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    dealThreePots(currentThreePots, context);
-                    console.log('sfter shuffle');
-                    console.log(currentThreePots);
 
+                    if (buttonClickCount > 1) {
+                        $("#btnAnswer").trigger("click");
+                    }
+                    else {
+                        PutThirdOnPlace(buttonClickCount);
+                        console.log('pred shuffle');
+                        console.log(currentThreePots);
+                        if (buttonClickCount < 2) {
+                            shuffleCards();
+                        }
+                        buttonClickCount++;
+                        context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
+                        dealThreePots(currentThreePots, context);
+                        console.log('sfter shuffle');
+                        console.log(currentThreePots);
+                    }
                 });
+
+
                 $("#btnAnswer").on("click", function () {
                     $("#btnChoosePot1").remove();
                     $("#btnChoosePot2").remove();
@@ -583,11 +603,5 @@
                     console.log(pot[magicValue - 1]);
                 });
             });
-
-
         });
-    }
-
-    ()
-)
-;
+    }());
