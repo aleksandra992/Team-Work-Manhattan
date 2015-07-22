@@ -147,7 +147,7 @@
             if (card) {
                 var currentImage = new Image();
                 currentImage.onload = function () {
-                    context.drawImage(currentImage, alignX, alignY, 108, 154);
+                    context.drawImage(currentImage, alignX, alignY, 72, 96);
                 };
                 currentImage.src = card.Picture;
 
@@ -266,6 +266,7 @@
         popUpDiv.style.left = '368px';
         popUpDiv.style.top = '0px';
         popUpDiv.style.fontSize = '12px';
+        popUpDiv.style.color = 'white';
         popUpDiv.innerHTML = '';
         popUpDiv.innerHTML += '<ol><li>Enter a number within 1 - 27</li><li>Pick a card from the deck</li><li>Choose the pot with your card (3x)</li></ol>';
 
@@ -278,7 +279,7 @@
         popUpLink.text += 'info';
         popUpLink.style.textDecoration = 'none';
         popUpLink.style.fontSize = '12px';
-        popUpLink.style.color = 'black';
+        popUpLink.style.color = 'white';
 
         popUpLink.style.position = 'relative';
         popUpLink.style.top = '-10px';

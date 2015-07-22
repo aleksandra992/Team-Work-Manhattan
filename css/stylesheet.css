@@ -4,27 +4,31 @@ blockquote,body,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,img,input,li,ol,p,t
 em {font-size: 16px;}
 
 #wrapper {
-	width: 1000px;
+	width: 900px;
+	height: 600px;
 	position:absolute;
-	margin:0 auto;
-	padding: :20px;
-    background-color: white;
-    -webkit-animation-name: example; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 10s; /* Chrome, Safari, Opera */
-    animation-name: example;
-    animation-duration: 10s;
+	margin-left: 150px;
+	padding-right: 40px;
+	padding-top: 250px;
+	background-image: url("../Images/game-background.jpg");
+	background-repeat: no-repeat;
+	background-color: black;
+	-webkit-animation-name: example; /* Chrome, Safari, Opera */
+	-webkit-animation-duration: 3s; /* Chrome, Safari, Opera */
+	animation-name: example;
+	animation-duration: 3s;
 }
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes example {
-    from {background-color: #1A1A1C; color:white;}
-    to {background-color: white; color:#1A1A1C;}
+	from {background-color: #1A1A1C; color:white;}
+	to {background-color: white; color:#1A1A1C;}
 }
 
 /* Standard syntax */
 @keyframes example {
-    from {background-color: #1A1A1C;color:white; width:10px; height: 10px;}
-    to {background-color: white; color:#1A1A1C; width:1000px;height: 800px;}
+	from {background-color: #1A1A1C;color:white; width:10px; height: 10px;}
+	to {background-color: black; color:#1A1A1C; width:900px;height: 600px;}
 }
 #btnDrawCard {
 	width: 140px;
@@ -101,12 +105,15 @@ em {font-size: 16px;}
 	background-color:#9ba892;
 }
 #btnChoosePot1{
-	top:100px
+	top:300px;
+	left: 300px;
 }
 #btnChoosePot2 {
-	top:270px;
+	top:480px;
+	left: 300px;
 }
 #btnChoosePot3 {
-	top: 430px;
+	top: 650px;
+	left: 300px;
 
 }
