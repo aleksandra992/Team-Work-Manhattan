@@ -540,11 +540,18 @@
             var currentCardDeck = cardDeck.slice();
             var currentCard = {};
             // window.scrollBy(0, 200);
-            for (var i = 1; i <= 27; i += 1) {
+
+            var myVar = setInterval(function () { myTimer() }, 100);
+
+            var i = 0;
+                    
+            function myTimer() {
                 currentCard = getRandomCard(currentCardDeck);
                 drawCard(currentCard, context, 20 + i * 30, 40);
-                currentCardDeck = deleteDrawedCard(currentCardDeck, currentCard);
-                // hot to implement the fracking setTimeoit
+                i++;
+                if (i === 27) {
+                    clearInterval(myVar);
+                }
             }
         });
 
