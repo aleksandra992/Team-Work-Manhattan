@@ -9,6 +9,8 @@
     var magicValue = 1;
     var selectedButton = null;
     var potTurns;
+    var magicValueIsCorrect,
+        areShuffled;
     var buttonClickCount = 0;
     var cardDeck = fillDeckWithCards();
     var threePots = getThreePots(cardDeck);
@@ -22,7 +24,43 @@
         firstPot: threePots.firstPot,
         secondPot: threePots.secondPot,
         thirdPot: threePots.thirdPot
+    };
+    var MAX_SHUFFLES = 3,
+        MAGIC_VALUE = {
+            MIN: 1,
+            MAX: 27
+        };
+
+    function checkIfClickedMoreThanThree(clickedTimes) {
+        if (clickedTimes >= MAX_SHUFFLES) {
+            window.alert('You should not click more than 3 times.Proceed to answer');
+            document.getElementById('btnAnswer').style.background = 'yellow';
+        }
     }
+
+    function checkIfShuffledEnough(numberOfShuffles) {
+        if (numberOfShuffles < MAX_SHUFFLES) {
+            window.alert('You should shuffle the deck at least 3 times');
+            document.getElementById('btnChoosePot1').style.background = 'yellow';
+            document.getElementById('btnChoosePot2').style.background = 'yellow';
+            document.getElementById('btnChoosePot3').style.background = 'yellow';
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    function checkMagicValue(magicValue) {
+        if (magicValue < MAGIC_VALUE.MIN || magicValue > MAGIC_VALUE.MAX) {
+            window.alert('Magic value should be between 1 and 27');
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
 
     function Card(name, suitType, cardValue, picture, sound) {
         this.Name = name;
@@ -289,6 +327,7 @@
         inputBox.style.textAlign = "center";
         inputBox.style.display = 'inline-block';
 
+
         form.appendChild(inputArea);
 
 
@@ -478,7 +517,10 @@
         $('#numberContainer').slideDown(5000);
         $('.formBox').slideDown(4000);
         $('#submit-btn').on("click", function () {
-            $("#btnDrawCard").trigger("click");
+            magicValueIsCorrect = checkMagicValue(magicValue);
+            if (magicValueIsCorrect) {
+                $("#btnDrawCard").trigger("click");
+            }
         });
         $("#pickInputNumber").on("keyup", function () {
             magicValue = $("input:text").val();
@@ -487,6 +529,7 @@
 
             // use value for potDealer.js
             // and fire staright to the next step of execution
+
         });
         $("#btnDrawCard").on("click", function () {
             $(this).prop('disabled', true);
@@ -525,9 +568,12 @@
 
 
             $("#btnChoosePot1").on("click", function () {
+                document.getElementById('btnChoosePot1').style.background = '#dbe6c4';
+                checkIfClickedMoreThanThree(buttonClickCount);
                 PutFirstOnPlace(buttonClickCount);
                 console.log('pred shuffle');
                 console.log(currentThreePots);
+
                 if (buttonClickCount < 2) {
                     shuffleCards();
                 }
@@ -541,7 +587,8 @@
 
             });
             $("#btnChoosePot2").on("click", function () {
-
+                document.getElementById('btnChoosePot2').style.background = '#dbe6c4';
+                checkIfClickedMoreThanThree(buttonClickCount);
                 PutSecondOnPlace(buttonClickCount);
                 console.log('pred shuffle');
                 console.log(currentThreePots);
@@ -558,7 +605,8 @@
             });
 
             $("#btnChoosePot3").on("click", function () {
-
+                document.getElementById('btnChoosePot3').style.background = '#dbe6c4';
+                checkIfClickedMoreThanThree(buttonClickCount);
                 PutThirdOnPlace(buttonClickCount);
                 console.log('pred shuffle');
                 console.log(currentThreePots);
@@ -568,32 +616,35 @@
                 buttonClickCount++;
                 context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
                 dealThreePots(currentThreePots, context);
-                console.log('sfter shuffle');
+                console.log('after shuffle');
                 console.log(currentThreePots);
 
             });
 
 
             $("#btnAnswer").on("click", function () {
-                $("#btnChoosePot1").remove();
-                $("#btnChoosePot2").remove();
-                $("#btnChoosePot3").remove();
+                areShuffled = checkIfShuffledEnough(buttonClickCount);
+                if (areShuffled) {
+                    $("#btnChoosePot1").remove();
+                    $("#btnChoosePot2").remove();
+                    $("#btnChoosePot3").remove();
 
-                var pot = currentThreePots.firstPot;
-                for (var i = 0; i < 9; i++) {
-                    pot.push(currentThreePots.secondPot[i]);
+                    var pot = currentThreePots.firstPot;
+                    for (var i = 0; i < 9; i++) {
+                        pot.push(currentThreePots.secondPot[i]);
+                    }
+                    for (var i = 0; i < 9; i++) {
+                        pot.push(currentThreePots.thirdPot[i]);
+                    }
+                    context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
+                    var i;
+                    for (i = 0; i < magicValue; i++) {
+                        drawCard(pot[i], context, 20 + i * 30, 40)
+                    }
+                    drawCard(pot[magicValue - 1], context, 20 + (i - 1) * 30, 100);
+                    console.log(pot);
+                    console.log(pot[magicValue - 1]);
                 }
-                for (var i = 0; i < 9; i++) {
-                    pot.push(currentThreePots.thirdPot[i]);
-                }
-                context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                var i;
-                for (i = 0; i < magicValue; i++) {
-                    drawCard(pot[i], context, 20 + i * 30, 40)
-                }
-                drawCard(pot[magicValue - 1], context, 20 + (i - 1) * 30, 100);
-                console.log(pot);
-                console.log(pot[magicValue - 1]);
             });
         });
     });
