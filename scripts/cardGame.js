@@ -644,9 +644,6 @@
                     drawCard(pot[magicValue - 1], context, 20 + (i - 1) * 30, 100);
                     console.log(pot);
                     console.log(pot[magicValue - 1]);
-                    drawCard(pot[magicValue - 1], context, 20 + (i - 1) * 30, 100);
-                    console.log(pot);
-                    console.log(pot[magicValue - 1]);
                 }
             });
         });
