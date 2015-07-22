@@ -157,12 +157,30 @@
         }
     }
 
+    function drawMagicCard(card, context, alignX, alignY, height, width) {
+
+        if (context) {
+
+            if (card) {
+                var currentImage = new Image();
+                currentImage.onload = function () {
+                    context.drawImage(currentImage, alignX, alignY, height, width);
+                };
+                currentImage.src = card.Picture;
+
+                playCardGameSound(card.Sound);
+                // drawText(currentCard, context);
+            }
+        }
+    }
+
     function getThreePots(deck) {
         var currentDeck = deck.slice();
         var firstPot = [],
             secondPot = [],
             thirdPot = [];
         var currentCard = {};
+
         for (var i = 0; i < 9; i++) {
             currentCard = getRandomCard(currentDeck);
             firstPot.push(currentCard);
@@ -222,13 +240,19 @@
             thirdPot = threePots.thirdPot,
             i;
 
-        for (i = 0; i < 9; i += 1) {
+        var giveThreePots = setInterval(function () { threePotsTimer() }, 100);
+        var i = 0;
+
+        function threePotsTimer() {
             drawCard(firstPot[i], context, 20 + i * 20, 40);
             drawCard(secondPot[i], context, 20 + i * 20, 210);
             drawCard(thirdPot[i], context, 20 + i * 20, 380);
-
+            i++;
+            if (i === 9) {
+                clearInterval(givePots);
+            }
         }
-
+        
         return {
             firstPot: firstPot.slice(),
             secondPot: secondPot.slice(),
@@ -541,16 +565,16 @@
             var currentCard = {};
             // window.scrollBy(0, 200);
 
-            var myVar = setInterval(function () { myTimer() }, 100);
-
-            var i = 0;
+            var giveCards = setInterval(function () { cardsTimer() }, 100);
+            var deckIndex = 0;
                     
-            function myTimer() {
+            function cardsTimer() {
                 currentCard = getRandomCard(currentCardDeck);
-                drawCard(currentCard, context, 20 + i * 30, 40);
-                i++;
-                if (i === 27) {
-                    clearInterval(myVar);
+                drawCard(currentCard, context, 20 + deckIndex * 30, 40);
+                currentCardDeck = deleteDrawedCard(currentCardDeck, currentCard);
+                deckIndex++;
+                if (deckIndex === 27) {
+                    clearInterval(giveCards);
                 }
             }
         });
@@ -644,12 +668,39 @@
                     for (var i = 0; i < 9; i++) {
                         pot.push(currentThreePots.thirdPot[i]);
                     }
+                    var potToDraw = pot.slice(0, magicValue);
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    var i;
-                    for (i = 0; i < magicValue; i++) {
-                        drawCard(pot[i], context, 20 + i * 30, 40)
+                    
+                    var giveCardsBeforeMagicCard = setInterval(function () { sardsBeforeMagicCardTimer() }, 500);
+                    var i = 0;
+                    
+                    function sardsBeforeMagicCardTimer() {
+                        drawCard(potToDraw[i], context, 20 + i * 30, 50);
+                        i++;
+                        if (i === magicValue - 1) {
+                            clearInterval(giveCardsBeforeMagicCard);
+                        }
                     }
-                    drawCard(pot[magicValue - 1], context, 20 + (i - 1) * 30, 100);
+
+
+                    var magicCard = setTimeout(function () { magicCardTimer() }, 500*magicValue);
+                    var j = 0;
+
+                    function magicCardTimer() {
+
+                        var zoomedMagiCard = setInterval(function () { magicCardZoomTimer() }, 10);
+
+                        function magicCardZoomTimer() {
+                            drawMagicCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, 72 + j, 96 + j);
+                            j++;
+                            if (j === 100) {
+                                clearInterval(zoomedMagiCard);
+                            }
+                        }
+                    }
+                    
+                    
+                    //drawCard(pot[magicValue - 1], context, 20 + (i - 1) * 30, 100);
                     console.log(pot);
                     console.log(pot[magicValue - 1]);
                 }
