@@ -10,10 +10,6 @@
 <body>
 	<div id='wrapper'>
 		<div id="numberContainer"></div>
-
-
-
-
 		<a id="simple-menu" href="#sidr">Menu</a>
 
 		<div id="sidr">
@@ -21,17 +17,18 @@
 				<li><input type="button" id="btnDrawCard" value="Shuffle the deck"></li>
 				<li><input type="button" id="btnDrawPots" value="Deal three pots"></li>
 				<li><input type="button" id="btnAnswer" value="The ANSWER!"></li>
+				<li><FORM>
+					<INPUT TYPE="button" onClick="history.go(0)" VALUE="Refresh">
+				</FORM></li>
 			</ul>
+
 		</div>
 		<div id="canvasContainer">
 			<canvas id="cardCanvas" width="1000px" height="1200px">
 				Your browser dos not support canvas!
 			</canvas>
-
-
-
-
 		</div>
+
 		<script type="text/javascript" src="scripts/jquery.sidr.min.js"></script>
 		<script type="text/javascript" src="scripts/cardGame.js"></script>
 
