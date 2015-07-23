@@ -3,25 +3,43 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.sidr.dark.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 </head>
 <body>
 	<div id='wrapper'>
 		<div id="numberContainer"></div>
-		<input type="button" id="btnDrawCard" value="Shuffle the deck">
-		<input type="button" id="btnDrawPots" value="Deal three pots">
-		<input type="button" id="btnAnswer" value="The ANSWER!">
 
+
+
+
+		<a id="simple-menu" href="#sidr">Menu</a>
+
+		<div id="sidr">
+			<ul>
+				<li><input type="button" id="btnDrawCard" value="Shuffle the deck"></li>
+				<li><input type="button" id="btnDrawPots" value="Deal three pots"></li>
+				<li><input type="button" id="btnAnswer" value="The ANSWER!"></li>
+			</ul>
+		</div>
 		<div id="canvasContainer">
 			<canvas id="cardCanvas" width="1000px" height="1200px">
 				Your browser dos not support canvas!
 			</canvas>
+
+
+
+
 		</div>
-		
+		<script type="text/javascript" src="scripts/jquery.sidr.min.js"></script>
 		<script type="text/javascript" src="scripts/cardGame.js"></script>
-		<script type="text/javascript" src="scripts/potDealer.js"></script>
-	</div>
+
+		<script>
+			$(document).ready(function() {
+				$('#simple-menu').sidr();
+			});
+		</script>	</div>
 
 </body>
 </html>
