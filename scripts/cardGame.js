@@ -52,8 +52,8 @@
     }
 
     function checkMagicValue(magicValue) {
-        if (magicValue < MAGIC_VALUE.MIN || magicValue > MAGIC_VALUE.MAX) {
-            window.alert('Magic value should be between 1 and 27');
+        if (magicValue < MAGIC_VALUE.MIN || magicValue > MAGIC_VALUE.MAX || isNaN(magicValue)) {
+            window.alert('Magic value should be a number between 1 and 27');
             return false;
         }
         else {
