@@ -249,7 +249,7 @@
             drawCard(thirdPot[i], context, 20 + i * 20, 380);
             i++;
             if (i === 9) {
-                clearInterval(giveThreePots);
+                clearInterval(givePots);
             }
         }
         
