@@ -157,6 +157,19 @@
         }
     }
 
+    function drawCardBack(context, alignX, alignY) {
+
+        if (context) {
+            var cardBack = new Image();
+            cardBack.src = 'images/back.jpg';
+            cardBack.onload = function () {
+                context.drawImage(cardBack, alignX, alignY, 100, 145);
+                playCardGameSound(card.Sound);
+            // drawText(currentCard, context);
+            }
+        }
+    }
+
     function drawMagicCard(card, context, alignX, alignY, height, width) {
 
         if (context) {
@@ -550,22 +563,26 @@
         for (var i = 0; i < 9; i++) {
             pot.push(currentThreePots.thirdPot[i]);
         }
-        var potToDraw = pot.slice(0, magicValue);
+        var potToDraw = pot.slice(0);
 
-        var giveCardsBeforeMagicCard = setInterval(function () { cardsBeforeMagicCardTimer() }, 500);
+        var giveCardsBeforeMagicCard = setInterval(function () { cardsBeforeMagicCardTimer() }, 200);
         var i = 0;
 
-        function cardsBeforeMagicCardTimer() {
-
-            drawCard(potToDraw[i], context, 20 + i * 30, 50);
-            i++;
+        function cardsBeforeMagicCardTimer() {            
             if (i === magicValue - 1) {
+                drawCard(potToDraw[i], context, 20 + i * 30, 50);
+            }
+            else {
+                drawCardBack(context, 20 + i * 30, 50);               
+            }
+            i++;
+            if (i === 27) {
                 clearInterval(giveCardsBeforeMagicCard);
             }
         }
 
         console.log(pot);
-        var magicCard = setTimeout(function () { magicCardTimer() }, 500 * magicValue);
+        var magicCard = setTimeout(function () { magicCardTimer() }, 200 * 27);
         var j = 0;
 
         function magicCardTimer() {
