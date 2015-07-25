@@ -164,7 +164,7 @@
             cardBack.src = 'images/back.jpg';
             cardBack.onload = function () {
                 context.drawImage(cardBack, alignX, alignY, 100, 145);
-                playCardGameSound(card.Sound);
+                playCardGameSound('sounds/cardPlace1.wav');
             // drawText(currentCard, context);
             }
         }
@@ -183,6 +183,33 @@
 
                 playCardGameSound(card.Sound);
                 // drawText(currentCard, context);
+            }
+        }
+    }
+
+    function rotateMagicCard(card, context, alignX, alignY, height, width) {
+
+        if (context) {
+            if (card) {
+                var currentImage = new Image();
+                var angle = 0; //angle
+                var fps = 1000 / 25; //number of frames per sec
+
+                currentImage.onload = function () {
+                    cardCanvas.width = this.width << 1; //double the canvas width
+                    cardCanvas.height = this.height << 1; //double the canvas height
+                    var cache = this; //cache the local copy of image element for future reference
+                    //context.translate(cardCanvas.width / 4, cardCanvas.height);
+                    setInterval(function () {
+                        context.save(); //saves the state of canvas
+                        context.clearRect(0, 0, cardCanvas.width, cardCanvas.height); //clear the canvas
+                        context.translate(cache.width, cache.height);
+                        context.rotate(Math.PI / 180 * (angle += 5)); //increment the angle and rotate the image 
+                        context.drawImage(currentImage, -cache.width / 2, -cache.height / 2, cache.width, cache.height);
+                        context.restore(); //restore the state of canvas
+                    }, fps)
+                };
+                currentImage.src = card.Picture;
             }
         }
     }
@@ -581,7 +608,7 @@
             }
         }
 
-        console.log(pot);
+      
         var magicCard = setTimeout(function () { magicCardTimer() }, 200 * 27);
         var j = 0;
 
@@ -597,6 +624,12 @@
                 }
             }
         }
+        
+
+        var magicCardRotate = setTimeout(function () {
+            rotateMagicCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, 150, 96 + 200)
+        }, (200 * 27) + (10 * 78));
+      
     }, false);
 
     createInputPage('#numberContainer');
