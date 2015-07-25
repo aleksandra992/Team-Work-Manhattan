@@ -613,7 +613,9 @@
                 //  console.log(threePots);
                 console.log('sfter shuffle');
                 console.log(currentThreePots);
-
+if (buttonClickCount === 3) {
+                    $("#btnAnswer").trigger("click");
+                }
 
             });
             $("#btnChoosePot2").on("click", function () {
@@ -631,7 +633,9 @@
                 // console.log(threePots);
                 console.log('sfter shuffle');
                 console.log(currentThreePots);
-
+                if (buttonClickCount === 3) {
+                    $("#btnAnswer").trigger("click");
+                }
             });
 
             $("#btnChoosePot3").on("click", function () {
@@ -648,7 +652,9 @@
                 dealThreePots(currentThreePots, context);
                 console.log('after shuffle');
                 console.log(currentThreePots);
-
+                if (buttonClickCount === 3) {
+                    $("#btnAnswer").trigger("click");
+                }
             });
 
 
