@@ -147,7 +147,7 @@
             if (card) {
                 var currentImage = new Image();
                 currentImage.onload = function () {
-                    context.drawImage(currentImage, alignX, alignY, 72, 96);
+                    context.drawImage(currentImage, alignX, alignY, 100, 145);
                 };
                 currentImage.src = card.Picture;
 
@@ -244,9 +244,9 @@
         var i = 0;
 
         function threePotsTimer() {
-            drawCard(firstPot[i], context, 20 + i * 20, 40);
-            drawCard(secondPot[i], context, 20 + i * 20, 210);
-            drawCard(thirdPot[i], context, 20 + i * 20, 380);
+            drawCard(firstPot[i], context, 20 + i * 35, 40);
+            drawCard(secondPot[i], context, 20 + i * 35, 210);
+            drawCard(thirdPot[i], context, 20 + i * 35, 380);
             i++;
             if (i === 9) {
                 clearInterval(giveThreePots);
