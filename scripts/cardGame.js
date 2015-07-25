@@ -556,6 +556,7 @@
             $(this).prop('disabled', true);
             $('#btnDrawPots').css('display','block');
             $("#btnDrawPots").prop('disabled', false);
+            $('#svgAnimationID').css('display','none');
             var container = document.querySelector('#numberContainer');
             container.style.display = 'none';
             var currentCardDeck = cardDeck.slice();
