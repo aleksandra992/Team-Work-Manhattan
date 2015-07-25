@@ -18,6 +18,7 @@ body{
 	-webkit-animation-duration: 3s; /* Chrome, Safari, Opera */
 	animation-name: example;
 	animation-duration: 3s;
+	margin:auto;
 }
 
 /* Chrome, Safari, Opera */
@@ -52,8 +53,8 @@ body{
 }
 .svgAnimation{
 	position:absolute;
-	top:300px;
-	left:300px;
+	top:400px;
+	left:700px;
 }
 .btnChoosePot {
 	width: 70px;
