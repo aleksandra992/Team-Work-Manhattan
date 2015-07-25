@@ -76,10 +76,10 @@
 
     function fillDeckWithCards() {
         var deckOfCard = [];
-        deckOfCard.push(new Card('Ace', suitType.Diamond, 14, 'images/classic-cards/4.png', 'sounds/cardPlace1.wav'));
-        deckOfCard.push(new Card('Ace', suitType.Clubs, 14, 'images/classic-cards/2.png', 'sounds/cardPlace2.wav'));
-        deckOfCard.push(new Card('Ace', suitType.Heart, 14, 'images/classic-cards/3.png', 'sounds/cardPlace3.wav'));
-        deckOfCard.push(new Card('Ace', suitType.Spade, 14, 'images/classic-cards/1.png', 'sounds/cardPlace4.wav'));
+        deckOfCard.push(new Card('Ace', suitType.Diamond, 14, 'images/cardTest.svg', 'sounds/cardPlace1.wav'));
+        deckOfCard.push(new Card('Ace', suitType.Clubs, 14, 'images/cardTest.svg', 'sounds/cardPlace2.wav'));
+        deckOfCard.push(new Card('Ace', suitType.Heart, 14, 'images/cardTest.svg', 'sounds/cardPlace3.wav'));
+        deckOfCard.push(new Card('Ace', suitType.Spade, 14, 'images/cardTest.svg', 'sounds/cardPlace4.wav'));
         deckOfCard.push(new Card('King', suitType.Diamond, 13, 'images/classic-cards/8.png', 'sounds/cardPlace1.wav'));
         deckOfCard.push(new Card('King', suitType.Clubs, 13, 'images/classic-cards/6.png', 'sounds/cardPlace2.wav'));
         deckOfCard.push(new Card('King', suitType.Heart, 13, 'images/classic-cards/7.png', 'sounds/cardPlace3.wav'));
@@ -92,17 +92,17 @@
         deckOfCard.push(new Card('Jack', suitType.Clubs, 11, 'images/classic-cards/14.png', 'sounds/cardPlace1.wav'));
         deckOfCard.push(new Card('Jack', suitType.Heart, 11, 'images/classic-cards/15.png', 'sounds/cardPlace1.wav'));
         deckOfCard.push(new Card('Jack', suitType.Spade, 11, 'images/classic-cards/13.png', 'sounds/cardPlace1.wav'));
-        deckOfCard.push(new Card('Ten', suitType.Diamond, 10, 'images/classic-cards/20.png', 'sounds/cardPlace2.wav'));
-        deckOfCard.push(new Card('Ten', suitType.Clubs, 10, 'images/classic-cards/18.png', 'sounds/cardPlace2.wav'));
-        deckOfCard.push(new Card('Ten', suitType.Heart, 10, 'images/classic-cards/19.png', 'sounds/cardPlace2.wav'));
-        deckOfCard.push(new Card('Ten', suitType.Spade, 10, 'images/classic-cards/17.png', 'sounds/cardPlace2.wav'));
-        deckOfCard.push(new Card('Nine', suitType.Diamond, 9, 'images/classic-cards/24.png', 'sounds/cardPlace3.wav'));
-        deckOfCard.push(new Card('Nine', suitType.Clubs, 9, 'images/classic-cards/22.png', 'sounds/cardPlace3.wav'));
-        deckOfCard.push(new Card('Nine', suitType.Heart, 9, 'images/classic-cards/23.png', 'sounds/cardPlace3.wav'));
-        deckOfCard.push(new Card('Nine', suitType.Spade, 9, 'images/classic-cards/21.png', 'sounds/cardPlace3.wav'));
-        deckOfCard.push(new Card('Eight', suitType.Diamond, 8, 'images/classic-cards/28.png', 'sounds/cardPlace4.wav'));
-        deckOfCard.push(new Card('Eight', suitType.Clubs, 8, 'images/classic-cards/26.png', 'sounds/cardPlace4.wav'));
-        deckOfCard.push(new Card('Eight', suitType.Heart, 8, 'images/classic-cards/27.png', 'sounds/cardPlace4.wav'));
+        deckOfCard.push(new Card('Ten', suitType.Diamond, 10, 'images/classic-cards/210_of_diamonds_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
+        deckOfCard.push(new Card('Ten', suitType.Clubs, 10, 'images/classic-cards/10_of_clubs_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
+        deckOfCard.push(new Card('Ten', suitType.Heart, 10, 'images/classic-cards/10_of_hearts_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
+        deckOfCard.push(new Card('Ten', suitType.Spade, 10, 'images/classic-cards/10_of_spades_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
+        deckOfCard.push(new Card('Nine', suitType.Diamond, 9, 'images/classic-cards/09_of_diamonds.svg', 'sounds/cardPlace3.wav'));
+        deckOfCard.push(new Card('Nine', suitType.Clubs, 9, 'images/classic-cards/209_of_clubs.svg', 'sounds/cardPlace3.wav'));
+        deckOfCard.push(new Card('Nine', suitType.Heart, 9, 'images/classic-cards/09_of_hearts.svg', 'sounds/cardPlace3.wav'));
+        deckOfCard.push(new Card('Nine', suitType.Spade, 9, 'images/classic-cards/09_of_spades.svg', 'sounds/cardPlace3.wav'));
+        deckOfCard.push(new Card('Eight', suitType.Diamond, 8, 'images/classic-cards/08_of_diamonds.svg', 'sounds/cardPlace4.wav'));
+        deckOfCard.push(new Card('Eight', suitType.Clubs, 8, 'images/classic-cards/08_of_clubs.svg', 'sounds/cardPlace4.wav'));
+        deckOfCard.push(new Card('Eight', suitType.Heart, 8, 'images/classic-cards/08_of_hearts.svg', 'sounds/cardPlace4.wav'));
 
         return deckOfCard.slice();
 
