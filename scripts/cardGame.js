@@ -325,13 +325,11 @@
         inputArea.style.textAlign = 'center';
 
         submitButton.setAttribute('id', 'submit-btn');
-        submitButton.style.width = '60px';
-        submitButton.style.height = '60px';
-        submitButton.style.marginTop = '5px';
-        submitButton.style.border = '3px solid black';
-        submitButton.style.fontSize = '24px';
-        submitButton.style.textAlign = 'center';
-        submitButton.innerHTML = 'GO!';
+        submitButton.className = 'buttons';
+        submitButton.innerHTML = 'PLAY!';
+        submitButton.style.height = '50px';
+        submitButton.style.fontStyle = 'normal';
+        submitButton.style.fontSize = '36px';
         submitButton.style.display = 'inline-block';
         submitButton.style.padding = '3px';
         submitButton.style.position = 'relative';
@@ -352,9 +350,7 @@
         inputBox.style.textAlign = "center";
         inputBox.style.display = 'inline-block';
 
-
         form.appendChild(inputArea);
-
 
         inputBox.appendChild(form);
         inputBox.appendChild(submitButton);
@@ -558,6 +554,7 @@
         });
         $("#btnDrawCard").on("click", function () {
             $(this).prop('disabled', true);
+            $('#btnDrawPots').css('display','block');
             $("#btnDrawPots").prop('disabled', false);
             var container = document.querySelector('#numberContainer');
             container.style.display = 'none';
@@ -585,6 +582,7 @@
 
         $("#btnDrawPots").on("click", function () {
 
+            $('#btnDrawPots').css('display','none');
             $(this).prop('disabled', true);
             // console.log(magicValue); // magicValue is already ok here
 

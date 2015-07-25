@@ -14,20 +14,19 @@
 
 		<div id="sidr">
 			<ul>
-				<li><input type="button" id="btnDrawCard" value="Shuffle the deck"></li>
-				<li><input type="button" id="btnDrawPots" value="Deal three pots"></li>
-				<li><input type="button" id="btnAnswer" value="The ANSWER!"></li>
+				<li><input type="button" id="btnAnswer" class="buttons"  value="The ANSWER!"></li>
 				<li><FORM>
-					<INPUT TYPE="button" onClick="history.go(0)" VALUE="Refresh">
+					<INPUT TYPE="button" class="buttons" onClick="history.go(0)" VALUE="Refresh">
 				</FORM></li>
 			</ul>
-
 		</div>
+		<input type="button" id="btnDrawCard" class="buttons" value="Shuffle the deck"/>
+		<input type="button"id="btnDrawPots"  class="buttons" value="Deal three pots"/>
 		<div id="canvasContainer">
 			<canvas id="cardCanvas" width="1000px" height="1200px">
 				Your browser dos not support canvas!
 			</canvas>
-			<svg class="svgAnimation" width="500" height="300">
+			<svg class="svgAnimation" id="anime" width="500" height="300">
 				<defs>
 					<pattern id="pattern1"
 							 x="0" y="0" width="300" height="168"
@@ -39,9 +38,7 @@
 					  style="fill: url(#pattern1);">
 					<animateMotion
 							path="M 175 50 H 250 M 175 50"
-							begin="0s" dur="5s" repeatCount="1"
-							
-							/>
+							begin="0s" dur="5s" repeatCount="1"/>
 				</rect>
 				</svg>
 		</div>
