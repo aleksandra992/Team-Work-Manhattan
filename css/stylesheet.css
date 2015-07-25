@@ -119,3 +119,6 @@ body{
 	top: 250px; left:5%;
 	font-size: 18px;
 }
+#svgAnimationID {
+	display: none;
+}

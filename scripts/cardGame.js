@@ -614,7 +614,8 @@
                 //  console.log(threePots);
                 console.log('sfter shuffle');
                 console.log(currentThreePots);
-if (buttonClickCount === 3) {
+                if (buttonClickCount === 3) {
+                    context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
                     $("#btnAnswer").trigger("click");
                 }
 
@@ -635,6 +636,7 @@ if (buttonClickCount === 3) {
                 console.log('sfter shuffle');
                 console.log(currentThreePots);
                 if (buttonClickCount === 3) {
+                    context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
                     $("#btnAnswer").trigger("click");
                 }
             });
@@ -654,6 +656,7 @@ if (buttonClickCount === 3) {
                 console.log('after shuffle');
                 console.log(currentThreePots);
                 if (buttonClickCount === 3) {
+                    context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
                     $("#btnAnswer").trigger("click");
                 }
             });
