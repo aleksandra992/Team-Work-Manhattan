@@ -532,6 +532,56 @@
 
     }
 
+    var wrapper = document.getElementById('wrapper');
+    var customEvent = new CustomEvent("theAnswer");
+    // Attach Custom Event to DOM
+
+    wrapper.addEventListener("theAnswer", function () {
+
+        context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
+        $("#btnChoosePot1").remove();
+        $("#btnChoosePot2").remove();
+        $("#btnChoosePot3").remove();
+
+        var pot = currentThreePots.firstPot;
+        for (var i = 0; i < 9; i++) {
+            pot.push(currentThreePots.secondPot[i]);
+        }
+        for (var i = 0; i < 9; i++) {
+            pot.push(currentThreePots.thirdPot[i]);
+        }
+        var potToDraw = pot.slice(0, magicValue);
+
+        var giveCardsBeforeMagicCard = setInterval(function () { cardsBeforeMagicCardTimer() }, 500);
+        var i = 0;
+
+        function cardsBeforeMagicCardTimer() {
+
+            drawCard(potToDraw[i], context, 20 + i * 30, 50);
+            i++;
+            if (i === magicValue - 1) {
+                clearInterval(giveCardsBeforeMagicCard);
+            }
+        }
+
+        console.log(pot);
+        var magicCard = setTimeout(function () { magicCardTimer() }, 500 * magicValue);
+        var j = 0;
+
+        function magicCardTimer() {
+
+            var zoomedMagiCard = setInterval(function () { magicCardZoomTimer() }, 10);
+
+            function magicCardZoomTimer() {
+                drawMagicCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, 72 + j, 96 + (j * 1.33));
+                j++;
+                if (j === 78) {
+                    clearInterval(zoomedMagiCard);
+                }
+            }
+        }
+    }, false);
+
     createInputPage('#numberContainer');
 
     $(document).ready(function () {
@@ -598,9 +648,14 @@
             }
 
 
-            $("#btnChoosePot1").on("click", function () {
+            var button1 = document.getElementById("btnChoosePot1");
+            var button2 = document.getElementById("btnChoosePot2");
+            var button3 = document.getElementById("btnChoosePot3");
+
+
+            button1.addEventListener('click', function () {
+
                 document.getElementById('btnChoosePot1').style.background = '#dbe6c4';
-                checkIfClickedMoreThanThree(buttonClickCount);
                 PutFirstOnPlace(buttonClickCount);
                 console.log('pred shuffle');
                 console.log(currentThreePots);
@@ -609,110 +664,74 @@
                     shuffleCards();
                 }
                 buttonClickCount++;
-                context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                dealThreePots(currentThreePots, context);
+                console.log(buttonClickCount)
+                if (buttonClickCount === 3) {
+                    wrapper.dispatchEvent(customEvent);
+                }
+                else {
+                    context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
+                    dealThreePots(currentThreePots, context);
+                }
+
+
                 //  console.log(threePots);
                 console.log('sfter shuffle');
                 console.log(currentThreePots);
-                if (buttonClickCount === 3) {
-                    context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    $("#btnAnswer").trigger("click");
-                }
+            }, false);
 
-            });
-            $("#btnChoosePot2").on("click", function () {
+            button2.addEventListener('click', function () {
+
                 document.getElementById('btnChoosePot2').style.background = '#dbe6c4';
-                checkIfClickedMoreThanThree(buttonClickCount);
+
                 PutSecondOnPlace(buttonClickCount);
                 console.log('pred shuffle');
                 console.log(currentThreePots);
+
                 if (buttonClickCount < 2) {
                     shuffleCards();
                 }
                 buttonClickCount++;
-                context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                dealThreePots(currentThreePots, context);
-                // console.log(threePots);
+                console.log(buttonClickCount)
+                if (buttonClickCount === 3) {
+                    wrapper.dispatchEvent(customEvent);
+                }
+                else {
+                    context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
+                    dealThreePots(currentThreePots, context);
+                }
+
+
+                //  console.log(threePots);
                 console.log('sfter shuffle');
                 console.log(currentThreePots);
-                if (buttonClickCount === 3) {
-                    context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    $("#btnAnswer").trigger("click");
-                }
-            });
+            }, false);
 
-            $("#btnChoosePot3").on("click", function () {
+            button3.addEventListener('click', function () {
+
                 document.getElementById('btnChoosePot3').style.background = '#dbe6c4';
-                checkIfClickedMoreThanThree(buttonClickCount);
+
                 PutThirdOnPlace(buttonClickCount);
                 console.log('pred shuffle');
                 console.log(currentThreePots);
+
                 if (buttonClickCount < 2) {
                     shuffleCards();
                 }
                 buttonClickCount++;
-                context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                dealThreePots(currentThreePots, context);
-                console.log('after shuffle');
-                console.log(currentThreePots);
+                console.log(buttonClickCount)
                 if (buttonClickCount === 3) {
-                    context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    $("#btnAnswer").trigger("click");
+                    wrapper.dispatchEvent(customEvent);
                 }
-            });
-
-
-            $("#btnAnswer").on("click", function () {
-                areShuffled = checkIfShuffledEnough(buttonClickCount);
-                if (areShuffled) {
-                    $("#btnChoosePot1").remove();
-                    $("#btnChoosePot2").remove();
-                    $("#btnChoosePot3").remove();
-
-                    var pot = currentThreePots.firstPot;
-                    for (var i = 0; i < 9; i++) {
-                        pot.push(currentThreePots.secondPot[i]);
-                    }
-                    for (var i = 0; i < 9; i++) {
-                        pot.push(currentThreePots.thirdPot[i]);
-                    }
-                    var potToDraw = pot.slice(0, magicValue);
+                else {
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    
-                    var giveCardsBeforeMagicCard = setInterval(function () { sardsBeforeMagicCardTimer() }, 500);
-                    var i = 0;
-                    
-                    function sardsBeforeMagicCardTimer() {
-                        drawCard(potToDraw[i], context, 20 + i * 30, 50);
-                        i++;
-                        if (i === magicValue - 1) {
-                            clearInterval(giveCardsBeforeMagicCard);
-                        }
-                    }
-
-
-                    var magicCard = setTimeout(function () { magicCardTimer() }, 500*magicValue);
-                    var j = 0;
-
-                    function magicCardTimer() {
-
-                        var zoomedMagiCard = setInterval(function () { magicCardZoomTimer() }, 10);
-
-                        function magicCardZoomTimer() {
-                            drawMagicCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, 72 + j, 96 + j);
-                            j++;
-                            if (j === 100) {
-                                clearInterval(zoomedMagiCard);
-                            }
-                        }
-                    }
-                    
-                    
-                    //drawCard(pot[magicValue - 1], context, 20 + (i - 1) * 30, 100);
-                    console.log(pot);
-                    console.log(pot[magicValue - 1]);
+                    dealThreePots(currentThreePots, context);
                 }
-            });
+
+
+                //  console.log(threePots);
+                console.log('sfter shuffle');
+                console.log(currentThreePots);
+            }, false);
         });
     });
 }());
