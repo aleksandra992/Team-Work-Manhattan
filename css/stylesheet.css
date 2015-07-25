@@ -48,6 +48,9 @@ body{
 #btnDrawPots {
 	display:none;
 }
+#btnAnswer {
+	display:none;
+}
 #anime {
 	display: none;
 }
