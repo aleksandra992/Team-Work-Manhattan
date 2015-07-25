@@ -27,6 +27,23 @@
 			<canvas id="cardCanvas" width="1000px" height="1200px">
 				Your browser dos not support canvas!
 			</canvas>
+			<svg class="svgAnimation" width="500" height="300">
+				<defs>
+					<pattern id="pattern1"
+							 x="0" y="0" width="300" height="168"
+							 patternUnits="userSpaceOnUse">
+						<image x="0" y="0" height="168" width="300" xlink:href="Images/magic.jpg" ></image>
+					</pattern>
+				</defs>
+				<rect x="0" y="0" width="300" height="168"
+					  style="fill: url(#pattern1);">
+					<animateMotion
+							path="M 175 50 H 250 M 175 50"
+							begin="0s" dur="5s" repeatCount="1"
+							
+							/>
+				</rect>
+				</svg>
 		</div>
 
 		<script type="text/javascript" src="scripts/jquery.sidr.min.js"></script>
