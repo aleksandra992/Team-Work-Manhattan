@@ -644,7 +644,7 @@
 
             buttonChoosePot1.addEventListener('click', function () {
 
-                console.log(currentThreePots);
+                PutFirstOnPlace(buttonClickCount);
 
                 if (buttonClickCount < 2) {
                     shuffleCards();
