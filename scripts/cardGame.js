@@ -576,7 +576,7 @@
         });
         $('#submit-btn').on("click", function () {
 
-            $('#submit-btn').css('display', 'none');
+            $('#submit-btn').css('display', 'block');
             magicValueIsCorrect = checkMagicValue(magicValue);
             if (magicValueIsCorrect) {
                 $("#btnDrawCard").trigger("click");
