@@ -539,8 +539,25 @@
             }
         }
 
+
+        var turnTheCards = setTimeout(function () { turnCards() }, 200*27 + 500);
+        var k = 0;
+
+        function turnCards() {
+
+            var getTurnedCards = setInterval(function () { turnCardsTimer() }, 1);
+
+            function turnCardsTimer() {
+                drawCard(potToDraw[k], context, 20 + k * 30, 50);
+                k++;
+
+                if (k === 27) {
+                    clearInterval(turnTheCards);
+                }
+            }  
+        }
       
-        var magicCard = setTimeout(function () { magicCardTimer() }, 200 * 27);
+        var magicCard = setTimeout(function () { magicCardTimer() }, 200 * 27 + 1000 + 50);
         var j = 0;
 
         function magicCardTimer() {
@@ -559,7 +576,7 @@
 
         var magicCardRotate = setTimeout(function () {
             rotateMagicCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, 150, 96 + 200)
-        }, (200 * 27) + (10 * 78));
+        }, (200 * 27) + 2100 + (10 * 78));
       
     }, false);
 
