@@ -195,7 +195,14 @@
                 var angle = 0; //angle
                 var fps = 1000 / 25; //number of frames per sec
 
+                document.getElementById("cardCanvas").style.marginLeft = "auto";
+                document.getElementById("cardCanvas").style.marginRight = "auto";
+                document.getElementById("cardCanvas").style.paddingLeft = "0";
+                document.getElementById("cardCanvas").style.paddingRight = "0";
+                document.getElementById("cardCanvas").style.display = "block";
+                //document.getElementById("cardCanvas").width = "800px";
                 currentImage.onload = function () {
+
                     cardCanvas.width = this.width << 1; //double the canvas width
                     cardCanvas.height = this.height << 1; //double the canvas height
                     var cache = this; //cache the local copy of image element for future reference
