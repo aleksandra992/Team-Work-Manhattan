@@ -663,9 +663,9 @@
 
             context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
             dealThreePots(threePots, context);
-            $('#wrapper').append('<input type="button" class="invisible-button" id="btnChoosePot1" value="1">');
-            $('#wrapper').append('<input type="button" class="invisible-button" id="btnChoosePot2" value="2">');
-            $('#wrapper').append('<input type="button" class="invisible-button" id="btnChoosePot3" value="3">');
+            $('#canvasContainer').append('<input type="button" class="invisible-button" id="btnChoosePot1" value="1">');
+            $('#canvasContainer').append('<input type="button" class="invisible-button" id="btnChoosePot2" value="2">');
+            $('#canvasContainer').append('<input type="button" class="invisible-button" id="btnChoosePot3" value="3">');
             console.log(currentPotTurns);
             if (currentPotTurns === undefined) {
                 currentPotTurns = ['TOP', 'TOP', 'TOP'];

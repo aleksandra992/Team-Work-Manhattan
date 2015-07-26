@@ -42,6 +42,9 @@ body{
 	font-family: Consolas;
 	box-shadow: 0px 4px 7px rgba(0,0,0,0.6);
 }
+#canvasContainer{
+	position:relative;
+}
 #btnDrawCard {
 	display: none;
 }
@@ -76,23 +79,23 @@ body{
 	border: none !important;
 	font-size:0;
 	position: absolute;
-	left:40%;
+
 
 
 }
 .invisible-button:focus{outline:0 !important;}
 
 #btnChoosePot1{
-	top:280px;
-	left: 300px;
+	top:40px;
+	left: 20px;
 }
 #btnChoosePot2 {
-	top:460px;
-	left: 300px;
+	top:210px;
+	left: 20px;
 }
 #btnChoosePot3 {
-	top: 630px;
-	left: 300px;
+	top: 380px;
+	left: 20px;
 
 }
 #simple-menu{
