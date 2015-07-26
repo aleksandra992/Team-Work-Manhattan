@@ -106,11 +106,10 @@ body{
 }
 
 #border-animation{
-	margin-left: 230px;
-	margin-top: 270px;
-	position: absolute;
-	top: 0;
-	left: 0;
+	position: relative;
+
+	top: -1670px;
+	left: 50px;
 	z-index: -1;
 }
 

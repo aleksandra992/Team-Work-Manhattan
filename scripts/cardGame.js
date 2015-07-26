@@ -324,20 +324,26 @@
         var playButton = document.createElement('button');
 
         infoBox.style.font = 'Times New Roman';
+        infoBox.style.position = 'relative';
         infoBox.style.margin = '100px';
         infoBox.style.fontSize = '15px';
         infoBox.style.color = "white";
         infoBox.style.width = '400px';
         infoBox.style.height = '200px';
+        infoBox.style.float = 'left';
         infoBox.style.display = 'inline-block';
         infoBox.innerHTML = '';
         infoBox.innerHTML = 'HOW TO PLAY';
-        infoBox.innerHTML += '<ol><li>Enter a number within 1 - 27</li><li>Pick a card from the deck</li><li>Choose the pot with your card (3x)</li></ol>';
+        infoBox.innerHTML += '<ol><li>Click on the red button below</li><li>Enter a number within 1 - 27</li><li>Pick a card from the deck</li><li>Choose the pot with your card (3x)</li></ol>';
 
         playButton.setAttribute('id', 'play-btn');
-        playButton.className = 'buttons';
-        playButton.innerHTML = 'PLAY!';
+        playButton.style.position = 'relative';
+        playButton.style.border = 'none';
+        playButton.style.top = '20px';
         playButton.style.display = 'inline-block';
+        playButton.style.width = '100px';
+        playButton.style.height = '100px';
+        playButton.style.background = 'url(Images/play-btn.png)';
 
         infoBox.appendChild(playButton);
         container.appendChild(infoBox);
@@ -622,7 +628,6 @@
         });
         $("#btnDrawCard").on("click", function () {
             $(this).prop('disabled', true);
-            $('#border-animation').css('display', 'none');
             $('#btnDrawPots').css('display', 'block');
             $("#btnDrawPots").prop('disabled', false);
             $('#svgAnimationID').css('display', 'none');

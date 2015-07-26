@@ -35,7 +35,7 @@
 			<canvas id="cardCanvas" width="1000px" height="1200px">
 				Your browser dos not support canvas!
 			</canvas>
-			<svg class="svgAnimation" id="svgAnimationID" width="1000" height="1000">
+			<svg class="svgAnimation" id="svgAnimationID" width="1000" height="800">
 				<defs>
 					<pattern id="pattern1"
 							 x="0" y="0" width="300" height="168"
@@ -50,15 +50,14 @@
 							begin="0s" dur="5s" repeatCount="1"/>
 				</rect>
 				</svg>
-		</div>
-
-		<div id="border-motion">
-			<svg width="800" height="300" id="border-animation">
-				<line class="top" x1="0" y1="0" x2="2400" y2="0" />
-				<line class="left" x1="0" y1="300" x2="0" y2="-600"/>
-				<line class="bottom" x1="800" y1="300" x2="-1600" y2="300"/>
-				<line class="right" x1="800" y1="0" x2="800" y2="900"/>
-			</svg>
+			<div id="border-motion">
+				<svg width="800" height="300" id="border-animation">
+					<line class="top" x1="0" y1="0" x2="2400" y2="0" />
+					<line class="left" x1="0" y1="300" x2="0" y2="-600"/>
+					<line class="bottom" x1="800" y1="300" x2="-1600" y2="300"/>
+					<line class="right" x1="800" y1="0" x2="800" y2="900"/>
+				</svg>
+			</div>
 		</div>
 
 		<script type="text/javascript" src="scripts/jquery.sidr.min.js"></script>
