@@ -323,8 +323,10 @@
         var infoBox = document.createElement('div');
         var playButton = document.createElement('button');
 
-        infoBox.style.background = 'white';
-        infoBox.style.color = "black";
+        infoBox.style.font = 'Times New Roman';
+        infoBox.style.margin = '100px';
+        infoBox.style.fontSize = '15px';
+        infoBox.style.color = "white";
         infoBox.style.width = '400px';
         infoBox.style.height = '200px';
         infoBox.style.display = 'inline-block';
@@ -619,6 +621,7 @@
         });
         $("#btnDrawCard").on("click", function () {
             $(this).prop('disabled', true);
+            $('#border-animation').css('display', 'none');
             $('#btnDrawPots').css('display', 'block');
             $("#btnDrawPots").prop('disabled', false);
             $('#svgAnimationID').css('display', 'none');

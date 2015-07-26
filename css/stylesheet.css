@@ -13,7 +13,6 @@ body{
 	padding-top: 250px;
 	background-image: url("../Images/game-background.jpg");
 	background-repeat: no-repeat;
-	background-color: black;
 	-webkit-animation-name: example; /* Chrome, Safari, Opera */
 	-webkit-animation-duration: 3s; /* Chrome, Safari, Opera */
 	animation-name: example;
@@ -130,4 +129,38 @@ body{
 }
 #svgAnimationID {
 	display: none;
+}
+#border-animation{
+	margin-left: 230px;
+	margin-top: 270px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+#border-animation line {
+	stroke-width: 3;
+	stroke: #FFF;
+	fill: none;
+	stroke-dasharray: 800;
+	-webkit-transition: -webkit-transform .6s ease-out;
+	transition: transform .6s ease-out;
+}
+
+div:hover #border-animation line.top {
+	-webkit-transform: translateX(-1600px);
+	transform: translateX(-1600px);
+}
+div:hover #border-animation line.left {
+	-webkit-transform: translateY(500px);
+	transform: translateY(500px);
+}
+div:hover #border-animation line.bottom {
+	-webkit-transform: translateX(1600px);
+	transform: translateX(1600px);
+}
+div:hover #border-animation line.right {
+	-webkit-transform: translateY(-500px);
+	transform: translateY(-500px);
 }
