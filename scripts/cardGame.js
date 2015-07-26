@@ -663,9 +663,9 @@
 
             context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
             dealThreePots(threePots, context);
-            $('#wrapper').append('<input type="button" class="btnChoosePot" id="btnChoosePot1" value="1">');
-            $('#wrapper').append('<input type="button" class="btnChoosePot" id="btnChoosePot2" value="2">');
-            $('#wrapper').append('<input type="button" class="btnChoosePot" id="btnChoosePot3" value="3">');
+            $('#wrapper').append('<input type="button" class="invisible-button" id="btnChoosePot1" value="1">');
+            $('#wrapper').append('<input type="button" class="invisible-button" id="btnChoosePot2" value="2">');
+            $('#wrapper').append('<input type="button" class="invisible-button" id="btnChoosePot3" value="3">');
             console.log(currentPotTurns);
             if (currentPotTurns === undefined) {
                 currentPotTurns = ['TOP', 'TOP', 'TOP'];
@@ -679,7 +679,7 @@
 
             button1.addEventListener('click', function () {
 
-                document.getElementById('btnChoosePot1').style.background = '#dbe6c4';
+               // document.getElementById('btnChoosePot1').style.background = '#dbe6c4';
                 PutFirstOnPlace(buttonClickCount);
                 console.log('pred shuffle');
                 console.log(currentThreePots);
@@ -705,7 +705,7 @@
 
             button2.addEventListener('click', function () {
 
-                document.getElementById('btnChoosePot2').style.background = '#dbe6c4';
+               /// document.getElementById('btnChoosePot2').style.background = '#dbe6c4';
 
                 PutSecondOnPlace(buttonClickCount);
                 console.log('pred shuffle');
@@ -732,7 +732,7 @@
 
             button3.addEventListener('click', function () {
 
-                document.getElementById('btnChoosePot3').style.background = '#dbe6c4';
+              //  document.getElementById('btnChoosePot3').style.background = '#dbe6c4';
 
                 PutThirdOnPlace(buttonClickCount);
                 console.log('pred shuffle');
