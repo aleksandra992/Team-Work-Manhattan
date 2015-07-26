@@ -23,14 +23,14 @@ body{
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes example {
-	from {background-color: #1A1A1C; color:white;}
+	from {background-color: transparent; color:white;}
 	to {background-color: white; color:#1A1A1C;}
 }
 
 /* Standard syntax */
 @keyframes example {
-	from {background-color: #1A1A1C;color:white; width:10px; height: 10px;}
-	to {background-color: black; color:#1A1A1C; width:900px;height: 600px;}
+	from {background-color:transparent;color:white; width:10px; height: 10px;}
+	to {background-color: black; color:transparent; width:900px;height: 600px;}
 }
 .buttons {
 	width: 140px;
@@ -107,10 +107,25 @@ body{
 
 #border-animation{
 	position: relative;
-
 	top: -1670px;
 	left: 50px;
 	z-index: -1;
+	-webkit-animation-name: example; /* Chrome, Safari, Opera */
+	-webkit-animation-duration: 3s; /* Chrome, Safari, Opera */
+	animation-name: example;
+	animation-duration: 3s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes example {
+	from {background-color: transparent; color:white;}
+	to {background-color: white; color:#1A1A1C;}
+}
+
+/* Standard syntax */
+@keyframes example {
+	from {background-color:transparent;color:black; width:10px; height: 10px;}
+	to {background-color: black; color:transparent; width:900px;height: 600px;}
 }
 
 #border-animation line {
