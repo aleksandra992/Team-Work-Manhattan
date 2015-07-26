@@ -199,8 +199,10 @@
                 document.getElementById("cardCanvas").style.marginRight = "auto";
                 document.getElementById("cardCanvas").style.paddingLeft = "0";
                 document.getElementById("cardCanvas").style.paddingRight = "0";
+                document.getElementById("cardCanvas").style.marginTop = "-200px";
+                document.getElementById("cardCanvas").style.paddingTop = "0";
                 document.getElementById("cardCanvas").style.display = "block";
-                //document.getElementById("cardCanvas").width = "800px";
+                document.getElementById("cardCanvas").width = "800px";
                 currentImage.onload = function () {
 
                     cardCanvas.width = this.width << 1; //double the canvas width
