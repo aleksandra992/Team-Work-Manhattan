@@ -31,25 +31,13 @@
             MAX: 27
         };
 
-    function checkIfClickedMoreThanThree(clickedTimes) {
-        if (clickedTimes >= MAX_SHUFFLES) {
-            window.alert('You should not click more than 3 times.Proceed to answer');
-            document.getElementById('btnAnswer').style.background = 'yellow';
-        }
-    }
+    var CARD_DIM = {
+         WIDTH: 100,
+        HEIGHT: 145
+    };
 
-    function checkIfShuffledEnough(numberOfShuffles) {
-        if (numberOfShuffles < MAX_SHUFFLES) {
-            window.alert('You should shuffle the deck at least 3 times');
-            document.getElementById('btnChoosePot1').style.background = 'yellow';
-            document.getElementById('btnChoosePot2').style.background = 'yellow';
-            document.getElementById('btnChoosePot3').style.background = 'yellow';
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
+    var cardCanvas = document.getElementById("cardCanvas");
+    var context = cardCanvas.getContext("2d");
 
     function checkMagicValue(magicValue) {
         if (magicValue < MAGIC_VALUE.MIN || magicValue > MAGIC_VALUE.MAX || isNaN(magicValue)) {
@@ -60,7 +48,6 @@
             return true;
         }
     }
-
 
     function Card(name, suitType, cardValue, picture, sound) {
         this.Name = name;
@@ -140,49 +127,30 @@
         context.fillText(currentCard.toString(), 20, 240);
     }
 
-    function drawCard(card, context, alignX, alignY) {
+    function drawCard(card, context, alignX, alignY, width, height) {
 
         if (context) {
 
             if (card) {
                 var currentImage = new Image();
                 currentImage.onload = function () {
-                    context.drawImage(currentImage, alignX, alignY, 100, 145);
+                    context.drawImage(currentImage, alignX, alignY, width, height);
                 };
                 currentImage.src = card.Picture;
 
                 playCardGameSound(card.Sound);
-                // drawText(currentCard, context);
             }
         }
     }
 
-    function drawCardBack(context, alignX, alignY) {
+    function drawCardBack(context, alignX, alignY, width, height) {
 
         if (context) {
             var cardBack = new Image();
             cardBack.src = 'images/back.jpg';
             cardBack.onload = function () {
-                context.drawImage(cardBack, alignX, alignY, 100, 145);
+                context.drawImage(cardBack, alignX, alignY, width, height);
                 playCardGameSound('sounds/cardPlace1.wav');
-            // drawText(currentCard, context);
-            }
-        }
-    }
-
-    function drawMagicCard(card, context, alignX, alignY, height, width) {
-
-        if (context) {
-
-            if (card) {
-                var currentImage = new Image();
-                currentImage.onload = function () {
-                    context.drawImage(currentImage, alignX, alignY, height, width);
-                };
-                currentImage.src = card.Picture;
-
-                playCardGameSound(card.Sound);
-                // drawText(currentCard, context);
             }
         }
     }
@@ -203,20 +171,24 @@
                 document.getElementById("cardCanvas").style.paddingTop = "0";
                 document.getElementById("cardCanvas").style.display = "block";
                 document.getElementById("cardCanvas").width = "800px";
-                currentImage.onload = function () {
 
+                currentImage.onload = function () {
                     cardCanvas.width = this.width << 1; //double the canvas width
                     cardCanvas.height = this.height << 1; //double the canvas height
                     var cache = this; //cache the local copy of image element for future reference
-                    //context.translate(cardCanvas.width / 4, cardCanvas.height);
-                    setInterval(function () {
+
+                    var rotateCard = setInterval(function  () { rotateCardTimer() } , fps);
+                    function rotateCardTimer() {
                         context.save(); //saves the state of canvas
                         context.clearRect(0, 0, cardCanvas.width, cardCanvas.height); //clear the canvas
                         context.translate(cache.width, cache.height);
                         context.rotate(Math.PI / 180 * (angle += 5)); //increment the angle and rotate the image 
                         context.drawImage(currentImage, -cache.width / 2, -cache.height / 2, cache.width, cache.height);
                         context.restore(); //restore the state of canvas
-                    }, fps)
+                        if (angle === 180*magicValue) {
+                            clearInterval(rotateCard);
+                        }
+                    }
                 };
                 currentImage.src = card.Picture;
             }
@@ -293,9 +265,9 @@
         var i = 0;
 
         function threePotsTimer() {
-            drawCard(firstPot[i], context, 20 + i * 35, 40);
-            drawCard(secondPot[i], context, 20 + i * 35, 210);
-            drawCard(thirdPot[i], context, 20 + i * 35, 380);
+            drawCard(firstPot[i], context, 20 + i * 35, 40, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+            drawCard(secondPot[i], context, 20 + i * 35, 210, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+            drawCard(thirdPot[i], context, 20 + i * 35, 380, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
             i++;
             if (i === 9) {
                 clearInterval(giveThreePots);
@@ -308,9 +280,6 @@
             thirdPot: thirdPot.slice()
         }
     }
-
-    var cardCanvas = document.getElementById("cardCanvas");
-    var context = cardCanvas.getContext("2d");
 
     function createInputPage(selector) {
         var container = document.querySelector(selector);
@@ -520,10 +489,9 @@
 
     }
 
-    var wrapper = document.getElementById('wrapper');
-    var customEvent = new CustomEvent("theAnswer");
-    // Attach Custom Event to DOM
 
+    var wrapper = document.getElementById('wrapper');
+    var redirectionToTheAnswer = new CustomEvent("theAnswer");
     wrapper.addEventListener("theAnswer", function () {
 
         context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
@@ -540,32 +508,30 @@
         }
         var potToDraw = pot.slice(0);
 
-        var giveCardsBeforeMagicCard = setInterval(function () { cardsBeforeMagicCardTimer() }, 200);
+       
+        var giveFinalCards = setInterval(function () { finalCardsTimer() }, 200);
         var i = 0;
-
-        function cardsBeforeMagicCardTimer() {            
+        function finalCardsTimer() {
             if (i === magicValue - 1) {
-                drawCard(potToDraw[i], context, 20 + i * 30, 50);
+                drawCard(potToDraw[i], context, 20 + i * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
             }
             else {
-                drawCardBack(context, 20 + i * 30, 50);               
+                drawCardBack(context, 20 + i * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
             }
             i++;
             if (i === 27) {
-                clearInterval(giveCardsBeforeMagicCard);
+                clearInterval(giveFinalCards);
             }
         }
 
 
         var turnTheCards = setTimeout(function () { turnCards() }, 200*27 + 500);
         var k = 0;
-
         function turnCards() {
 
             var getTurnedCards = setInterval(function () { turnCardsTimer() }, 1);
-
             function turnCardsTimer() {
-                drawCard(potToDraw[k], context, 20 + k * 30, 50);
+                drawCard(potToDraw[k], context, 20 + k * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 k++;
 
                 if (k === 27) {
@@ -574,15 +540,14 @@
             }  
         }
       
+
         var magicCard = setTimeout(function () { magicCardTimer() }, 200 * 27 + 1000 + 50);
         var j = 0;
-
         function magicCardTimer() {
 
             var zoomedMagiCard = setInterval(function () { magicCardZoomTimer() }, 10);
-
             function magicCardZoomTimer() {
-                drawMagicCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, 72 + j, 96 + (j * 1.33));
+                drawCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, CARD_DIM.WIDTH + j, CARD_DIM.HEIGHT + (j * 1.33));
                 j++;
                 if (j === 78) {
                     clearInterval(zoomedMagiCard);
@@ -596,6 +561,7 @@
         }, (200 * 27) + 2100 + (10 * 78));
       
     }, false);
+
 
     createInputPage('#numberContainer');
 
@@ -639,14 +605,12 @@
             var currentCard = {};
             // window.scrollBy(0, 200);
 
-            var giveCards = setInterval(function () {
-                cardsTimer()
-            }, 100);
-            var deckIndex = 0;
 
+            var giveCards = setInterval(function () { cardsTimer() }, 100);
+            var deckIndex = 0;
             function cardsTimer() {
                 currentCard = getRandomCard(currentCardDeck);
-                drawCard(currentCard, context, 20 + deckIndex * 30, 40);
+                drawCard(currentCard, context, 20 + deckIndex * 30, 40, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 currentCardDeck = deleteDrawedCard(currentCardDeck, currentCard);
                 deckIndex++;
                 if (deckIndex === 27) {
@@ -655,16 +619,11 @@
             }
         });
 
-        if ($("#btnDrawCard").prop('disabled') === false) {
-            $("#btnDrawPots").prop('disabled', true);
-        }
-
         $("#btnDrawPots").on("click", function () {
 
             $('#pickInputNumber').css('display', 'none');
             $('#submit-btn').css('display', 'none');
             $('#btnDrawPots').css('display','none');
-            $(this).prop('disabled', true);
             // console.log(magicValue); // magicValue is already ok here
 
             context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
@@ -678,16 +637,13 @@
             }
 
 
-            var button1 = document.getElementById("btnChoosePot1");
-            var button2 = document.getElementById("btnChoosePot2");
-            var button3 = document.getElementById("btnChoosePot3");
+            var buttonChoosePot1 = document.getElementById("btnChoosePot1");
+            var buttonChoosePot2 = document.getElementById("btnChoosePot2");
+            var buttonChoosePot3 = document.getElementById("btnChoosePot3");
 
 
-            button1.addEventListener('click', function () {
+            buttonChoosePot1.addEventListener('click', function () {
 
-               // document.getElementById('btnChoosePot1').style.background = '#dbe6c4';
-                PutFirstOnPlace(buttonClickCount);
-                console.log('pred shuffle');
                 console.log(currentThreePots);
 
                 if (buttonClickCount < 2) {
@@ -696,26 +652,17 @@
                 buttonClickCount++;
                 console.log(buttonClickCount)
                 if (buttonClickCount === 3) {
-                    wrapper.dispatchEvent(customEvent);
+                    wrapper.dispatchEvent(redirectionToTheAnswer);
                 }
                 else {
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
                     dealThreePots(currentThreePots, context);
                 }
-
-
-                //  console.log(threePots);
-                console.log('sfter shuffle');
-                console.log(currentThreePots);
             }, false);
 
-            button2.addEventListener('click', function () {
-
-               /// document.getElementById('btnChoosePot2').style.background = '#dbe6c4';
+            buttonChoosePot2.addEventListener('click', function () {
 
                 PutSecondOnPlace(buttonClickCount);
-                console.log('pred shuffle');
-                console.log(currentThreePots);
 
                 if (buttonClickCount < 2) {
                     shuffleCards();
@@ -723,26 +670,17 @@
                 buttonClickCount++;
                 console.log(buttonClickCount)
                 if (buttonClickCount === 3) {
-                    wrapper.dispatchEvent(customEvent);
+                    wrapper.dispatchEvent(redirectionToTheAnswer);
                 }
                 else {
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
                     dealThreePots(currentThreePots, context);
                 }
-
-
-                //  console.log(threePots);
-                console.log('sfter shuffle');
-                console.log(currentThreePots);
             }, false);
 
-            button3.addEventListener('click', function () {
-
-              //  document.getElementById('btnChoosePot3').style.background = '#dbe6c4';
+            buttonChoosePot3.addEventListener('click', function () {
 
                 PutThirdOnPlace(buttonClickCount);
-                console.log('pred shuffle');
-                console.log(currentThreePots);
 
                 if (buttonClickCount < 2) {
                     shuffleCards();
@@ -750,17 +688,12 @@
                 buttonClickCount++;
                 console.log(buttonClickCount)
                 if (buttonClickCount === 3) {
-                    wrapper.dispatchEvent(customEvent);
+                    wrapper.dispatchEvent(redirectionToTheAnswer);
                 }
                 else {
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
                     dealThreePots(currentThreePots, context);
                 }
-
-
-                //  console.log(threePots);
-                console.log('sfter shuffle');
-                console.log(currentThreePots);
             }, false);
         });
     });
