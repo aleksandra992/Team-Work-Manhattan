@@ -127,7 +127,9 @@ body{
 	from {background-color:transparent;color:black; width:10px; height: 10px;}
 	to {background-color: black; color:transparent; width:900px;height: 600px;}
 }
+#play-btn:focus{outline:0 !important;}{
 
+}
 #border-animation line {
 	stroke-width: 3;
 	stroke: #FFF;
