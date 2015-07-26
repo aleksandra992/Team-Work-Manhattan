@@ -68,8 +68,8 @@ body{
 }
 .svgAnimation{
 	position:absolute;
-	top:400px;
-	left:700px;
+	top:-400px;
+	left:430px;
 }
 .invisible-button {
 	width:384px;
@@ -104,9 +104,7 @@ body{
 	top: 250px; left:5%;
 	font-size: 18px;
 }
-#svgAnimationID {
-	display: none;
-}
+
 #border-animation{
 	margin-left: 230px;
 	margin-top: 270px;

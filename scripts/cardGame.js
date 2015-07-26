@@ -598,6 +598,7 @@
         $('.formBox').slideDown(4000);
         $('#play-btn').on("click", function () {
             var container = document.querySelector('#numberContainer');
+            $('#svgAnimationID').css('display', 'none');
             container.style.display = 'none';
             $('#pickInputNumber').css('display', 'block');
             $('#submit-btn').css('display', 'block');
