@@ -310,139 +310,70 @@
         container.style.height = '500px';
         container.style.display = 'none';
         container.style.marginLeft = '30px';
-        var inputBox = document.createElement('div');
-        var form = document.createElement('form');
-        var inputArea = document.createElement('input');
-        var submitButton = document.createElement('button');
-        var popUpLink = document.createElement('a');
-        var popUpDiv = document.createElement('div');
 
-        popUpDiv.setAttribute('id', 'popUpDiv');
-        popUpDiv.setAttribute('data-role', 'popup');
-        popUpDiv.style.width = '270px';
-        popUpDiv.style.height = '44px';
-        // popUpDiv.style.borderTop = '1px solid black';
-        popUpDiv.style.borderRight = '1px solid black';
-        popUpDiv.style.borderBottom = '1px solid black';
-        popUpDiv.style.borderRadius = '200px';
-        popUpDiv.style.display = 'none';
-        popUpDiv.style.position = 'relative';
-        popUpDiv.style.left = '368px';
-        popUpDiv.style.top = '0px';
-        popUpDiv.style.fontSize = '12px';
-        popUpDiv.style.color = 'white';
-        popUpDiv.innerHTML = '';
-        popUpDiv.innerHTML += '<ol><li>Enter a number within 1 - 27</li><li>Pick a card from the deck</li><li>Choose the pot with your card (3x)</li></ol>';
+        var infoBox = document.createElement('div');
+        var playButton = document.createElement('button');
 
-        popUpLink.setAttribute('href', '#popUpDiv');
-        popUpLink.setAttribute('data-rel', 'popup');
-        popUpLink.setAttribute('data-role', 'button');
-        popUpLink.setAttribute('data-inline', 'true');
-        popUpLink.setAttribute('data-transition', 'pop');
-        popUpLink.id = 'popUpLink';
-        popUpLink.text += 'info';
-        popUpLink.style.textDecoration = 'none';
-        popUpLink.style.fontSize = '12px';
-        popUpLink.style.color = 'white';
+        infoBox.style.background = 'white';
+        infoBox.style.color = "black";
+        infoBox.style.width = '400px';
+        infoBox.style.height = '200px';
+        infoBox.style.display = 'inline-block';
+        infoBox.innerHTML = '';
+        infoBox.innerHTML = 'HOW TO PLAY';
+        infoBox.innerHTML += '<ol><li>Enter a number within 1 - 27</li><li>Pick a card from the deck</li><li>Choose the pot with your card (3x)</li></ol>';
 
-        popUpLink.style.position = 'relative';
-        popUpLink.style.top = '-10px';
-        popUpLink.style.left = '160px';
-        popUpLink.style.marginLeft = '3px';
-        popUpLink.style.marginRight = '3px';
+        playButton.setAttribute('id', 'play-btn');
+        playButton.className = 'buttons';
+        playButton.innerHTML = 'PLAY!';
+        playButton.style.display = 'inline-block';
 
+        infoBox.appendChild(playButton);
+        container.appendChild(infoBox);
 
-        form.id = 'pickInputNumber';
-        form.className = 'formBox';
-        form.style.display = 'none';
+        function enterNumber() {
 
-        inputArea.setAttribute('type', 'text');
-        inputArea.style.width = '220px';
-        inputArea.style.height = '80px';
-        inputArea.style.marginTop = '5px';
-        inputArea.style.border = '5px solid black';
-        inputArea.style.fontSize = '76px';
-        inputArea.style.textAlign = 'center';
+            var btn1 = document.getElementById('btnDrawCard');
+            var btn2 = document.getElementById('btnDrawPots');
+            var btn3 = document.getElementById('btnAnswer');
+            var popup1 = document.getElementById('popUpLink');
+            btn1.addEventListener('mouseout', onButtonMouseOut, false);
+            btn1.addEventListener('mouseover', onButtonMouseOver, false);
+            btn2.addEventListener('mouseout', onButtonMouseOut, false);
+            btn2.addEventListener('mouseover', onButtonMouseOver, false);
+            btn3.addEventListener('mouseout', onButtonMouseOut, false);
+            btn3.addEventListener('mouseover', onButtonMouseOver, false);
+            submitButton.addEventListener('mouseover', onButtonMouseOver, false);
+            submitButton.addEventListener('mouseout', onButtonMouseOut, false);
+            popup1.addEventListener('mouseover', infoOnMouseOver, false);
+            popup1.addEventListener('mouseout', infoOnMouseOut, false);
+            var choosePot1 = document.getElementById('btnChoosePot1');
 
-        submitButton.setAttribute('id', 'submit-btn');
-        submitButton.className = 'buttons';
-        submitButton.innerHTML = 'PLAY!';
-        submitButton.style.height = '50px';
-        submitButton.style.fontStyle = 'normal';
-        submitButton.style.fontSize = '36px';
-        submitButton.style.display = 'inline-block';
-        submitButton.style.padding = '3px';
-        submitButton.style.position = 'relative';
-        submitButton.style.top = '-20px';
-        submitButton.style.left = '20px';
-
-        inputBox.innerHTML = '';
-        inputBox.innerHTML += '<h1>Manhattan Project</h1></br> Chapter: Prediction</br>';
-        inputBox.innerHTML += '<em>enter your favorite number within 1 and 27</em>';
-        inputBox.style.borderLeft = '2px dotted black';
-        inputBox.style.borderRight = '2px dotted black';
-        inputBox.style.boxShadow = '0px 4px 7px rgba(0,0,0,0.6)';
-        inputBox.style.borderRadius = '20px';
-        inputBox.style.background = '#FDF9E7';
-        inputBox.style.width = '390px';
-        inputBox.style.height = '310px';
-        inputBox.style.margin = "50px";
-        inputBox.style.textAlign = "center";
-        inputBox.style.display = 'inline-block';
-
-        form.appendChild(inputArea);
-
-        inputBox.appendChild(form);
-        inputBox.appendChild(submitButton);
-        inputBox.appendChild(popUpLink);
-        inputBox.appendChild(popUpDiv);
-
-        popUpDiv.className = 'box e'
-        window.getComputedStyle(popUpDiv).opacity; // added
-        popUpDiv.className += ' in';
-
-        container.appendChild(inputBox);
-
-        var btn1 = document.getElementById('btnDrawCard');
-        var btn2 = document.getElementById('btnDrawPots');
-        var btn3 = document.getElementById('btnAnswer');
-        var popup1 = document.getElementById('popUpLink');
-        btn1.addEventListener('mouseout', onButtonMouseOut, false);
-        btn1.addEventListener('mouseover', onButtonMouseOver, false);
-        btn2.addEventListener('mouseout', onButtonMouseOut, false);
-        btn2.addEventListener('mouseover', onButtonMouseOver, false);
-        btn3.addEventListener('mouseout', onButtonMouseOut, false);
-        btn3.addEventListener('mouseover', onButtonMouseOver, false);
-        submitButton.addEventListener('mouseover', onButtonMouseOver, false);
-        submitButton.addEventListener('mouseout', onButtonMouseOut, false);
-        popup1.addEventListener('mouseover', infoOnMouseOver, false);
-        popup1.addEventListener('mouseout', infoOnMouseOut, false);
-        var choosePot1 = document.getElementById('btnChoosePot1');
-
-        function infoOnMouseOver(event) {
-            if (selectedButton !== this) {
-                this.nextSibling.style.display = 'block';
+            function infoOnMouseOver(event) {
+                if (selectedButton !== this) {
+                    this.nextSibling.style.display = 'block';
+                }
             }
-        }
 
-        function infoOnMouseOut(event) {
-            if (selectedButton !== this) {
-                this.nextSibling.style.display = 'none';
+            function infoOnMouseOut(event) {
+                if (selectedButton !== this) {
+                    this.nextSibling.style.display = 'none';
+                }
             }
-        }
 
 
-        function onButtonMouseOver(event) {
-            if (selectedButton !== this) {
-                this.style.background = 'gray';
-                this.style.color = 'white';
+            function onButtonMouseOver(event) {
+                if (selectedButton !== this) {
+                    this.style.background = 'gray';
+                    this.style.color = 'white';
+                }
             }
-        }
 
-        function onButtonMouseOut(event) {
-            if (selectedButton !== this) {
-                this.style.background = '';
-                this.style.color = 'black';
+            function onButtonMouseOut(event) {
+                if (selectedButton !== this) {
+                    this.style.background = '';
+                    this.style.color = 'black';
+                }
             }
         }
     }
@@ -637,14 +568,22 @@
     $(document).ready(function () {
         $('#numberContainer').slideDown(5000);
         $('.formBox').slideDown(4000);
+        $('#play-btn').on("click", function () {
+            var container = document.querySelector('#numberContainer');
+            container.style.display = 'none';
+            $('#pickInputNumber').css('display', 'block');
+            $('#submit-btn').css('display', 'block');
+        });
         $('#submit-btn').on("click", function () {
+
+            $('#submit-btn').css('display', 'none');
             magicValueIsCorrect = checkMagicValue(magicValue);
             if (magicValueIsCorrect) {
                 $("#btnDrawCard").trigger("click");
             }
         });
         $("#pickInputNumber").on("keyup", function () {
-            magicValue = $("input:text").val();
+            magicValue = $('#input:text').val();
             potTurns = potDealer(magicValue);
             currentPotTurns = potTurns.split(' ');
 
@@ -654,18 +593,22 @@
         });
         $("#btnDrawCard").on("click", function () {
             $(this).prop('disabled', true);
-            $('#btnDrawPots').css('display','block');
+            $('#btnDrawPots').css('display', 'block');
             $("#btnDrawPots").prop('disabled', false);
-            $('#svgAnimationID').css('display','none');
+            $('#svgAnimationID').css('display', 'none');
+            $('#submit-btn').css('display', 'none');
+            $('#pickInputNumber').css('display', 'none');
             var container = document.querySelector('#numberContainer');
             container.style.display = 'none';
             var currentCardDeck = cardDeck.slice();
             var currentCard = {};
             // window.scrollBy(0, 200);
 
-            var giveCards = setInterval(function () { cardsTimer() }, 100);
+            var giveCards = setInterval(function () {
+                cardsTimer()
+            }, 100);
             var deckIndex = 0;
-                    
+
             function cardsTimer() {
                 currentCard = getRandomCard(currentCardDeck);
                 drawCard(currentCard, context, 20 + deckIndex * 30, 40);
@@ -683,6 +626,8 @@
 
         $("#btnDrawPots").on("click", function () {
 
+            $('#pickInputNumber').css('display', 'none');
+            $('#submit-btn').css('display', 'none');
             $('#btnDrawPots').css('display','none');
             $(this).prop('disabled', true);
             // console.log(magicValue); // magicValue is already ok here

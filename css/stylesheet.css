@@ -45,6 +45,15 @@ body{
 #btnDrawCard {
 	display: none;
 }
+#submit-btn {
+	display: none;
+}
+#input-info{
+	color: white;
+}
+#pickInputNumber {
+	display: none;
+}
 #btnDrawPots {
 	display:none;
 }

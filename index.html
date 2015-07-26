@@ -17,11 +17,20 @@
 				<li><FORM>
 					<INPUT TYPE="button" class="buttons" onClick="history.go(0)" VALUE="Refresh">
 				</FORM></li>
+				<li>
+					<input type="button" id="play" class="buttons" value="PlayAgain" onclick="enterNumber()"/>
+				</li>
 			</ul>
 		</div>
 		<input type="button" id="btnDrawCard" class="buttons" value="Shuffle the deck"/>
 		<input type="button" id="btnDrawPots"  class="buttons" value="Deal three pots"/>
 		<input type="button" id="btnAnswer" class="buttons"  value="The ANSWER!">
+
+		<form id="pickInputNumber">
+			<p id="input-info">Please choose a number between 1 and 27</p>
+		<input type="text" id="input">
+			<input type="button" id="submit-btn" class="buttons"  value="GOGOGO">
+		</form>
 		<div id="canvasContainer">
 			<canvas id="cardCanvas" width="1000px" height="1200px">
 				Your browser dos not support canvas!
