@@ -1,70 +1,70 @@
 (function () {
 
 
-   var Deck=(function() {
-       var Deck = {
-           init: function (name) {
-               this.name = name;
-               return this;
-           },
-           fillDeckWithCards: function () {
-               var deckOfCard = [];
-               deckOfCard.push(Object.create(Card).init('Ace', suitType.Diamond, 14, 'images/classic-cards/01_of_diamonds_A.svg', 'sounds/cardPlace1.wav'));
-               deckOfCard.push(Object.create(Card).init('Ace', suitType.Clubs, 14, 'images/classic-cards/01_of_clubs_A.svg', 'sounds/cardPlace2.wav'));
-               deckOfCard.push(Object.create(Card).init('Ace', suitType.Heart, 14, 'images/classic-cards/01_of_hearts_A.svg', 'sounds/cardPlace3.wav'));
-               deckOfCard.push(Object.create(Card).init('Ace', suitType.Spade, 14, 'images/classic-cards/01_of_spades_A.svg', 'sounds/cardPlace4.wav'));
-               deckOfCard.push(Object.create(Card).init('King', suitType.Diamond, 13, 'images/classic-cards/King_of_diamonds2.svg', 'sounds/cardPlace1.wav'));
-               deckOfCard.push(Object.create(Card).init('King', suitType.Clubs, 13, 'images/classic-cards/King_of_clubs2.svg', 'sounds/cardPlace2.wav'));
-               deckOfCard.push(Object.create(Card).init('King', suitType.Heart, 13, 'images/classic-cards/King_of_hearts2.svg', 'sounds/cardPlace3.wav'));
-               deckOfCard.push(Object.create(Card).init('King', suitType.Spade, 13, 'images/classic-cards/King_of_spades2.svg', 'sounds/cardPlace4.wav'));
-               deckOfCard.push(Object.create(Card).init('Queen', suitType.Diamond, 12, 'images/classic-cards/Queen_of_diamonds2.svg', 'sounds/cardPlace1.wav'));
-               deckOfCard.push(Object.create(Card).init('Queen', suitType.Clubs, 12, 'images/classic-cards/Queen_of_clubs2.svg', 'sounds/cardPlace2.wav'));
-               deckOfCard.push(Object.create(Card).init('Queen', suitType.Heart, 12, 'images/classic-cards/Queen_of_hearts2.svg', 'sounds/cardPlace3.wav'));
-               deckOfCard.push(Object.create(Card).init('Queen', suitType.Spade, 12, 'images/classic-cards/Queen_of_spades2.svg', 'sounds/cardPlace4.wav'));
-               deckOfCard.push(Object.create(Card).init('Jack', suitType.Diamond, 11, 'images/classic-cards/Jack_of_diamonds2.svg', 'sounds/cardPlace1.wav'));
-               deckOfCard.push(Object.create(Card).init('Jack', suitType.Clubs, 11, 'images/classic-cards/Jack_of_clubs2.svg', 'sounds/cardPlace1.wav'));
-               deckOfCard.push(Object.create(Card).init('Jack', suitType.Heart, 11, 'images/classic-cards/Jack_of_hearts2.svg', 'sounds/cardPlace1.wav'));
-               deckOfCard.push(Object.create(Card).init('Jack', suitType.Spade, 11, 'images/classic-cards/Jack_of_spades2.svg', 'sounds/cardPlace1.wav'));
-               deckOfCard.push(Object.create(Card).init('Ten', suitType.Diamond, 10, 'images/classic-cards/10_of_diamonds_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
-               deckOfCard.push(Object.create(Card).init('Ten', suitType.Clubs, 10, 'images/classic-cards/10_of_clubs_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
-               deckOfCard.push(Object.create(Card).init('Ten', suitType.Heart, 10, 'images/classic-cards/10_of_hearts_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
-               deckOfCard.push(Object.create(Card).init('Ten', suitType.Spade, 10, 'images/classic-cards/10_of_spades_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
-               deckOfCard.push(Object.create(Card).init('Nine', suitType.Diamond, 9, 'images/classic-cards/09_of_diamonds.svg', 'sounds/cardPlace3.wav'));
-               deckOfCard.push(Object.create(Card).init('Nine', suitType.Clubs, 9, 'images/classic-cards/09_of_clubs.svg', 'sounds/cardPlace3.wav'));
-               deckOfCard.push(Object.create(Card).init('Nine', suitType.Heart, 9, 'images/classic-cards/09_of_hearts.svg', 'sounds/cardPlace3.wav'));
-               deckOfCard.push(Object.create(Card).init('Nine', suitType.Spade, 9, 'images/classic-cards/09_of_spades.svg', 'sounds/cardPlace3.wav'));
-               deckOfCard.push(Object.create(Card).init('Eight', suitType.Diamond, 8, 'images/classic-cards/08_of_diamonds.svg', 'sounds/cardPlace4.wav'));
-               deckOfCard.push(Object.create(Card).init('Eight', suitType.Clubs, 8, 'images/classic-cards/08_of_clubs.svg', 'sounds/cardPlace4.wav'));
-               deckOfCard.push(Object.create(Card).init('Eight', suitType.Heart, 8, 'images/classic-cards/08_of_hearts.svg', 'sounds/cardPlace4.wav'));
+    var Deck = (function () {
+        var Deck = {
+            init: function (name) {
+                this.name = name;
+                return this;
+            },
+            fillDeckWithCards: function () {
+                var deckOfCard = [];
+                deckOfCard.push(Object.create(Card).init('Ace', suitType.Diamond, 14, 'images/classic-cards/01_of_diamonds_A.svg', 'sounds/cardPlace1.wav'));
+                deckOfCard.push(Object.create(Card).init('Ace', suitType.Clubs, 14, 'images/classic-cards/01_of_clubs_A.svg', 'sounds/cardPlace2.wav'));
+                deckOfCard.push(Object.create(Card).init('Ace', suitType.Heart, 14, 'images/classic-cards/01_of_hearts_A.svg', 'sounds/cardPlace3.wav'));
+                deckOfCard.push(Object.create(Card).init('Ace', suitType.Spade, 14, 'images/classic-cards/01_of_spades_A.svg', 'sounds/cardPlace4.wav'));
+                deckOfCard.push(Object.create(Card).init('King', suitType.Diamond, 13, 'images/classic-cards/King_of_diamonds2.svg', 'sounds/cardPlace1.wav'));
+                deckOfCard.push(Object.create(Card).init('King', suitType.Clubs, 13, 'images/classic-cards/King_of_clubs2.svg', 'sounds/cardPlace2.wav'));
+                deckOfCard.push(Object.create(Card).init('King', suitType.Heart, 13, 'images/classic-cards/King_of_hearts2.svg', 'sounds/cardPlace3.wav'));
+                deckOfCard.push(Object.create(Card).init('King', suitType.Spade, 13, 'images/classic-cards/King_of_spades2.svg', 'sounds/cardPlace4.wav'));
+                deckOfCard.push(Object.create(Card).init('Queen', suitType.Diamond, 12, 'images/classic-cards/Queen_of_diamonds2.svg', 'sounds/cardPlace1.wav'));
+                deckOfCard.push(Object.create(Card).init('Queen', suitType.Clubs, 12, 'images/classic-cards/Queen_of_clubs2.svg', 'sounds/cardPlace2.wav'));
+                deckOfCard.push(Object.create(Card).init('Queen', suitType.Heart, 12, 'images/classic-cards/Queen_of_hearts2.svg', 'sounds/cardPlace3.wav'));
+                deckOfCard.push(Object.create(Card).init('Queen', suitType.Spade, 12, 'images/classic-cards/Queen_of_spades2.svg', 'sounds/cardPlace4.wav'));
+                deckOfCard.push(Object.create(Card).init('Jack', suitType.Diamond, 11, 'images/classic-cards/Jack_of_diamonds2.svg', 'sounds/cardPlace1.wav'));
+                deckOfCard.push(Object.create(Card).init('Jack', suitType.Clubs, 11, 'images/classic-cards/Jack_of_clubs2.svg', 'sounds/cardPlace1.wav'));
+                deckOfCard.push(Object.create(Card).init('Jack', suitType.Heart, 11, 'images/classic-cards/Jack_of_hearts2.svg', 'sounds/cardPlace1.wav'));
+                deckOfCard.push(Object.create(Card).init('Jack', suitType.Spade, 11, 'images/classic-cards/Jack_of_spades2.svg', 'sounds/cardPlace1.wav'));
+                deckOfCard.push(Object.create(Card).init('Ten', suitType.Diamond, 10, 'images/classic-cards/10_of_diamonds_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
+                deckOfCard.push(Object.create(Card).init('Ten', suitType.Clubs, 10, 'images/classic-cards/10_of_clubs_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
+                deckOfCard.push(Object.create(Card).init('Ten', suitType.Heart, 10, 'images/classic-cards/10_of_hearts_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
+                deckOfCard.push(Object.create(Card).init('Ten', suitType.Spade, 10, 'images/classic-cards/10_of_spades_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
+                deckOfCard.push(Object.create(Card).init('Nine', suitType.Diamond, 9, 'images/classic-cards/09_of_diamonds.svg', 'sounds/cardPlace3.wav'));
+                deckOfCard.push(Object.create(Card).init('Nine', suitType.Clubs, 9, 'images/classic-cards/09_of_clubs.svg', 'sounds/cardPlace3.wav'));
+                deckOfCard.push(Object.create(Card).init('Nine', suitType.Heart, 9, 'images/classic-cards/09_of_hearts.svg', 'sounds/cardPlace3.wav'));
+                deckOfCard.push(Object.create(Card).init('Nine', suitType.Spade, 9, 'images/classic-cards/09_of_spades.svg', 'sounds/cardPlace3.wav'));
+                deckOfCard.push(Object.create(Card).init('Eight', suitType.Diamond, 8, 'images/classic-cards/08_of_diamonds.svg', 'sounds/cardPlace4.wav'));
+                deckOfCard.push(Object.create(Card).init('Eight', suitType.Clubs, 8, 'images/classic-cards/08_of_clubs.svg', 'sounds/cardPlace4.wav'));
+                deckOfCard.push(Object.create(Card).init('Eight', suitType.Heart, 8, 'images/classic-cards/08_of_hearts.svg', 'sounds/cardPlace4.wav'));
 
-               return deckOfCard.slice();
+                return deckOfCard.slice();
 
 
-           },
-           getRandomCard: function (deck) {
-               var currentCard = deck[Math.floor(Math.random() * deck.length)];
-               return currentCard;
-           },
-           deleteDrawedCard: function (deck, currentCard) {
-               var currentIndex;
-               deck.some(function (item, index) {
-                   currentIndex = index;
-                   return currentCard.Name === item.Name && currentCard.SuitType === item.SuitType;
-               });
-               if (currentIndex > -1) {
-                   deck.splice(currentIndex, 1);
-               }
-               return deck.slice();
-           }
+            },
+            getRandomCard: function (deck) {
+                var currentCard = deck[Math.floor(Math.random() * deck.length)];
+                return currentCard;
+            },
+            deleteDrawedCard: function (deck, currentCard) {
+                var currentIndex;
+                deck.some(function (item, index) {
+                    currentIndex = index;
+                    return currentCard.Name === item.Name && currentCard.SuitType === item.SuitType;
+                });
+                if (currentIndex > -1) {
+                    deck.splice(currentIndex, 1);
+                }
+                return deck.slice();
+            }
 
-       }
-       return Deck;
+        }
+        return Deck;
 
-   })();
+    })();
 
-    var Card=(function(){
+    var Card = (function () {
         var Card = {
-            init: function (name, suitType, cardValue,picture, sound) {
+            init: function (name, suitType, cardValue, picture, sound) {
                 this.Name = name;
                 this.SuitType = suitType;
                 this.CardValue = cardValue;
@@ -153,9 +153,9 @@
         return Card;
     }());
 
-    var ThreePots=(function(){
+    var ThreePots = (function () {
         var ThreePots = {
-            init:function(){
+            init: function () {
 
                 return this;
             },
@@ -375,9 +375,9 @@
         Spade: 'Spade',
         Clubs: 'Club'
     };
-    var Deck=Object.create(Deck).init('Manhattan');
-    var ThreePots=Object.create(ThreePots).init();
-    var magicValue = 1;
+    var Deck = Object.create(Deck).init('Manhattan');
+    var ThreePots = Object.create(ThreePots).init();
+    var magicValue;
     var selectedButton = null;
     var potTurns;
     var magicValueIsCorrect,
@@ -411,7 +411,8 @@
     var context = cardCanvas.getContext("2d");
 
     function checkMagicValue(magicValue) {
-        if (magicValue < MAGIC_VALUE.MIN || magicValue > MAGIC_VALUE.MAX || isNaN(magicValue)) {
+        if (magicValue < MAGIC_VALUE.MIN || magicValue > MAGIC_VALUE.MAX
+            || isNaN(magicValue) || magicValue == null) {
             window.alert('Magic value should be a number between 1 and 27');
             return false;
         }
@@ -598,8 +599,6 @@
         }, (200 * 27) + 2100 + (10 * 78));
 
     }, false);
-
-
 
 
     $(document).ready(function () {
