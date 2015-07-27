@@ -1,11 +1,12 @@
 .sidr{
     display:none;
+    text-align: center;
     position:absolute;
     position:fixed;
     top:0;
     height:100%;
     z-index:999999;
-    width:260px;
+    width:160px;
     overflow-x:none;
     overflow-y:auto;
     font-family:"lucida grande", tahoma,verdana,arial,sans-serif;
@@ -60,7 +61,6 @@
 sidr ul{
      display:block;
      margin:0 0 15px;
-     padding:0;
      border-top:1px solid #1a1a1a;
      border-bottom:1px solid #4d4d4d
  }
@@ -146,4 +146,7 @@ sidr ul{
 }
 .sidr input[type=button]:hover,.sidr input[type=submit]:hover{
     background:rgba(255,255,255,0.9)
+}
+#sidebar-logo{
+    padding-top: 10px;
 }
