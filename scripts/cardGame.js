@@ -609,9 +609,12 @@ var Game = (function () {
 
 
     $(document).ready(function () {
+        $('#cardCanvas').css('display', 'none');
+        $('#border-motion').css('display', 'block');
         $('#numberContainer').slideDown(5000);
         $('.formBox').slideDown(4000);
         $('#play-btn').on("click", function () {
+            $('#cardCanvas').css('display', 'none');
             var container = document.querySelector('#numberContainer');
             $('#svgAnimationID').css('display', 'none');
             container.style.display = 'none';
@@ -622,21 +625,25 @@ var Game = (function () {
         howToPlay = howToPlay();
         });
         $('#submit-btn').on("click", function () {
-
+            $('#border-motion').css('display', 'block');
             $('#submit-btn').css('display', 'block');
+            $('#border-motion').css('display', 'none');
             magicValueIsCorrect = checkMagicValue(magicValue);
             if (magicValueIsCorrect) {
                 $("#btnDrawCard").trigger("click");
             }
         });
         $('#start-over-btn').on("click", function () {
+
             context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-            var container = document.querySelector('#numberContainer');
+            $('#btnDrawPots').css('display', 'none');
             $('#input').val(null);
+            $('#border-motion').css('display', 'none');
+            $('#cardCanvas').css('display', 'none');
+            var container = document.querySelector('#numberContainer');
             $('#svgAnimationID').css('display', 'none');
             container.style.display = 'none';
             $('#pickInputNumber').css('display', 'block');
-            $('#btnDrawPots').css('display', 'none');
             $('#submit-btn').css('display', 'block');
         });
         $("#pickInputNumber").on("keyup", function () {
@@ -649,6 +656,8 @@ var Game = (function () {
 
         });
         $("#btnDrawCard").on("click", function () {
+            $('#border-motion').css('display', 'none');
+            $('#cardCanvas').css('display', 'block');
             $(this).prop('disabled', true);
             $('#btnDrawPots').css('display', 'block');
             $("#btnDrawPots").prop('disabled', false);

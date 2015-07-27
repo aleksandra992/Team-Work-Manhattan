@@ -32,6 +32,9 @@ body{
 	from {background-color:transparent;color:white; width:10px; height: 10px;}
 	to {background-color: black; color:transparent; width:900px;height: 600px;}
 }
+#cardCanvas{
+
+}
 .buttons {
 	width: 140px;
 	height: 20px;
@@ -109,7 +112,7 @@ body{
 	display: none;
 	position: relative;
 	margin-top: 330px;
-	top: -280px;
+	top: -260px;
 	left: 100px;
 }
 #btnDrawPots {
@@ -161,7 +164,7 @@ body{
 	font-size: 18px;
 }
 #border-motion{
-	animation-delay: 30s;
+	display: none;
 	-webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
 	-moz-animation: fadein 3s; /* Firefox < 16 */
 	-ms-animation: fadein 3s; /* Internet Explorer */
@@ -198,9 +201,9 @@ body{
 	to   { opacity: 1; }
 }
 #border-animation{
-	position: relative;
-	top: -1670px;
+	top: -450px;
 	left: 50px;
+	position: relative;
 	z-index: -1;
 }
 #play-btn:focus{outline:0 !important;}{
