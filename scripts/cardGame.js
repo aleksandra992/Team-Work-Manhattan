@@ -10,14 +10,14 @@ var Game = (function () {
         WIDTH: 100,
         HEIGHT: 145
     };
-
+    var suitType = {
+        Diamond: 'Diamond',
+        Heart: 'Heart',
+        Spade: 'Spade',
+        Clubs: 'Club'
+    };
     var Deck = (function () {
-        var suitType = {
-            Diamond: 'Diamond',
-            Heart: 'Heart',
-            Spade: 'Spade',
-            Clubs: 'Club'
-        };
+
         var Deck = {
             init: function (name) {
                 this.name = name;
