@@ -431,7 +431,11 @@ var Game = (function () {
         }
     }
     function howToPlay() {
-        var msg = "HOW TO PLAY instructions (still in progress)";
+        var msg = 'HOW TO PLAY:' +
+                "<br>" +
+            "<br>"  + 'Enter a number within 1 - 27' +
+            "<br>" + 'Pick a card from the deck' +
+            "<br>" + 'Choose the pot with your card (3x)';
             alert.render(msg);
     }
 
@@ -468,6 +472,8 @@ var Game = (function () {
     dialogAlertHeader.style.fontSize = '19px';
     dialogAlertHeader.style.padding = '10px';
     dialogAlertHeader.style.color = '#CCC';
+    dialogAlertHeader.style.borderTopLeftRadius = '10px';
+    dialogAlertHeader.style.borderTopRightRadius = '10px';
 
     dialogAlertBody.style.background = '#333';
     dialogAlertBody.style.padding = '20px';
@@ -476,6 +482,8 @@ var Game = (function () {
     dialogAlertFooter.style.background = '#666';
     dialogAlertFooter.style.padding = '10px';
     dialogAlertFooter.style.textAlign = 'right';
+    dialogAlertFooter.style.borderBottomLeftRadius = '10px';
+    dialogAlertFooter.style.borderBottomRightRadius = '10px';
 
 
     document.body.appendChild(dialogOverLay);
@@ -622,10 +630,13 @@ var Game = (function () {
             }
         });
         $('#start-over-btn').on("click", function () {
+            context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
             var container = document.querySelector('#numberContainer');
+            $('#input').val(null);
             $('#svgAnimationID').css('display', 'none');
             container.style.display = 'none';
             $('#pickInputNumber').css('display', 'block');
+            $('#btnDrawPots').css('display', 'none');
             $('#submit-btn').css('display', 'block');
         });
         $("#pickInputNumber").on("keyup", function () {
