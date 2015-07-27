@@ -1,19 +1,390 @@
 (function () {
 
+
+   var Deck=(function() {
+       var Deck = {
+           init: function (name) {
+               this.name = name;
+               return this;
+           },
+           fillDeckWithCards: function () {
+               var deckOfCard = [];
+               deckOfCard.push(Object.create(Card).init('Ace', suitType.Diamond, 14, 'images/classic-cards/01_of_diamonds_A.svg', 'sounds/cardPlace1.wav'));
+               deckOfCard.push(Object.create(Card).init('Ace', suitType.Clubs, 14, 'images/classic-cards/01_of_clubs_A.svg', 'sounds/cardPlace2.wav'));
+               deckOfCard.push(Object.create(Card).init('Ace', suitType.Heart, 14, 'images/classic-cards/01_of_hearts_A.svg', 'sounds/cardPlace3.wav'));
+               deckOfCard.push(Object.create(Card).init('Ace', suitType.Spade, 14, 'images/classic-cards/01_of_spades_A.svg', 'sounds/cardPlace4.wav'));
+               deckOfCard.push(Object.create(Card).init('King', suitType.Diamond, 13, 'images/classic-cards/King_of_diamonds2.svg', 'sounds/cardPlace1.wav'));
+               deckOfCard.push(Object.create(Card).init('King', suitType.Clubs, 13, 'images/classic-cards/King_of_clubs2.svg', 'sounds/cardPlace2.wav'));
+               deckOfCard.push(Object.create(Card).init('King', suitType.Heart, 13, 'images/classic-cards/King_of_hearts2.svg', 'sounds/cardPlace3.wav'));
+               deckOfCard.push(Object.create(Card).init('King', suitType.Spade, 13, 'images/classic-cards/King_of_spades2.svg', 'sounds/cardPlace4.wav'));
+               deckOfCard.push(Object.create(Card).init('Queen', suitType.Diamond, 12, 'images/classic-cards/Queen_of_diamonds2.svg', 'sounds/cardPlace1.wav'));
+               deckOfCard.push(Object.create(Card).init('Queen', suitType.Clubs, 12, 'images/classic-cards/Queen_of_clubs2.svg', 'sounds/cardPlace2.wav'));
+               deckOfCard.push(Object.create(Card).init('Queen', suitType.Heart, 12, 'images/classic-cards/Queen_of_hearts2.svg', 'sounds/cardPlace3.wav'));
+               deckOfCard.push(Object.create(Card).init('Queen', suitType.Spade, 12, 'images/classic-cards/Queen_of_spades2.svg', 'sounds/cardPlace4.wav'));
+               deckOfCard.push(Object.create(Card).init('Jack', suitType.Diamond, 11, 'images/classic-cards/Jack_of_diamonds2.svg', 'sounds/cardPlace1.wav'));
+               deckOfCard.push(Object.create(Card).init('Jack', suitType.Clubs, 11, 'images/classic-cards/Jack_of_clubs2.svg', 'sounds/cardPlace1.wav'));
+               deckOfCard.push(Object.create(Card).init('Jack', suitType.Heart, 11, 'images/classic-cards/Jack_of_hearts2.svg', 'sounds/cardPlace1.wav'));
+               deckOfCard.push(Object.create(Card).init('Jack', suitType.Spade, 11, 'images/classic-cards/Jack_of_spades2.svg', 'sounds/cardPlace1.wav'));
+               deckOfCard.push(Object.create(Card).init('Ten', suitType.Diamond, 10, 'images/classic-cards/10_of_diamonds_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
+               deckOfCard.push(Object.create(Card).init('Ten', suitType.Clubs, 10, 'images/classic-cards/10_of_clubs_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
+               deckOfCard.push(Object.create(Card).init('Ten', suitType.Heart, 10, 'images/classic-cards/10_of_hearts_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
+               deckOfCard.push(Object.create(Card).init('Ten', suitType.Spade, 10, 'images/classic-cards/10_of_spades_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
+               deckOfCard.push(Object.create(Card).init('Nine', suitType.Diamond, 9, 'images/classic-cards/09_of_diamonds.svg', 'sounds/cardPlace3.wav'));
+               deckOfCard.push(Object.create(Card).init('Nine', suitType.Clubs, 9, 'images/classic-cards/09_of_clubs.svg', 'sounds/cardPlace3.wav'));
+               deckOfCard.push(Object.create(Card).init('Nine', suitType.Heart, 9, 'images/classic-cards/09_of_hearts.svg', 'sounds/cardPlace3.wav'));
+               deckOfCard.push(Object.create(Card).init('Nine', suitType.Spade, 9, 'images/classic-cards/09_of_spades.svg', 'sounds/cardPlace3.wav'));
+               deckOfCard.push(Object.create(Card).init('Eight', suitType.Diamond, 8, 'images/classic-cards/08_of_diamonds.svg', 'sounds/cardPlace4.wav'));
+               deckOfCard.push(Object.create(Card).init('Eight', suitType.Clubs, 8, 'images/classic-cards/08_of_clubs.svg', 'sounds/cardPlace4.wav'));
+               deckOfCard.push(Object.create(Card).init('Eight', suitType.Heart, 8, 'images/classic-cards/08_of_hearts.svg', 'sounds/cardPlace4.wav'));
+
+               return deckOfCard.slice();
+
+
+           },
+           getRandomCard: function (deck) {
+               var currentCard = deck[Math.floor(Math.random() * deck.length)];
+               return currentCard;
+           },
+           deleteDrawedCard: function (deck, currentCard) {
+               var currentIndex;
+               deck.some(function (item, index) {
+                   currentIndex = index;
+                   return currentCard.Name === item.Name && currentCard.SuitType === item.SuitType;
+               });
+               if (currentIndex > -1) {
+                   deck.splice(currentIndex, 1);
+               }
+               return deck.slice();
+           }
+
+       }
+       return Deck;
+
+   })();
+
+    var Card=(function(){
+        var Card = {
+            init: function (name, suitType, cardValue,picture, sound) {
+                this.Name = name;
+                this.SuitType = suitType;
+                this.CardValue = cardValue;
+                this.Picture = picture;
+                this.Sound = sound;
+                return this;
+            },
+            playCardGameSound: function (soundResource) {
+                if (soundResource) {
+                    var currentAudio = new Audio();
+                    currentAudio.src = soundResource;
+                    currentAudio.play();
+                }
+            },
+            drawCard: function (card, context, alignX, alignY, width, height) {
+
+                if (context) {
+
+                    if (card) {
+                        var currentImage = new Image();
+                        currentImage.onload = function () {
+                            context.drawImage(currentImage, alignX, alignY, width, height);
+                        };
+                        currentImage.src = card.Picture;
+
+                        Card.playCardGameSound(card.Sound);
+                    }
+                }
+            },
+            drawCardBack: function (context, alignX, alignY, width, height) {
+
+                if (context) {
+                    var cardBack = new Image();
+                    cardBack.src = 'images/back.jpg';
+                    cardBack.onload = function () {
+                        context.drawImage(cardBack, alignX, alignY, width, height);
+                        Card.playCardGameSound('sounds/cardPlace1.wav');
+                    }
+                }
+            },
+            rotateMagicCard: function (card, context, alignX, alignY, height, width) {
+
+                if (context) {
+                    if (card) {
+                        var currentImage = new Image();
+                        var angle = 0; //angle
+                        var fps = 1000 / 25; //number of frames per sec
+
+                        document.getElementById("cardCanvas").style.marginLeft = "auto";
+                        document.getElementById("cardCanvas").style.marginRight = "auto";
+                        document.getElementById("cardCanvas").style.paddingLeft = "0";
+                        document.getElementById("cardCanvas").style.paddingRight = "0";
+                        document.getElementById("cardCanvas").style.marginTop = "-200px";
+                        document.getElementById("cardCanvas").style.paddingTop = "0";
+                        document.getElementById("cardCanvas").style.display = "block";
+                        document.getElementById("cardCanvas").width = "800px";
+
+                        currentImage.onload = function () {
+                            cardCanvas.width = this.width << 1; //double the canvas width
+                            cardCanvas.height = this.height << 1; //double the canvas height
+                            var cache = this; //cache the local copy of image element for future reference
+
+                            var rotateCard = setInterval(function () {
+                                rotateCardTimer()
+                            }, fps);
+
+                            function rotateCardTimer() {
+                                context.save(); //saves the state of canvas
+                                context.clearRect(0, 0, cardCanvas.width, cardCanvas.height); //clear the canvas
+                                context.translate(cache.width, cache.height);
+                                context.rotate(Math.PI / 180 * (angle += 5)); //increment the angle and rotate the image
+                                context.drawImage(currentImage, -cache.width / 2, -cache.height / 2, cache.width, cache.height);
+                                context.restore(); //restore the state of canvas
+                                if (angle === 180 * magicValue) {
+                                    clearInterval(rotateCard);
+                                }
+                            }
+                        };
+                        currentImage.src = card.Picture;
+                    }
+                }
+            }
+
+
+        }
+        return Card;
+    }());
+
+    var ThreePots=(function(){
+        var ThreePots = {
+            init:function(){
+
+                return this;
+            },
+            getThreePots: function (deck) {
+                var currentDeck = deck.slice();
+                var firstPot = [],
+                    secondPot = [],
+                    thirdPot = [];
+                var currentCard = {};
+
+                for (var i = 0; i < 9; i++) {
+                    currentCard = Deck.getRandomCard(currentDeck);
+                    firstPot.push(currentCard);
+                    currentDeck = Deck.deleteDrawedCard(currentDeck, currentCard);
+
+                    currentCard = Deck.getRandomCard(currentDeck);
+                    secondPot.push(currentCard);
+                    currentDeck = Deck.deleteDrawedCard(currentDeck, currentCard);
+
+                    currentCard = Deck.getRandomCard(currentDeck);
+                    thirdPot.push(currentCard);
+                    currentDeck = Deck.deleteDrawedCard(currentDeck, currentCard);
+                }
+                return {
+                    firstPot: firstPot.slice(),
+                    secondPot: secondPot.slice(),
+                    thirdPot: thirdPot.slice()
+                }
+
+
+            },
+            potDealer: function (number) {
+                var logicForNumbers = ['000', '100', '200',
+                    '010', '110', '210',
+                    '020', '120', '220',
+                    '001', '101', '201',
+                    '011', '111', '211',
+                    '021', '121', '221',
+                    '002', '102', '202',
+                    '012', '112', '212',
+                    '022', '122', '222'];
+                var logic = logicForNumbers[number - 1];
+                var potTurns = '';
+                for (var i = 0; i < logic.length; i++) {
+                    if (logic[i] === '0') {
+                        potTurns += 'TOP';
+                        potTurns += " ";
+                    } else if (logic[i] === '1') {
+                        potTurns += 'MIDDLE';
+                        potTurns += " ";
+                    } else if (logic[i] === '2') {
+                        potTurns += 'DOWN';
+                        potTurns += " ";
+                    }
+
+
+                }
+                return potTurns;
+            },
+            dealThreePots: function (threePots, context) {
+
+
+                var firstPot = threePots.firstPot,
+                    secondPot = threePots.secondPot,
+                    thirdPot = threePots.thirdPot,
+                    i;
+
+                var giveThreePots = setInterval(function () {
+                    threePotsTimer()
+                }, 100);
+                var i = 0;
+
+                function threePotsTimer() {
+                    Card.drawCard(firstPot[i], context, 20 + i * 35, 40, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                    Card.drawCard(secondPot[i], context, 20 + i * 35, 210, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                    Card.drawCard(thirdPot[i], context, 20 + i * 35, 380, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                    i++;
+                    if (i === 9) {
+                        clearInterval(giveThreePots);
+                    }
+                }
+
+                return {
+                    firstPot: firstPot.slice(),
+                    secondPot: secondPot.slice(),
+                    thirdPot: thirdPot.slice()
+                }
+            },
+            shuffleCards: function () {
+                currentMixedPots = {
+                    firstPot: [],
+                    secondPot: [],
+                    thirdPot: []
+                };
+                for (var i = 0; i < 9; i++) {
+                    if (i % 3 === 0) {
+                        currentMixedPots.firstPot.push(currentThreePots.firstPot[i]);
+                    }
+                    else if (i % 3 === 1) {
+                        currentMixedPots.secondPot.push(currentThreePots.firstPot[i]);
+                    }
+                    else if (i % 3 === 2) {
+                        currentMixedPots.thirdPot.push(currentThreePots.firstPot[i]);
+                    }
+                }
+                for (var i = 0; i < 9; i++) {
+                    if (i % 3 === 0) {
+                        currentMixedPots.firstPot.push(currentThreePots.secondPot[i]);
+                    }
+                    else if (i % 3 === 1) {
+                        currentMixedPots.secondPot.push(currentThreePots.secondPot[i]);
+                    }
+                    else if (i % 3 === 2) {
+                        currentMixedPots.thirdPot.push(currentThreePots.secondPot[i]);
+                    }
+                }
+                for (var i = 0; i < 9; i++) {
+                    if (i % 3 === 0) {
+                        currentMixedPots.firstPot.push(currentThreePots.thirdPot[i]);
+                    }
+                    else if (i % 3 === 1) {
+                        currentMixedPots.secondPot.push(currentThreePots.thirdPot[i]);
+                    }
+                    else if (i % 3 === 2) {
+                        currentMixedPots.thirdPot.push(currentThreePots.thirdPot[i]);
+                    }
+                }
+                currentThreePots.firstPot = currentMixedPots.firstPot.slice();
+                currentThreePots.secondPot = currentMixedPots.secondPot.slice();
+                currentThreePots.thirdPot = currentMixedPots.thirdPot.slice();
+                threePots.firstPot = currentMixedPots.firstPot.slice();
+                threePots.secondPot = currentMixedPots.secondPot.slice();
+                threePots.thirdPot = currentMixedPots.thirdPot.slice();
+            },
+            PutFirstOnPlace: function (turn) {
+
+                if (currentPotTurns[turn] === 'TOP') {//put the current pot on the top
+                    console.log('top');
+                    currentThreePots.firstPot = threePots.firstPot.slice();
+                    currentThreePots.secondPot = threePots.secondPot.slice();
+                    currentThreePots.thirdPot = threePots.thirdPot.slice();
+                }
+                if (currentPotTurns[turn] === 'MIDDLE') {//put the current pot in the middle
+                    console.log('middle');
+                    currentThreePots.secondPot = threePots.firstPot.slice();
+                    currentThreePots.firstPot = threePots.secondPot.slice();
+                    currentThreePots.thirdPot = threePots.thirdPot.slice();
+                }
+                if (currentPotTurns[turn] === 'DOWN') {//put the current pot on the bottom
+                    console.log('bottom');
+                    currentThreePots.thirdPot = threePots.firstPot.slice();
+                    currentThreePots.firstPot = threePots.thirdPot.slice();
+                    currentThreePots.secondPot = threePots.secondPot.slice();
+                }
+                threePots.firstPot = currentThreePots.firstPot.slice();
+                threePots.secondPot = currentThreePots.secondPot.slice();
+                threePots.thirdPot = currentThreePots.thirdPot.slice();
+
+            },
+            PutSecondOnPlace: function (turn) {
+
+                if (currentPotTurns[turn] === 'TOP') {//put the current pot on the top
+                    console.log('top');
+                    currentThreePots.firstPot = threePots.secondPot.slice();
+                    currentThreePots.secondPot = threePots.firstPot.slice();
+                    currentThreePots.thirdPot = threePots.thirdPot.slice();
+                }
+                if (currentPotTurns[turn] === 'MIDDLE') {//put the current pot in the middle
+                    console.log('middle');
+                    currentThreePots.secondPot = threePots.secondPot.slice();
+                    currentThreePots.firstPot = threePots.firstPot.slice();
+                    currentThreePots.thirdPot = threePots.thirdPot.slice();
+                }
+                if (currentPotTurns[turn] === 'DOWN') {//put the current pot on the bottom
+                    console.log('bottom');
+                    currentThreePots.thirdPot = threePots.secondPot.slice();
+                    currentThreePots.firstPot = threePots.firstPot.slice();
+                    currentThreePots.secondPot = threePots.thirdPot.slice();
+                }
+                threePots.firstPot = currentThreePots.firstPot.slice();
+                threePots.secondPot = currentThreePots.secondPot.slice();
+                threePots.thirdPot = currentThreePots.thirdPot.slice();
+
+            },
+            PutThirdOnPlace: function (turn) {
+
+                if (currentPotTurns[turn] === 'TOP') {//put the current pot on the top
+                    console.log('top');
+                    currentThreePots.firstPot = threePots.thirdPot.slice();
+                    currentThreePots.secondPot = threePots.secondPot.slice();
+                    currentThreePots.thirdPot = threePots.firstPot.slice();
+                }
+                if (currentPotTurns[turn] === 'MIDDLE') {//put the current pot in the middle
+                    console.log('middle');
+                    currentThreePots.secondPot = threePots.thirdPot.slice();
+                    currentThreePots.firstPot = threePots.firstPot.slice();
+                    currentThreePots.thirdPot = threePots.secondPot.slice();
+                }
+                if (currentPotTurns[turn] === 'DOWN') {//put the current pot on the bottom
+                    console.log('bottom');
+                    currentThreePots.thirdPot = threePots.thirdPot.slice();
+                    currentThreePots.firstPot = threePots.firstPot.slice();
+                    currentThreePots.secondPot = threePots.secondPot.slice();
+                }
+                threePots.firstPot = currentThreePots.firstPot.slice();
+                threePots.secondPot = currentThreePots.secondPot.slice();
+                threePots.thirdPot = currentThreePots.thirdPot.slice();
+
+            }
+        }
+        return ThreePots;
+    }());
+
     var suitType = {
         Diamond: 'Diamond',
         Heart: 'Heart',
         Spade: 'Spade',
         Clubs: 'Club'
     };
+    var Deck=Object.create(Deck).init('Manhattan');
+    var ThreePots=Object.create(ThreePots).init();
     var magicValue = 1;
     var selectedButton = null;
     var potTurns;
     var magicValueIsCorrect,
         areShuffled;
     var buttonClickCount = 0;
-    var cardDeck = fillDeckWithCards();
-    var threePots = getThreePots(cardDeck);
+    var cardDeck = Deck.fillDeckWithCards();
+    var threePots = ThreePots.getThreePots(cardDeck);
     var currentPotTurns;
     var currentMixedPots = {
         firstPot: [],
@@ -32,7 +403,7 @@
         };
 
     var CARD_DIM = {
-         WIDTH: 100,
+        WIDTH: 100,
         HEIGHT: 145
     };
 
@@ -49,77 +420,6 @@
         }
     }
 
-    function Card(name, suitType, cardValue, picture, sound) {
-        this.Name = name;
-        this.SuitType = suitType;
-        this.CardValue = cardValue;
-        this.Picture = picture;
-        this.Sound = sound;
-    }
-
-    Card.prototype.toString = function () {
-        return this.Name + ' of ' + this.SuitType + 's';
-    };
-
-    function fillDeckWithCards() {
-        var deckOfCard = [];
-        deckOfCard.push(new Card('Ace', suitType.Diamond, 14, 'images/classic-cards/01_of_diamonds_A.svg', 'sounds/cardPlace1.wav'));
-        deckOfCard.push(new Card('Ace', suitType.Clubs, 14, 'images/classic-cards/01_of_clubs_A.svg', 'sounds/cardPlace2.wav'));
-        deckOfCard.push(new Card('Ace', suitType.Heart, 14, 'images/classic-cards/01_of_hearts_A.svg', 'sounds/cardPlace3.wav'));
-        deckOfCard.push(new Card('Ace', suitType.Spade, 14, 'images/classic-cards/01_of_spades_A.svg', 'sounds/cardPlace4.wav'));
-        deckOfCard.push(new Card('King', suitType.Diamond, 13, 'images/classic-cards/King_of_diamonds2.svg', 'sounds/cardPlace1.wav'));
-        deckOfCard.push(new Card('King', suitType.Clubs, 13, 'images/classic-cards/King_of_clubs2.svg', 'sounds/cardPlace2.wav'));
-        deckOfCard.push(new Card('King', suitType.Heart, 13, 'images/classic-cards/King_of_hearts2.svg', 'sounds/cardPlace3.wav'));
-        deckOfCard.push(new Card('King', suitType.Spade, 13, 'images/classic-cards/King_of_spades2.svg', 'sounds/cardPlace4.wav'));
-        deckOfCard.push(new Card('Queen', suitType.Diamond, 12, 'images/classic-cards/Queen_of_diamonds2.svg', 'sounds/cardPlace1.wav'));
-        deckOfCard.push(new Card('Queen', suitType.Clubs, 12, 'images/classic-cards/Queen_of_clubs2.svg', 'sounds/cardPlace2.wav'));
-        deckOfCard.push(new Card('Queen', suitType.Heart, 12, 'images/classic-cards/Queen_of_hearts2.svg', 'sounds/cardPlace3.wav'));
-        deckOfCard.push(new Card('Queen', suitType.Spade, 12, 'images/classic-cards/Queen_of_spades2.svg', 'sounds/cardPlace4.wav'));
-        deckOfCard.push(new Card('Jack', suitType.Diamond, 11, 'images/classic-cards/Jack_of_diamonds2.svg', 'sounds/cardPlace1.wav'));
-        deckOfCard.push(new Card('Jack', suitType.Clubs, 11, 'images/classic-cards/Jack_of_clubs2.svg', 'sounds/cardPlace1.wav'));
-        deckOfCard.push(new Card('Jack', suitType.Heart, 11, 'images/classic-cards/Jack_of_hearts2.svg', 'sounds/cardPlace1.wav'));
-        deckOfCard.push(new Card('Jack', suitType.Spade, 11, 'images/classic-cards/Jack_of_spades2.svg', 'sounds/cardPlace1.wav'));
-        deckOfCard.push(new Card('Ten', suitType.Diamond, 10, 'images/classic-cards/10_of_diamonds_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
-        deckOfCard.push(new Card('Ten', suitType.Clubs, 10, 'images/classic-cards/10_of_clubs_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
-        deckOfCard.push(new Card('Ten', suitType.Heart, 10, 'images/classic-cards/10_of_hearts_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
-        deckOfCard.push(new Card('Ten', suitType.Spade, 10, 'images/classic-cards/10_of_spades_-_David_Bellot.svg', 'sounds/cardPlace2.wav'));
-        deckOfCard.push(new Card('Nine', suitType.Diamond, 9, 'images/classic-cards/09_of_diamonds.svg', 'sounds/cardPlace3.wav'));
-        deckOfCard.push(new Card('Nine', suitType.Clubs, 9, 'images/classic-cards/09_of_clubs.svg', 'sounds/cardPlace3.wav'));
-        deckOfCard.push(new Card('Nine', suitType.Heart, 9, 'images/classic-cards/09_of_hearts.svg', 'sounds/cardPlace3.wav'));
-        deckOfCard.push(new Card('Nine', suitType.Spade, 9, 'images/classic-cards/09_of_spades.svg', 'sounds/cardPlace3.wav'));
-        deckOfCard.push(new Card('Eight', suitType.Diamond, 8, 'images/classic-cards/08_of_diamonds.svg', 'sounds/cardPlace4.wav'));
-        deckOfCard.push(new Card('Eight', suitType.Clubs, 8, 'images/classic-cards/08_of_clubs.svg', 'sounds/cardPlace4.wav'));
-        deckOfCard.push(new Card('Eight', suitType.Heart, 8, 'images/classic-cards/08_of_hearts.svg', 'sounds/cardPlace4.wav'));
-
-        return deckOfCard.slice();
-
-    }
-
-    function getRandomCard(deck) {
-        var currentCard = deck[Math.floor(Math.random() * deck.length)];
-        return currentCard;
-    }
-
-    function deleteDrawedCard(deck, currentCard) {
-        var currentIndex;
-        deck.some(function (item, index) {
-            currentIndex = index;
-            return currentCard.Name === item.Name && currentCard.SuitType === item.SuitType;
-        });
-        if (currentIndex > -1) {
-            deck.splice(currentIndex, 1);
-        }
-        return deck.slice();
-    }
-
-    function playCardGameSound(soundResource) {
-        if (soundResource) {
-            var currentAudio = new Audio();
-            currentAudio.src = soundResource;
-            currentAudio.play();
-        }
-    }
-
     function drawText(currentCard, context) {
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
         context.fillStyle = 'black';
@@ -127,159 +427,6 @@
         context.fillText(currentCard.toString(), 20, 240);
     }
 
-    function drawCard(card, context, alignX, alignY, width, height) {
-
-        if (context) {
-
-            if (card) {
-                var currentImage = new Image();
-                currentImage.onload = function () {
-                    context.drawImage(currentImage, alignX, alignY, width, height);
-                };
-                currentImage.src = card.Picture;
-
-                playCardGameSound(card.Sound);
-            }
-        }
-    }
-
-    function drawCardBack(context, alignX, alignY, width, height) {
-
-        if (context) {
-            var cardBack = new Image();
-            cardBack.src = 'images/back.jpg';
-            cardBack.onload = function () {
-                context.drawImage(cardBack, alignX, alignY, width, height);
-                playCardGameSound('sounds/cardPlace1.wav');
-            }
-        }
-    }
-
-    function rotateMagicCard(card, context, alignX, alignY, height, width) {
-
-        if (context) {
-            if (card) {
-                var currentImage = new Image();
-                var angle = 0; //angle
-                var fps = 1000 / 25; //number of frames per sec
-
-                document.getElementById("cardCanvas").style.marginLeft = "auto";
-                document.getElementById("cardCanvas").style.marginRight = "auto";
-                document.getElementById("cardCanvas").style.paddingLeft = "0";
-                document.getElementById("cardCanvas").style.paddingRight = "0";
-                document.getElementById("cardCanvas").style.marginTop = "-200px";
-                document.getElementById("cardCanvas").style.paddingTop = "0";
-                document.getElementById("cardCanvas").style.display = "block";
-                document.getElementById("cardCanvas").width = "800px";
-
-                currentImage.onload = function () {
-                    cardCanvas.width = this.width << 1; //double the canvas width
-                    cardCanvas.height = this.height << 1; //double the canvas height
-                    var cache = this; //cache the local copy of image element for future reference
-
-                    var rotateCard = setInterval(function  () { rotateCardTimer() } , fps);
-                    function rotateCardTimer() {
-                        context.save(); //saves the state of canvas
-                        context.clearRect(0, 0, cardCanvas.width, cardCanvas.height); //clear the canvas
-                        context.translate(cache.width, cache.height);
-                        context.rotate(Math.PI / 180 * (angle += 5)); //increment the angle and rotate the image 
-                        context.drawImage(currentImage, -cache.width / 2, -cache.height / 2, cache.width, cache.height);
-                        context.restore(); //restore the state of canvas
-                        if (angle === 180*magicValue) {
-                            clearInterval(rotateCard);
-                        }
-                    }
-                };
-                currentImage.src = card.Picture;
-            }
-        }
-    }
-
-    function getThreePots(deck) {
-        var currentDeck = deck.slice();
-        var firstPot = [],
-            secondPot = [],
-            thirdPot = [];
-        var currentCard = {};
-
-        for (var i = 0; i < 9; i++) {
-            currentCard = getRandomCard(currentDeck);
-            firstPot.push(currentCard);
-            currentDeck = deleteDrawedCard(currentDeck, currentCard);
-
-            currentCard = getRandomCard(currentDeck);
-            secondPot.push(currentCard);
-            currentDeck = deleteDrawedCard(currentDeck, currentCard);
-
-            currentCard = getRandomCard(currentDeck);
-            thirdPot.push(currentCard);
-            currentDeck = deleteDrawedCard(currentDeck, currentCard);
-        }
-        return {
-            firstPot: firstPot.slice(),
-            secondPot: secondPot.slice(),
-            thirdPot: thirdPot.slice()
-        }
-
-
-    }
-
-    function potDealer(number) {
-        var logicForNumbers = ['000', '100', '200',
-            '010', '110', '210',
-            '020', '120', '220',
-            '001', '101', '201',
-            '011', '111', '211',
-            '021', '121', '221',
-            '002', '102', '202',
-            '012', '112', '212',
-            '022', '122', '222'];
-        var logic = logicForNumbers[number - 1];
-        var potTurns = '';
-        for (var i = 0; i < logic.length; i++) {
-            if (logic[i] === '0') {
-                potTurns += 'TOP';
-                potTurns += " ";
-            } else if (logic[i] === '1') {
-                potTurns += 'MIDDLE';
-                potTurns += " ";
-            } else if (logic[i] === '2') {
-                potTurns += 'DOWN';
-                potTurns += " ";
-            }
-
-
-        }
-        return potTurns;
-    }
-
-    function dealThreePots(threePots, context) {
-
-
-        var firstPot = threePots.firstPot,
-            secondPot = threePots.secondPot,
-            thirdPot = threePots.thirdPot,
-            i;
-
-        var giveThreePots = setInterval(function () { threePotsTimer() }, 100);
-        var i = 0;
-
-        function threePotsTimer() {
-            drawCard(firstPot[i], context, 20 + i * 35, 40, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
-            drawCard(secondPot[i], context, 20 + i * 35, 210, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
-            drawCard(thirdPot[i], context, 20 + i * 35, 380, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
-            i++;
-            if (i === 9) {
-                clearInterval(giveThreePots);
-            }
-        }
-        
-        return {
-            firstPot: firstPot.slice(),
-            secondPot: secondPot.slice(),
-            thirdPot: thirdPot.slice()
-        }
-    }
 
     function createInputPage(selector) {
         var container = document.querySelector(selector);
@@ -364,132 +511,7 @@
         }
     }
 
-    function shuffleCards() {
-        currentMixedPots = {
-            firstPot: [],
-            secondPot: [],
-            thirdPot: []
-        };
-        for (var i = 0; i < 9; i++) {
-            if (i % 3 === 0) {
-                currentMixedPots.firstPot.push(currentThreePots.firstPot[i]);
-            }
-            else if (i % 3 === 1) {
-                currentMixedPots.secondPot.push(currentThreePots.firstPot[i]);
-            }
-            else if (i % 3 === 2) {
-                currentMixedPots.thirdPot.push(currentThreePots.firstPot[i]);
-            }
-        }
-        for (var i = 0; i < 9; i++) {
-            if (i % 3 === 0) {
-                currentMixedPots.firstPot.push(currentThreePots.secondPot[i]);
-            }
-            else if (i % 3 === 1) {
-                currentMixedPots.secondPot.push(currentThreePots.secondPot[i]);
-            }
-            else if (i % 3 === 2) {
-                currentMixedPots.thirdPot.push(currentThreePots.secondPot[i]);
-            }
-        }
-        for (var i = 0; i < 9; i++) {
-            if (i % 3 === 0) {
-                currentMixedPots.firstPot.push(currentThreePots.thirdPot[i]);
-            }
-            else if (i % 3 === 1) {
-                currentMixedPots.secondPot.push(currentThreePots.thirdPot[i]);
-            }
-            else if (i % 3 === 2) {
-                currentMixedPots.thirdPot.push(currentThreePots.thirdPot[i]);
-            }
-        }
-        currentThreePots.firstPot = currentMixedPots.firstPot.slice();
-        currentThreePots.secondPot = currentMixedPots.secondPot.slice();
-        currentThreePots.thirdPot = currentMixedPots.thirdPot.slice();
-        threePots.firstPot = currentMixedPots.firstPot.slice();
-        threePots.secondPot = currentMixedPots.secondPot.slice();
-        threePots.thirdPot = currentMixedPots.thirdPot.slice();
-    }
-
-    function PutFirstOnPlace(turn) {
-
-        if (currentPotTurns[turn] === 'TOP') {//put the current pot on the top
-            console.log('top');
-            currentThreePots.firstPot = threePots.firstPot.slice();
-            currentThreePots.secondPot = threePots.secondPot.slice();
-            currentThreePots.thirdPot = threePots.thirdPot.slice();
-        }
-        if (currentPotTurns[turn] === 'MIDDLE') {//put the current pot in the middle
-            console.log('middle');
-            currentThreePots.secondPot = threePots.firstPot.slice();
-            currentThreePots.firstPot = threePots.secondPot.slice();
-            currentThreePots.thirdPot = threePots.thirdPot.slice();
-        }
-        if (currentPotTurns[turn] === 'DOWN') {//put the current pot on the bottom
-            console.log('bottom');
-            currentThreePots.thirdPot = threePots.firstPot.slice();
-            currentThreePots.firstPot = threePots.thirdPot.slice();
-            currentThreePots.secondPot = threePots.secondPot.slice();
-        }
-        threePots.firstPot = currentThreePots.firstPot.slice();
-        threePots.secondPot = currentThreePots.secondPot.slice();
-        threePots.thirdPot = currentThreePots.thirdPot.slice();
-
-    }
-
-    function PutSecondOnPlace(turn) {
-
-        if (currentPotTurns[turn] === 'TOP') {//put the current pot on the top
-            console.log('top');
-            currentThreePots.firstPot = threePots.secondPot.slice();
-            currentThreePots.secondPot = threePots.firstPot.slice();
-            currentThreePots.thirdPot = threePots.thirdPot.slice();
-        }
-        if (currentPotTurns[turn] === 'MIDDLE') {//put the current pot in the middle
-            console.log('middle');
-            currentThreePots.secondPot = threePots.secondPot.slice();
-            currentThreePots.firstPot = threePots.firstPot.slice();
-            currentThreePots.thirdPot = threePots.thirdPot.slice();
-        }
-        if (currentPotTurns[turn] === 'DOWN') {//put the current pot on the bottom
-            console.log('bottom');
-            currentThreePots.thirdPot = threePots.secondPot.slice();
-            currentThreePots.firstPot = threePots.firstPot.slice();
-            currentThreePots.secondPot = threePots.thirdPot.slice();
-        }
-        threePots.firstPot = currentThreePots.firstPot.slice();
-        threePots.secondPot = currentThreePots.secondPot.slice();
-        threePots.thirdPot = currentThreePots.thirdPot.slice();
-
-    }
-
-    function PutThirdOnPlace(turn) {
-
-        if (currentPotTurns[turn] === 'TOP') {//put the current pot on the top
-            console.log('top');
-            currentThreePots.firstPot = threePots.thirdPot.slice();
-            currentThreePots.secondPot = threePots.secondPot.slice();
-            currentThreePots.thirdPot = threePots.firstPot.slice();
-        }
-        if (currentPotTurns[turn] === 'MIDDLE') {//put the current pot in the middle
-            console.log('middle');
-            currentThreePots.secondPot = threePots.thirdPot.slice();
-            currentThreePots.firstPot = threePots.firstPot.slice();
-            currentThreePots.thirdPot = threePots.secondPot.slice();
-        }
-        if (currentPotTurns[turn] === 'DOWN') {//put the current pot on the bottom
-            console.log('bottom');
-            currentThreePots.thirdPot = threePots.thirdPot.slice();
-            currentThreePots.firstPot = threePots.firstPot.slice();
-            currentThreePots.secondPot = threePots.secondPot.slice();
-        }
-        threePots.firstPot = currentThreePots.firstPot.slice();
-        threePots.secondPot = currentThreePots.secondPot.slice();
-        threePots.thirdPot = currentThreePots.thirdPot.slice();
-
-    }
-
-
+    createInputPage('#numberContainer');
     var wrapper = document.getElementById('wrapper');
     var redirectionToTheAnswer = new CustomEvent("theAnswer");
     wrapper.addEventListener("theAnswer", function () {
@@ -508,15 +530,18 @@
         }
         var potToDraw = pot.slice(0);
 
-       
-        var giveFinalCards = setInterval(function () { finalCardsTimer() }, 200);
+
+        var giveFinalCards = setInterval(function () {
+            finalCardsTimer()
+        }, 200);
         var i = 0;
+
         function finalCardsTimer() {
             if (i === magicValue - 1) {
-                drawCard(potToDraw[i], context, 20 + i * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                Card.drawCard(potToDraw[i], context, 20 + i * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
             }
             else {
-                drawCardBack(context, 20 + i * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                Card.drawCardBack(context, 20 + i * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
             }
             i++;
             if (i === 27) {
@@ -525,45 +550,57 @@
         }
 
 
-        var turnTheCards = setTimeout(function () { turnCards() }, 200*27 + 500);
+        var turnTheCards = setTimeout(function () {
+            turnCards()
+        }, 200 * 27 + 500);
         var k = 0;
+
         function turnCards() {
 
-            var getTurnedCards = setInterval(function () { turnCardsTimer() }, 1);
+            var getTurnedCards = setInterval(function () {
+                turnCardsTimer()
+            }, 1);
+
             function turnCardsTimer() {
-                drawCard(potToDraw[k], context, 20 + k * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                Card.drawCard(potToDraw[k], context, 20 + k * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 k++;
 
                 if (k === 27) {
                     clearInterval(turnTheCards);
                 }
-            }  
+            }
         }
-      
 
-        var magicCard = setTimeout(function () { magicCardTimer() }, 200 * 27 + 1000 + 50);
+
+        var magicCard = setTimeout(function () {
+            magicCardTimer()
+        }, 200 * 27 + 1000 + 50);
         var j = 0;
+
         function magicCardTimer() {
 
-            var zoomedMagiCard = setInterval(function () { magicCardZoomTimer() }, 10);
+            var zoomedMagiCard = setInterval(function () {
+                magicCardZoomTimer()
+            }, 10);
+
             function magicCardZoomTimer() {
-                drawCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, CARD_DIM.WIDTH + j, CARD_DIM.HEIGHT + (j * 1.33));
+                Card.drawCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, CARD_DIM.WIDTH + j, CARD_DIM.HEIGHT + (j * 1.33));
                 j++;
                 if (j === 78) {
                     clearInterval(zoomedMagiCard);
                 }
             }
         }
-        
+
 
         var magicCardRotate = setTimeout(function () {
-            rotateMagicCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, 150, 96 + 200)
+            Card.rotateMagicCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, 150, 96 + 200)
         }, (200 * 27) + 2100 + (10 * 78));
-      
+
     }, false);
 
 
-    createInputPage('#numberContainer');
+
 
     $(document).ready(function () {
         $('#numberContainer').slideDown(5000);
@@ -585,7 +622,7 @@
         });
         $("#pickInputNumber").on("keyup", function () {
             magicValue = $('#input:text').val();
-            potTurns = potDealer(magicValue);
+            potTurns = ThreePots.potDealer(magicValue);
             currentPotTurns = potTurns.split(' ');
 
             // use value for potDealer.js
@@ -606,12 +643,15 @@
             // window.scrollBy(0, 200);
 
 
-            var giveCards = setInterval(function () { cardsTimer() }, 100);
+            var giveCards = setInterval(function () {
+                cardsTimer()
+            }, 100);
             var deckIndex = 0;
+
             function cardsTimer() {
-                currentCard = getRandomCard(currentCardDeck);
-                drawCard(currentCard, context, 20 + deckIndex * 30, 40, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
-                currentCardDeck = deleteDrawedCard(currentCardDeck, currentCard);
+                currentCard = Deck.getRandomCard(currentCardDeck);
+                Card.drawCard(currentCard, context, 20 + deckIndex * 30, 40, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                currentCardDeck = Deck.deleteDrawedCard(currentCardDeck, currentCard);
                 deckIndex++;
                 if (deckIndex === 27) {
                     clearInterval(giveCards);
@@ -623,11 +663,11 @@
 
             $('#pickInputNumber').css('display', 'none');
             $('#submit-btn').css('display', 'none');
-            $('#btnDrawPots').css('display','none');
+            $('#btnDrawPots').css('display', 'none');
             // console.log(magicValue); // magicValue is already ok here
 
             context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-            dealThreePots(threePots, context);
+            ThreePots.dealThreePots(threePots, context);
             $('#canvasContainer').append('<input type="button" class="invisible-button" id="btnChoosePot1" value="1">');
             $('#canvasContainer').append('<input type="button" class="invisible-button" id="btnChoosePot2" value="2">');
             $('#canvasContainer').append('<input type="button" class="invisible-button" id="btnChoosePot3" value="3">');
@@ -644,10 +684,10 @@
 
             buttonChoosePot1.addEventListener('click', function () {
 
-                PutFirstOnPlace(buttonClickCount);
+                ThreePots.PutFirstOnPlace(buttonClickCount);
 
                 if (buttonClickCount < 2) {
-                    shuffleCards();
+                    ThreePots.shuffleCards();
                 }
                 buttonClickCount++;
                 console.log(buttonClickCount)
@@ -656,16 +696,16 @@
                 }
                 else {
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    dealThreePots(currentThreePots, context);
+                    ThreePots.dealThreePots(currentThreePots, context);
                 }
             }, false);
 
             buttonChoosePot2.addEventListener('click', function () {
 
-                PutSecondOnPlace(buttonClickCount);
+                ThreePots.PutSecondOnPlace(buttonClickCount);
 
                 if (buttonClickCount < 2) {
-                    shuffleCards();
+                    ThreePots.shuffleCards();
                 }
                 buttonClickCount++;
                 console.log(buttonClickCount)
@@ -674,16 +714,16 @@
                 }
                 else {
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    dealThreePots(currentThreePots, context);
+                    ThreePots.dealThreePots(currentThreePots, context);
                 }
             }, false);
 
             buttonChoosePot3.addEventListener('click', function () {
 
-                PutThirdOnPlace(buttonClickCount);
+                ThreePots.PutThirdOnPlace(buttonClickCount);
 
                 if (buttonClickCount < 2) {
-                    shuffleCards();
+                    ThreePots.shuffleCards();
                 }
                 buttonClickCount++;
                 console.log(buttonClickCount)
@@ -692,9 +732,10 @@
                 }
                 else {
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    dealThreePots(currentThreePots, context);
+                    ThreePots.dealThreePots(currentThreePots, context);
                 }
             }, false);
+
         });
     });
 }());
