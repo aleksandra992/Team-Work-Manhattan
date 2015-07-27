@@ -4,13 +4,13 @@ function gameInstructions(gameInstructionsCounter){
     var  text = "#####";
     if (gameInstructionsCounter === 0) {
         text = 'Think about one card \n and remember it!';
-    } else if ((gameInstructionsCounter === 1) || (gameInstructionsCounter === 2)){
+    } else if ((gameInstructionsCounter === 1) || (gameInstructionsCounter === 2) || (gameInstructionsCounter === 3)) {
         text = 'Point at the pot where\n your card is now!';
     } else {
         text = "";
     }
 
-    var paper  = Raphael(550, 500, 400, 100);
+    var paper  = Raphael(650, 500, 400, 100);
 
     var hint = paper.text(200, 30, text)
            .attr({
@@ -24,7 +24,7 @@ function gameInstructions(gameInstructionsCounter){
               fill: "ivory",
               callback: function() {
                 hint.animate({
-                    fill: "black"
+                    fill: "transparent"
                   }, 2000);
                 }
               }, 3000);
