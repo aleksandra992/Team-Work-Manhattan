@@ -1,7 +1,23 @@
-(function () {
+var Game = (function () {
 
+    var MAX_SHUFFLES = 3,
+        MAGIC_VALUE = {
+            MIN: 1,
+            MAX: 27
+        };
+
+    var CARD_DIM = {
+        WIDTH: 100,
+        HEIGHT: 145
+    };
 
     var Deck = (function () {
+        var suitType = {
+            Diamond: 'Diamond',
+            Heart: 'Heart',
+            Spade: 'Spade',
+            Clubs: 'Club'
+        };
         var Deck = {
             init: function (name) {
                 this.name = name;
@@ -369,12 +385,6 @@
         return ThreePots;
     }());
 
-    var suitType = {
-        Diamond: 'Diamond',
-        Heart: 'Heart',
-        Spade: 'Spade',
-        Clubs: 'Club'
-    };
     var Deck = Object.create(Deck).init('Manhattan');
     var ThreePots = Object.create(ThreePots).init();
     var magicValue;
@@ -396,19 +406,11 @@
         secondPot: threePots.secondPot,
         thirdPot: threePots.thirdPot
     };
-    var MAX_SHUFFLES = 3,
-        MAGIC_VALUE = {
-            MIN: 1,
-            MAX: 27
-        };
-
-    var CARD_DIM = {
-        WIDTH: 100,
-        HEIGHT: 145
-    };
-
     var cardCanvas = document.getElementById("cardCanvas");
     var context = cardCanvas.getContext("2d");
+
+    var wrapper = document.getElementById('wrapper');
+    var redirectionToTheAnswer = new CustomEvent("theAnswer");
 
     function checkMagicValue(magicValue) {
         if (magicValue < MAGIC_VALUE.MIN || magicValue > MAGIC_VALUE.MAX
@@ -428,93 +430,6 @@
         context.fillText(currentCard.toString(), 20, 240);
     }
 
-
-    function createInputPage(selector) {
-        var container = document.querySelector(selector);
-        container.style.font = "24px Consolas";
-        container.style.width = '1000px';
-        container.style.height = '500px';
-        container.style.display = 'none';
-        container.style.marginLeft = '30px';
-
-        var infoBox = document.createElement('div');
-        var playButton = document.createElement('button');
-
-        infoBox.style.font = 'Times New Roman';
-        infoBox.style.position = 'relative';
-        infoBox.style.margin = '100px';
-        infoBox.style.fontSize = '15px';
-        infoBox.style.color = "white";
-        infoBox.style.width = '400px';
-        infoBox.style.height = '200px';
-        infoBox.style.float = 'left';
-        infoBox.style.display = 'inline-block';
-        infoBox.innerHTML = '';
-        infoBox.innerHTML = 'HOW TO PLAY';
-        infoBox.innerHTML += '<ol><li>Click on the red button below</li><li>Enter a number within 1 - 27</li><li>Pick a card from the deck</li><li>Choose the pot with your card (3x)</li></ol>';
-
-        playButton.setAttribute('id', 'play-btn');
-        playButton.style.position = 'relative';
-        playButton.style.border = 'none';
-        playButton.style.top = '20px';
-        playButton.style.display = 'inline-block';
-        playButton.style.width = '100px';
-        playButton.style.height = '100px';
-        playButton.style.background = 'url(Images/play-btn.png)';
-
-        infoBox.appendChild(playButton);
-        container.appendChild(infoBox);
-
-        function enterNumber() {
-
-            var btn1 = document.getElementById('btnDrawCard');
-            var btn2 = document.getElementById('btnDrawPots');
-            var btn3 = document.getElementById('btnAnswer');
-            var popup1 = document.getElementById('popUpLink');
-            btn1.addEventListener('mouseout', onButtonMouseOut, false);
-            btn1.addEventListener('mouseover', onButtonMouseOver, false);
-            btn2.addEventListener('mouseout', onButtonMouseOut, false);
-            btn2.addEventListener('mouseover', onButtonMouseOver, false);
-            btn3.addEventListener('mouseout', onButtonMouseOut, false);
-            btn3.addEventListener('mouseover', onButtonMouseOver, false);
-            submitButton.addEventListener('mouseover', onButtonMouseOver, false);
-            submitButton.addEventListener('mouseout', onButtonMouseOut, false);
-            popup1.addEventListener('mouseover', infoOnMouseOver, false);
-            popup1.addEventListener('mouseout', infoOnMouseOut, false);
-            var choosePot1 = document.getElementById('btnChoosePot1');
-
-            function infoOnMouseOver(event) {
-                if (selectedButton !== this) {
-                    this.nextSibling.style.display = 'block';
-                }
-            }
-
-            function infoOnMouseOut(event) {
-                if (selectedButton !== this) {
-                    this.nextSibling.style.display = 'none';
-                }
-            }
-
-
-            function onButtonMouseOver(event) {
-                if (selectedButton !== this) {
-                    this.style.background = 'gray';
-                    this.style.color = 'white';
-                }
-            }
-
-            function onButtonMouseOut(event) {
-                if (selectedButton !== this) {
-                    this.style.background = '';
-                    this.style.color = 'black';
-                }
-            }
-        }
-    }
-
-    createInputPage('#numberContainer');
-    var wrapper = document.getElementById('wrapper');
-    var redirectionToTheAnswer = new CustomEvent("theAnswer");
     wrapper.addEventListener("theAnswer", function () {
 
         context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
@@ -737,4 +652,98 @@
 
         });
     });
+    var Game = {
+        init: function () {
+            return this;
+        },
+        createInputPage: function (selector) {
+            var container = document.querySelector(selector);
+            container.style.font = "24px Consolas";
+            container.style.width = '1000px';
+            container.style.height = '500px';
+            container.style.display = 'none';
+            container.style.marginLeft = '30px';
+
+            var infoBox = document.createElement('div');
+            var playButton = document.createElement('button');
+
+            infoBox.style.font = 'Times New Roman';
+            infoBox.style.position = 'relative';
+            infoBox.style.margin = '100px';
+            infoBox.style.fontSize = '15px';
+            infoBox.style.color = "white";
+            infoBox.style.width = '400px';
+            infoBox.style.height = '200px';
+            infoBox.style.float = 'left';
+            infoBox.style.display = 'inline-block';
+            infoBox.innerHTML = '';
+            infoBox.innerHTML = 'HOW TO PLAY';
+            infoBox.innerHTML += '<ol><li>Click on the red button below</li><li>Enter a number within 1 - 27</li><li>Pick a card from the deck</li><li>Choose the pot with your card (3x)</li></ol>';
+
+            playButton.setAttribute('id', 'play-btn');
+            playButton.style.position = 'relative';
+            playButton.style.border = 'none';
+            playButton.style.top = '20px';
+            playButton.style.display = 'inline-block';
+            playButton.style.width = '100px';
+            playButton.style.height = '100px';
+            playButton.style.background = 'url(Images/play-btn.png)';
+
+            infoBox.appendChild(playButton);
+            container.appendChild(infoBox);
+
+            function enterNumber() {
+
+                var btn1 = document.getElementById('btnDrawCard');
+                var btn2 = document.getElementById('btnDrawPots');
+                var btn3 = document.getElementById('btnAnswer');
+                var popup1 = document.getElementById('popUpLink');
+                btn1.addEventListener('mouseout', onButtonMouseOut, false);
+                btn1.addEventListener('mouseover', onButtonMouseOver, false);
+                btn2.addEventListener('mouseout', onButtonMouseOut, false);
+                btn2.addEventListener('mouseover', onButtonMouseOver, false);
+                btn3.addEventListener('mouseout', onButtonMouseOut, false);
+                btn3.addEventListener('mouseover', onButtonMouseOver, false);
+                submitButton.addEventListener('mouseover', onButtonMouseOver, false);
+                submitButton.addEventListener('mouseout', onButtonMouseOut, false);
+                popup1.addEventListener('mouseover', infoOnMouseOver, false);
+                popup1.addEventListener('mouseout', infoOnMouseOut, false);
+                var choosePot1 = document.getElementById('btnChoosePot1');
+
+                function infoOnMouseOver(event) {
+                    if (selectedButton !== this) {
+                        this.nextSibling.style.display = 'block';
+                    }
+                }
+
+                function infoOnMouseOut(event) {
+                    if (selectedButton !== this) {
+                        this.nextSibling.style.display = 'none';
+                    }
+                }
+
+
+                function onButtonMouseOver(event) {
+                    if (selectedButton !== this) {
+                        this.style.background = 'gray';
+                        this.style.color = 'white';
+                    }
+                }
+
+                function onButtonMouseOut(event) {
+                    if (selectedButton !== this) {
+                        this.style.background = '';
+                        this.style.color = 'black';
+                    }
+                }
+            }
+        }
+
+    }
+
+    return Game;
+
+
 }());
+var game = Object.create(Game).init();
+game.createInputPage('#numberContainer');
