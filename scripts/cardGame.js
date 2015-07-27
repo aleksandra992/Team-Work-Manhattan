@@ -16,6 +16,23 @@ var Game = (function () {
         Spade: 'Spade',
         Clubs: 'Club'
     };
+
+    var NUMBER_OF_CARDS = {
+        DECK: 27,
+        POT: 9
+    };
+
+    var TIMERS = {
+        GIVE_CARDS_MS: 100,
+        GIVE_POTS_MS: 100,
+        GIVE_FINAL_CARDS_MS: 200,
+        TURN_CARDS_MS: 1,
+        ZOOM_MAGIC_CARD_MS: 10,
+        WAIT_BEFORE_TURN_CARDS_MS: 500,
+        WAIT_BEFORE_ZOOM_MAGIC_CARD_MS: 1100,
+        WAIT_BEFORE_ROTATE_MAGIC_CARD_MS: 1300,
+    };
+
     var Deck = (function () {
 
         var Deck = {
@@ -182,7 +199,7 @@ var Game = (function () {
                     thirdPot = [];
                 var currentCard = {};
 
-                for (var i = 0; i < 9; i++) {
+                for (var i = 0; i < NUMBER_OF_CARDS.POT; i++) {
                     currentCard = Deck.getRandomCard(currentDeck);
                     firstPot.push(currentCard);
                     currentDeck = Deck.deleteDrawedCard(currentDeck, currentCard);
@@ -241,7 +258,7 @@ var Game = (function () {
 
                 var giveThreePots = setInterval(function () {
                     threePotsTimer()
-                }, 100);
+                }, TIMERS.GIVE_CARDS_MS);
                 var i = 0;
 
                 function threePotsTimer() {
@@ -249,7 +266,7 @@ var Game = (function () {
                     Card.drawCard(secondPot[i], context, 20 + i * 35, 210, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                     Card.drawCard(thirdPot[i], context, 20 + i * 35, 380, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                     i++;
-                    if (i === 9) {
+                    if (i === NUMBER_OF_CARDS.POT) {
                         clearInterval(giveThreePots);
                     }
                 }
@@ -266,7 +283,7 @@ var Game = (function () {
                     secondPot: [],
                     thirdPot: []
                 };
-                for (var i = 0; i < 9; i++) {
+                for (var i = 0; i < NUMBER_OF_CARDS.POT; i++) {
                     if (i % 3 === 0) {
                         currentMixedPots.firstPot.push(currentThreePots.firstPot[i]);
                     }
@@ -277,7 +294,7 @@ var Game = (function () {
                         currentMixedPots.thirdPot.push(currentThreePots.firstPot[i]);
                     }
                 }
-                for (var i = 0; i < 9; i++) {
+                for (var i = 0; i < NUMBER_OF_CARDS.POT; i++) {
                     if (i % 3 === 0) {
                         currentMixedPots.firstPot.push(currentThreePots.secondPot[i]);
                     }
@@ -288,7 +305,7 @@ var Game = (function () {
                         currentMixedPots.thirdPot.push(currentThreePots.secondPot[i]);
                     }
                 }
-                for (var i = 0; i < 9; i++) {
+                for (var i = 0; i < NUMBER_OF_CARDS.POT; i++) {
                     if (i % 3 === 0) {
                         currentMixedPots.firstPot.push(currentThreePots.thirdPot[i]);
                     }
@@ -530,10 +547,10 @@ var Game = (function () {
         $("#btnChoosePot3").remove();
 
         var pot = currentThreePots.firstPot;
-        for (var i = 0; i < 9; i++) {
+        for (var i = 0; i < NUMBER_OF_CARDS.POT; i++) {
             pot.push(currentThreePots.secondPot[i]);
         }
-        for (var i = 0; i < 9; i++) {
+        for (var i = 0; i < NUMBER_OF_CARDS.POT; i++) {
             pot.push(currentThreePots.thirdPot[i]);
         }
         var potToDraw = pot.slice(0);
@@ -541,7 +558,7 @@ var Game = (function () {
 
         var giveFinalCards = setInterval(function () {
             finalCardsTimer()
-        }, 200);
+        }, TIMERS.GIVE_FINAL_CARDS_MS);
         var i = 0;
 
         function finalCardsTimer() {
@@ -552,7 +569,7 @@ var Game = (function () {
                 Card.drawCardBack(context, 20 + i * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
             }
             i++;
-            if (i === 27) {
+            if (i === NUMBER_OF_CARDS.DECK) {
                 clearInterval(giveFinalCards);
             }
         }
@@ -560,20 +577,20 @@ var Game = (function () {
 
         var turnTheCards = setTimeout(function () {
             turnCards()
-        }, 200 * 27 + 500);
+        }, TIMERS.GIVE_FINAL_CARDS_MS * NUMBER_OF_CARDS.DECK + TIMERS.WAIT_BEFORE_TURN_CARDS_MS);
         var k = 0;
 
         function turnCards() {
 
             var getTurnedCards = setInterval(function () {
                 turnCardsTimer()
-            }, 1);
+            }, TIMERS.TURN_CARDS_MS);
 
             function turnCardsTimer() {
                 Card.drawCard(potToDraw[k], context, 20 + k * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 k++;
 
-                if (k === 27) {
+                if (k === NUMBER_OF_CARDS.DECK) {
                     clearInterval(turnTheCards);
                 }
             }
@@ -582,14 +599,14 @@ var Game = (function () {
 
         var magicCard = setTimeout(function () {
             magicCardTimer()
-        }, 200 * 27 + 1000 + 50);
+        }, TIMERS.GIVE_FINAL_CARDS_MS * NUMBER_OF_CARDS.DECK + TIMERS.WAIT_BEFORE_ZOOM_MAGIC_CARD_MS);
         var j = 0;
 
         function magicCardTimer() {
 
             var zoomedMagiCard = setInterval(function () {
                 magicCardZoomTimer()
-            }, 10);
+            }, TIMERS.ZOOM_MAGIC_CARD_MS);
 
             function magicCardZoomTimer() {
                 Card.drawCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, CARD_DIM.WIDTH + j, CARD_DIM.HEIGHT + (j * 1.33));
@@ -603,7 +620,8 @@ var Game = (function () {
 
         var magicCardRotate = setTimeout(function () {
             Card.rotateMagicCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, 150, 96 + 200)
-        }, (200 * 27) + 2100 + (10 * 78));
+        },
+            (TIMERS.GIVE_FINAL_CARDS_MS * NUMBER_OF_CARDS.DECK) + TIMERS.WAIT_BEFORE_ROTATE_MAGIC_CARD_MS + (TIMERS.ZOOM_MAGIC_CARD_MS * 78));
 
     }, false);
 
@@ -676,7 +694,7 @@ var Game = (function () {
 
             var giveCards = setInterval(function () {
                 cardsTimer()
-            }, 100);
+            }, TIMERS.GIVE_CARDS_MS);
             var deckIndex = 0;
 
             function cardsTimer() {
@@ -684,7 +702,7 @@ var Game = (function () {
                 Card.drawCard(currentCard, context, 20 + deckIndex * 30, 40, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 currentCardDeck = Deck.deleteDrawedCard(currentCardDeck, currentCard);
                 deckIndex++;
-                if (deckIndex === 27) {
+                if (deckIndex === NUMBER_OF_CARDS.DECK) {
                     clearInterval(giveCards);
                 }
             }
@@ -724,7 +742,7 @@ var Game = (function () {
                     ThreePots.shuffleCards();
                 }
                 buttonClickCount++;
-                console.log(buttonClickCount)
+
                 if (buttonClickCount === 3) {
                     wrapper.dispatchEvent(redirectionToTheAnswer);
                 }
@@ -742,7 +760,7 @@ var Game = (function () {
                     ThreePots.shuffleCards();
                 }
                 buttonClickCount++;
-                console.log(buttonClickCount)
+
                 if (buttonClickCount === 3) {
                     wrapper.dispatchEvent(redirectionToTheAnswer);
                 }
@@ -760,7 +778,7 @@ var Game = (function () {
                     ThreePots.shuffleCards();
                 }
                 buttonClickCount++;
-                console.log(buttonClickCount)
+
                 if (buttonClickCount === 3) {
                     wrapper.dispatchEvent(redirectionToTheAnswer);
                 }
