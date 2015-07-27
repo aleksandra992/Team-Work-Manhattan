@@ -330,6 +330,8 @@ var Game = (function () {
                 threePots.secondPot = currentThreePots.secondPot.slice();
                 threePots.thirdPot = currentThreePots.thirdPot.slice();
 
+                gameInstructions(gameInstructionsCounter);
+                gameInstructionsCounter++;
             },
             PutSecondOnPlace: function (turn) {
 
@@ -355,6 +357,8 @@ var Game = (function () {
                 threePots.secondPot = currentThreePots.secondPot.slice();
                 threePots.thirdPot = currentThreePots.thirdPot.slice();
 
+                gameInstructions(gameInstructionsCounter);
+                gameInstructionsCounter++;
             },
             PutThirdOnPlace: function (turn) {
 
@@ -380,6 +384,8 @@ var Game = (function () {
                 threePots.secondPot = currentThreePots.secondPot.slice();
                 threePots.thirdPot = currentThreePots.thirdPot.slice();
 
+                gameInstructions(gameInstructionsCounter);
+                gameInstructionsCounter++;
             }
         }
         return ThreePots;
@@ -397,6 +403,7 @@ var Game = (function () {
     var cardDeck = Deck.fillDeckWithCards();
     var threePots = ThreePots.getThreePots(cardDeck);
     var currentPotTurns;
+    var gameInstructionsCounter = 0;
     var currentMixedPots = {
         firstPot: [],
         secondPot: [],
@@ -644,6 +651,9 @@ var Game = (function () {
             // window.scrollBy(0, 200);
 
 
+            gameInstructions(gameInstructionsCounter);
+            gameInstructionsCounter++;
+
             var giveCards = setInterval(function () {
                 cardsTimer()
             }, 100);
@@ -661,6 +671,9 @@ var Game = (function () {
         });
 
         $("#btnDrawPots").on("click", function () {
+
+            gameInstructions(gameInstructionsCounter);
+            gameInstructionsCounter++;
 
             $('#pickInputNumber').css('display', 'none');
             $('#submit-btn').css('display', 'none');
