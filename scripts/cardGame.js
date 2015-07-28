@@ -162,8 +162,8 @@ var Game = (function () {
                         var currentImage = new Image();
                         var angle = 0; //angle
 
-                        document.getElementById("cardCanvas").style.paddingLeft = "260px";
-                        document.getElementById("cardCanvas").style.paddingRight = "260px";
+                        document.getElementById("cardCanvas").style.paddingLeft = "275px";
+                        document.getElementById("cardCanvas").style.paddingRight = "250px";
 
                         currentImage.onload = function () {
                             cardCanvas.width = this.width << 1; //double the canvas width
