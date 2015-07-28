@@ -628,7 +628,7 @@ var Game = (function () {
     $(document).ready(function () {
         $('#cardCanvas').css('display', 'none');
         $('#border-motion').css('display', 'block');
-        $('#numberContainer').slideDown(5000);
+        $('#numberContainer').slideDown(500);
         $('.formBox').slideDown(4000);
         $('#play-btn').on("click", function () {
             $('#cardCanvas').css('display', 'none');
@@ -644,7 +644,6 @@ var Game = (function () {
         $('#submit-btn').on("click", function () {
             $('#border-motion').css('display', 'block');
             $('#submit-btn').css('display', 'block');
-            $('#border-motion').css('display', 'none');
             magicValueIsCorrect = checkMagicValue(magicValue);
             if (magicValueIsCorrect) {
                 $("#btnDrawCard").trigger("click");
