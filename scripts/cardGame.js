@@ -30,7 +30,7 @@ var Game = (function () {
         ZOOM_MAGIC_CARD_MS: 10,
         WAIT_BEFORE_TURN_CARDS_MS: 500,
         WAIT_BEFORE_ZOOM_MAGIC_CARD_MS: 1100,
-        WAIT_BEFORE_ROTATE_MAGIC_CARD_MS: 1300,
+        WAIT_BEFORE_ROTATE_MAGIC_CARD_MS: 1500,
     };
 
     var Deck = (function () {
@@ -146,14 +146,8 @@ var Game = (function () {
                         var angle = 0; //angle
                         var fps = 1000 / 25; //number of frames per sec
 
-                        document.getElementById("cardCanvas").style.marginLeft = "auto";
-                        document.getElementById("cardCanvas").style.marginRight = "auto";
-                        document.getElementById("cardCanvas").style.paddingLeft = "0";
-                        document.getElementById("cardCanvas").style.paddingRight = "0";
-                        document.getElementById("cardCanvas").style.marginTop = "-200px";
-                        document.getElementById("cardCanvas").style.paddingTop = "0";
-                        document.getElementById("cardCanvas").style.display = "block";
-                        document.getElementById("cardCanvas").width = "800px";
+                        document.getElementById("cardCanvas").style.paddingLeft = "262px";
+                        document.getElementById("cardCanvas").style.paddingRight = "262px";
 
                         currentImage.onload = function () {
                             cardCanvas.width = this.width << 1; //double the canvas width
@@ -168,7 +162,7 @@ var Game = (function () {
                                 context.save(); //saves the state of canvas
                                 context.clearRect(0, 0, cardCanvas.width, cardCanvas.height); //clear the canvas
                                 context.translate(cache.width, cache.height);
-                                context.rotate(Math.PI / 180 * (angle += 5)); //increment the angle and rotate the image
+                                context.rotate(Math.PI / 180 * (angle += 5)); //increm ent the angle and rotate the image
                                 context.drawImage(currentImage, -cache.width / 2, -cache.height / 2, cache.width, cache.height);
                                 context.restore(); //restore the state of canvas
                                 if (angle === 180 * magicValue) {
@@ -608,7 +602,8 @@ var Game = (function () {
             }, TIMERS.ZOOM_MAGIC_CARD_MS);
 
             function magicCardZoomTimer() {
-                Card.drawCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 50, CARD_DIM.WIDTH + j, CARD_DIM.HEIGHT + (j * 1.33));
+
+                Card.drawCard(potToDraw[magicValue - 1], context, 20 + (magicValue - 1) * 30, 220, CARD_DIM.WIDTH + j, CARD_DIM.HEIGHT + (j * 1.33));
                 j++;
                 if (j === 78) {
                     clearInterval(zoomedMagiCard);
