@@ -414,7 +414,6 @@ var Game = (function () {
     var selectedButton = null;
     var potTurns;
     var magicValueIsCorrect,
-        howToPlay,
         areShuffled;
     var buttonClickCount = 0;
     var cardDeck = Deck.fillDeckWithCards();
@@ -640,7 +639,7 @@ var Game = (function () {
             $('#submit-btn').css('display', 'block');
         });
         $('#how-to-play-btn').on("click", function () {
-        howToPlay = howToPlay();
+            howToPlay();
         });
         $('#submit-btn').on("click", function () {
             $('#border-motion').css('display', 'block');
@@ -652,17 +651,7 @@ var Game = (function () {
             }
         });
         $('#start-over-btn').on("click", function () {
-
-            context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-            $('#btnDrawPots').css('display', 'none');
-            $('#input').val(null);
-            $('#border-motion').css('display', 'none');
-            $('#cardCanvas').css('display', 'none');
-            var container = document.querySelector('#numberContainer');
-            $('#svgAnimationID').css('display', 'none');
-            container.style.display = 'none';
-            $('#pickInputNumber').css('display', 'block');
-            $('#submit-btn').css('display', 'block');
+            document.location.reload(true);
         });
         $("#pickInputNumber").on("keyup", function () {
             magicValue = $('#input:text').val();
