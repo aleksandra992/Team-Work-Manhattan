@@ -165,11 +165,12 @@ body{
 }
 #border-motion{
 	display: none;
-	-webkit-animation: fadein 25s; /* Safari, Chrome and Opera > 12.1 */
-	-moz-animation: fadein 25s; /* Firefox < 16 */
-	-ms-animation: fadein 25s; /* Internet Explorer */
-	-o-animation: fadein 25s; /* Opera < 12.1 */
-	animation: fadein 25s;
+	-webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+	-moz-animation: fadein 3s; /* Firefox < 16 */
+	-ms-animation: fadein 3s; /* Internet Explorer */
+	-o-animation: fadein 3s; /* Opera < 12.1 */
+	animation: fadein 3s;
+	z-index: -10;
 }
 
 @keyframes fadein {
@@ -204,7 +205,7 @@ body{
 	top: -450px;
 	left: 50px;
 	position: relative;
-	z-index: -1;
+	z-index: -10;
 }
 #play-btn:focus{outline:0 !important;}{
 
