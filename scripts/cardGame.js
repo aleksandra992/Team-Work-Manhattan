@@ -12,9 +12,9 @@ var Game = (function () {
     };
 
     var CARD_POS = {
-        MAIN_DECK_START_X: 20,
+        MAIN_DECK_START_X: 27,
         POTS_START_X: 20,
-        MAGIC_DECK_START_X: 20,
+        MAGIC_DECK_START_X: 30,
         MAIN_DECK_Y: 220,
         POT_1_Y: 40,
         POT_2_Y: 210,
@@ -23,7 +23,7 @@ var Game = (function () {
         ROTATED_CARD_Y: 50,
         MAIN_DECK_SPACING: 30,
         POTS_SPACING: 35,
-        MAGIC_DECK_SPACING: 30,
+        MAGIC_DECK_SPACING: 26,
     };
 
     var suitType = {
@@ -46,7 +46,7 @@ var Game = (function () {
         ZOOM_MAGIC_CARD_MS: 10,
         WAIT_BEFORE_TURN_CARDS_MS: 500,
         WAIT_BEFORE_ZOOM_MAGIC_CARD_MS: 1100,
-        WAIT_BEFORE_ROTATE_MAGIC_CARD_MS: 1500,
+        WAIT_BEFORE_ROTATE_MAGIC_CARD_MS: 3000,
         ROTATION_SPEED_FPS: (1000 / 100),
     };
 
@@ -162,8 +162,8 @@ var Game = (function () {
                         var currentImage = new Image();
                         var angle = 0; //angle
 
-                        document.getElementById("cardCanvas").style.paddingLeft = "262px";
-                        document.getElementById("cardCanvas").style.paddingRight = "262px";
+                        document.getElementById("cardCanvas").style.paddingLeft = "260px";
+                        document.getElementById("cardCanvas").style.paddingRight = "260px";
 
                         currentImage.onload = function () {
                             cardCanvas.width = this.width << 1; //double the canvas width
@@ -629,7 +629,7 @@ var Game = (function () {
 
 
         var magicCardRotate = setTimeout(function () {
-            Card.rotateMagicCard(potToDraw[magicValue - 1], context, CARD_POS.MAGIC_DECK_START_X + (magicValue - 1) * CARD_POS.MAIN_DECK_SPACING, CARD_POS.ROTATED_CARD_Y,
+            Card.rotateMagicCard(potToDraw[magicValue - 1], context, CARD_POS.MAGIC_DECK_START_X + (magicValue - 1) * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.ROTATED_CARD_Y,
                 150, 96 + 200)
         }, (TIMERS.GIVE_FINAL_CARDS_MS * NUMBER_OF_CARDS.DECK) + TIMERS.WAIT_BEFORE_ROTATE_MAGIC_CARD_MS + (TIMERS.ZOOM_MAGIC_CARD_MS * 78));
 
@@ -698,7 +698,7 @@ var Game = (function () {
 
             function cardsTimer() {
                 currentCard = Deck.getRandomCard(currentCardDeck);
-                Card.drawCard(currentCard, context, CARD_POS.MAGIC_DECK_START_X + deckIndex * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                Card.drawCard(currentCard, context, CARD_POS.MAIN_DECK_START_X + deckIndex * CARD_POS.MAIN_DECK_SPACING, CARD_POS.MAIN_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 currentCardDeck = Deck.deleteDrawedCard(currentCardDeck, currentCard);
                 deckIndex++;
                 if (deckIndex === NUMBER_OF_CARDS.DECK) {
