@@ -562,10 +562,10 @@ var Game = (function () {
 
         function finalCardsTimer() {
             if (i === magicValue - 1) {
-                Card.drawCard(potToDraw[i], context, 20 + i * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                Card.drawCard(potToDraw[i], context, 20 + i * 30, 220, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
             }
             else {
-                Card.drawCardBack(context, 20 + i * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                Card.drawCardBack(context, 20 + i * 30, 220, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
             }
             i++;
             if (i === NUMBER_OF_CARDS.DECK) {
@@ -586,7 +586,7 @@ var Game = (function () {
             }, TIMERS.TURN_CARDS_MS);
 
             function turnCardsTimer() {
-                Card.drawCard(potToDraw[k], context, 20 + k * 30, 50, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                Card.drawCard(potToDraw[k], context, 20 + k * 30, 220, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 k++;
 
                 if (k === NUMBER_OF_CARDS.DECK) {
@@ -687,7 +687,7 @@ var Game = (function () {
 
             function cardsTimer() {
                 currentCard = Deck.getRandomCard(currentCardDeck);
-                Card.drawCard(currentCard, context, 20 + deckIndex * 30, 40, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                Card.drawCard(currentCard, context, 20 + deckIndex * 30, 220, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 currentCardDeck = Deck.deleteDrawedCard(currentCardDeck, currentCard);
                 deckIndex++;
                 if (deckIndex === NUMBER_OF_CARDS.DECK) {
