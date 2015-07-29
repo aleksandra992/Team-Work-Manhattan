@@ -448,7 +448,7 @@ var Game = (function () {
 
     function checkMagicValue(magicValue) {
         if (magicValue < MAGIC_VALUE.MIN || magicValue > MAGIC_VALUE.MAX
-            || isNaN(magicValue) || magicValue == null) {
+            || isNaN(magicValue) || magicValue == null || magicValue % 1 !== 0) {
             alert.render('Magic value should be a number between 1 and 27');
             return false;
         }
@@ -456,13 +456,14 @@ var Game = (function () {
             return true;
         }
     }
+
     function howToPlay() {
         var msg = 'HOW TO PLAY:' +
-                "<br>" +
-            "<br>"  + 'Enter a number within 1 - 27' +
+            "<br>" +
+            "<br>" + 'Enter a number within 1 - 27' +
             "<br>" + 'Pick a card from the deck' +
             "<br>" + 'Choose the pot with your card (3x)';
-            alert.render(msg);
+        alert.render(msg);
     }
 
 
