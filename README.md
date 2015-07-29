@@ -1,7 +1,6 @@
-# Team-Work-Manhattan
-Team Work Manhattan
 
 #MANHATTAN PROJECT
+
 * An interactive short card game which uses a number prediction to guess an users card.
 
 
