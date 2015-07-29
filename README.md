@@ -2,29 +2,29 @@
 Team Work Manhattan
 
 #MANHATTAN PROJECT
-An interactive short card game which uses a number prediction to guess an users card.
+* An interactive short card game which uses a number prediction to guess an users card.
+
 
 ##Task Description.
-Client-side JavaScript application using the HTML graphic APIs – canvas and SVG.
+* Client-side JavaScript application using the HTML graphic APIs – canvas and SVG.
 
 ##Achieved General Requirements and used Technologies
 
-JavaScript OOP
-jQuery
-Canvas
-SVG
-Raphael.js
-Cross-browser compatibility
+* JavaScript OOP
+* jQuery
+* Canvas
+* SVG
+* Raphael.js
+* Cross-browser compatibility
 
 ##Additional Requirements achieved
 
-Correct naming
-Data encapsulation
-Use OOP and modules
-Strong cohesion and loose coupling
-Use GIT as a source control system
-Host it on http://github.com
-
+* Correct naming
+* Data encapsulation
+* Use OOP and modules
+* Strong cohesion and loose coupling
+* Use GIT as a source control system
+* Host it on http://github.com
 
 
 Copyright (c) <2015> <Manhattan Team>.
