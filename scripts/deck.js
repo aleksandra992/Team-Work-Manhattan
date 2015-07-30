@@ -40,7 +40,7 @@ var Deck=(function(){
 
         },
         getRandomCard: function(cards) {
-            var currentCard = deckOfCard[Math.floor(Math.random() * deckOfCard.length)];
+            var currentCard = cards[Math.floor(Math.random() * deckOfCard.length)];
             return currentCard;
         },
         deleteDrawedCard: function(cards, currentCard) {

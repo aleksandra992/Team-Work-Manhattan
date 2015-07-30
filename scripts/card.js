@@ -22,11 +22,11 @@ var Card=(function(){
                 if (this) {
 
                     var currentImage = new Image();
-                    currentImage.src = this.Picture;
+                    
                     currentImage.onload = function() {
                         context.drawImage(currentImage, alignX, alignY, width, height);
                     };
-
+                    currentImage.src = this.Picture;
 
                     this.playCardGameSound(this.Sound);
                 }
