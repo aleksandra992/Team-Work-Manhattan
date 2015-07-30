@@ -1,10 +1,12 @@
 var ThreePots=(function(){
+    var deck=Object.create(Deck).init('Manhattan');
+    var card=Object.create(Card).init();
     var ThreePots = {
         init: function() {
 
             return this;
         },
-        getThreePots: function(cardDeck, Deck) {
+        getThreePots: function(cardDeck) {
             var currentDeck = cardDeck.slice(),
                 firstPot = [],
                 secondPot = [],
@@ -12,17 +14,17 @@ var ThreePots=(function(){
                 currentCard = {};
 
             for (var i = 0; i < NUMBER_OF_CARDS.POT; i++) {
-                currentCard = Deck.getRandomCard(currentDeck);
+                currentCard = deck.getRandomCard(currentDeck);
                 firstPot.push(currentCard);
-                currentDeck = Deck.deleteDrawedCard(currentDeck, currentCard);
+                currentDeck = deck.deleteDrawedCard(currentDeck, currentCard);
 
-                currentCard = Deck.getRandomCard(currentDeck);
+                currentCard = deck.getRandomCard(currentDeck);
                 secondPot.push(currentCard);
-                currentDeck = Deck.deleteDrawedCard(currentDeck, currentCard);
+                currentDeck = deck.deleteDrawedCard(currentDeck, currentCard);
 
-                currentCard = Deck.getRandomCard(currentDeck);
+                currentCard = deck.getRandomCard(currentDeck);
                 thirdPot.push(currentCard);
-                currentDeck = Deck.deleteDrawedCard(currentDeck, currentCard);
+                currentDeck = deck.deleteDrawedCard(currentDeck, currentCard);
             }
             return {
                 firstPot: firstPot.slice(),
@@ -70,9 +72,9 @@ var ThreePots=(function(){
             }, TIMERS.GIVE_CARDS_MS);
 
             function threePotsTimer(Card) {
-                Card.drawCard(firstPot[i], context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_1_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
-                Card.drawCard(secondPot[i], context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_2_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
-                Card.drawCard(thirdPot[i], context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_3_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                firstPot[i].drawCard(context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_1_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                secondPot[i].drawCard( context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_2_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                thirdPot[i].drawCard( context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_3_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 i++;
                 if (i === NUMBER_OF_CARDS.POT) {
                     clearInterval(giveThreePots);

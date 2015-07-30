@@ -15,18 +15,18 @@ var Card=(function(){
                 currentAudio.play();
             }
         },
-        drawCard: function(card, context, alignX, alignY, width, height) {
+        drawCard: function( context, alignX, alignY, width, height) {
 
             if (context) {
 
-                if (card) {
+                if (this) {
                     var currentImage = new Image();
                     currentImage.onload = function() {
                         context.drawImage(currentImage, alignX, alignY, width, height);
                     };
-                    currentImage.src = card.Picture;
+                    currentImage.src = this.Picture;
 
-                    Card.playCardGameSound(card.Sound);
+                    this.playCardGameSound(this.Sound);
                 }
             }
         },
@@ -41,10 +41,10 @@ var Card=(function(){
                 };
             }
         },
-        rotateMagicCard: function(card, context, alignX, alignY, height, width) {
+        rotateMagicCard: function( context, alignX, alignY, height, width) {
 
             if (context) {
-                if (card) {
+                if (this) {
                     var currentImage = new Image();
                     var angle = 0; //angle
 
@@ -52,6 +52,7 @@ var Card=(function(){
                     document.getElementById("cardCanvas").style.paddingRight = "250px";
 
                     currentImage.onload = function() {
+                        var cardCanvas = document.getElementById("cardCanvas");
                         cardCanvas.width = this.width << 1; //double the canvas width
                         cardCanvas.height = this.height << 1; //double the canvas height
                         var cache = this; //cache the local copy of image element for future reference
@@ -72,7 +73,7 @@ var Card=(function(){
                             }
                         }
                     };
-                    currentImage.src = card.Picture;
+                    currentImage.src = this.Picture;
                 }
             }
         }

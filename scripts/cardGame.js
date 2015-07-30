@@ -73,7 +73,7 @@ var Game = (function () {
         for (i = 0; i < NUMBER_OF_CARDS.POT; i += 1) {
             pot.push(currentThreePots.thirdPot[i]);
         }
-        var potToDraw = pot.slice(0);
+        var potToDraw = pot.slice();
 
         var giveFinalCards = setInterval(function () {
             finalCardsTimer();
@@ -82,7 +82,8 @@ var Game = (function () {
 
         function finalCardsTimer() {
             if (i === magicValue - 1) {
-                Card.drawCard(potToDraw[i], context, CARD_POS.MAGIC_DECK_START_X + i * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+
+                potToDraw[i].drawCard( context, CARD_POS.MAGIC_DECK_START_X + i * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
             } else {
                 Card.drawCardBack(context, CARD_POS.MAGIC_DECK_START_X + i * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
             }
@@ -93,18 +94,22 @@ var Game = (function () {
         }
 
         var turnTheCards = setTimeout(function () {
-            turnCards();
+           // turnCards();
         }, TIMERS.GIVE_FINAL_CARDS_MS * NUMBER_OF_CARDS.DECK + TIMERS.WAIT_BEFORE_TURN_CARDS_MS);
         var k = 0;
 
-        function turnCards() {
+      /*  function turnCards() {
 
             var getTurnedCards = setInterval(function () {
                 turnCardsTimer();
             }, TIMERS.TURN_CARDS_MS);
 
             function turnCardsTimer() {
-                Card.drawCard(potToDraw[k], context, CARD_POS.MAGIC_DECK_START_X + k * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+
+                console.log(potToDraw[k]);
+                throw Error();
+                potToDraw[k].drawCard(context, CARD_POS.MAGIC_DECK_START_X + k * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+
                 k++;
 
                 if (k === NUMBER_OF_CARDS.DECK) {
@@ -112,6 +117,7 @@ var Game = (function () {
                 }
             }
         }
+        */
 
         var magicCard = setTimeout(function () {
             magicCardTimer();
@@ -126,7 +132,7 @@ var Game = (function () {
 
             function magicCardZoomTimer() {
 
-                Card.drawCard(potToDraw[magicValue - 1], context, CARD_POS.MAGIC_DECK_START_X + (magicValue - 1) * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH + j, CARD_DIM.HEIGHT + (j * 1.33));
+                potToDraw[magicValue - 1].drawCard( context, CARD_POS.MAGIC_DECK_START_X + (magicValue - 1) * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH + j, CARD_DIM.HEIGHT + (j * 1.33));
                 j++;
                 if (j === 78) {
                     clearInterval(zoomedMagiCard);
@@ -135,7 +141,7 @@ var Game = (function () {
         }
 
         var magicCardRotate = setTimeout(function () {
-            Card.rotateMagicCard(potToDraw[magicValue - 1], context, CARD_POS.MAGIC_DECK_START_X + (magicValue - 1) * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.ROTATED_CARD_Y,
+            potToDraw[magicValue - 1].rotateMagicCard(context, CARD_POS.MAGIC_DECK_START_X + (magicValue - 1) * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.ROTATED_CARD_Y,
                 150, 96 + 200);
         }, (TIMERS.GIVE_FINAL_CARDS_MS * NUMBER_OF_CARDS.DECK) + TIMERS.WAIT_BEFORE_ROTATE_MAGIC_CARD_MS + (TIMERS.ZOOM_MAGIC_CARD_MS * 78));
     }, false);
@@ -196,7 +202,7 @@ var Game = (function () {
 
             function cardsTimer() {
                 currentCard = deck.getRandomCard(currentCardDeck);
-                Card.drawCard(currentCard, context, CARD_POS.MAIN_DECK_START_X + deckIndex * CARD_POS.MAIN_DECK_SPACING, CARD_POS.MAIN_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                currentCard.drawCard( context, CARD_POS.MAIN_DECK_START_X + deckIndex * CARD_POS.MAIN_DECK_SPACING, CARD_POS.MAIN_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 currentCardDeck = deck.deleteDrawedCard(currentCardDeck, currentCard);
                 deckIndex++;
                 if (deckIndex === NUMBER_OF_CARDS.DECK) {
