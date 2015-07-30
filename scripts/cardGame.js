@@ -285,9 +285,9 @@ var Game = (function () {
         return ThreePots;
     }());
 
-    var Deck = Object.create(Deck).init('Manhattan'),
-        ThreePots = Object.create(ThreePots).init(),
-        magicValue,
+    Deck.init('Manhattan');
+
+    var magicValue,
         selectedButton = null,
         potTurns,
         magicValueIsCorrect,
