@@ -39,8 +39,8 @@ var Deck=(function(){
 
 
         },
-        getRandomCard: function(deck) {
-            var currentCard = deck[Math.floor(Math.random() * deck.length)];
+        getRandomCard: function(cards) {
+            var currentCard = cards[Math.floor(Math.random() * cards.length)];
             return currentCard;
         },
         deleteDrawedCard: function(deck, currentCard) {
