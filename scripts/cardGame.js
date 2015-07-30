@@ -1,86 +1,6 @@
 var Game = (function () {
 
-    var Card = (function () {
-        var Card = {
-            init: function (name, suitType, cardValue, picture, sound) {
-                this.Name = name;
-                this.SuitType = suitType;
-                this.CardValue = cardValue;
-                this.Picture = picture;
-                this.Sound = sound;
-                return this;
-            },
-            playCardGameSound: function (soundResource) {
-                if (soundResource) {
-                    var currentAudio = new Audio();
-                    currentAudio.src = soundResource;
-                    currentAudio.play();
-                }
-            },
-            drawCard: function (card, context, alignX, alignY, width, height) {
-
-                if (context) {
-
-                    if (card) {
-                        var currentImage = new Image();
-                        currentImage.onload = function () {
-                            context.drawImage(currentImage, alignX, alignY, width, height);
-                        };
-                        currentImage.src = card.Picture;
-
-                        Card.playCardGameSound(card.Sound);
-                    }
-                }
-            },
-            drawCardBack: function (context, alignX, alignY, width, height) {
-
-                if (context) {
-                    var cardBack = new Image();
-                    cardBack.src = 'images/back.jpg';
-                    cardBack.onload = function () {
-                        context.drawImage(cardBack, alignX, alignY, width, height);
-                        Card.playCardGameSound('sounds/cardPlace1.wav');
-                    };
-                }
-            },
-            rotateMagicCard: function (card, context, alignX, alignY, height, width) {
-
-                if (context) {
-                    if (card) {
-                        var currentImage = new Image();
-                        var angle = 0; //angle
-
-                        document.getElementById("cardCanvas").style.paddingLeft = "275px";
-                        document.getElementById("cardCanvas").style.paddingRight = "250px";
-
-                        currentImage.onload = function () {
-                            cardCanvas.width = this.width << 1; //double the canvas width
-                            cardCanvas.height = this.height << 1; //double the canvas height
-                            var cache = this; //cache the local copy of image element for future reference
-
-                            var rotateCard = setInterval(function () {
-                                rotateCardTimer();
-                            }, TIMERS.ROTATION_SPEED_FPS);
-
-                            function rotateCardTimer() {
-                                context.save(); //saves the state of canvas
-                                context.clearRect(0, 0, cardCanvas.width, cardCanvas.height); //clear the canvas
-                                context.translate(cache.width, cache.height);
-                                context.rotate(Math.PI / 180 * (angle += 1)); //increm ent the angle and rotate the image
-                                context.drawImage(currentImage, -cache.width / 2, -cache.height / 2, cache.width, cache.height);
-                                context.restore(); //restore the state of canvas
-                                if (angle === 180 * magicValue) {
-                                    clearInterval(rotateCard);
-                                }
-                            }
-                        };
-                        currentImage.src = card.Picture;
-                    }
-                }
-            }
-        };
-        return Card;
-    }());
+    var Card = cardObj();
 
     var Deck = (function () {
 
@@ -139,7 +59,7 @@ var Game = (function () {
                 return deck.slice();
             }
 
-        }
+        };
         return Deck;
 
     })();
@@ -215,7 +135,7 @@ var Game = (function () {
                 var giveThreePots = setInterval(function () {
                     threePotsTimer()
                 }, TIMERS.GIVE_CARDS_MS);
-                var i = 0;
+                i = 0;
 
                 function threePotsTimer() {
                     Card.drawCard(firstPot[i], context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_1_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
@@ -231,15 +151,16 @@ var Game = (function () {
                     firstPot: firstPot.slice(),
                     secondPot: secondPot.slice(),
                     thirdPot: thirdPot.slice()
-                }
+                };
             },
             shuffleCards: function () {
+                var i;
                 currentMixedPots = {
                     firstPot: [],
                     secondPot: [],
                     thirdPot: []
                 };
-                for (var i = 0; i < NUMBER_OF_CARDS.POT; i++) {
+                for (i = 0; i < NUMBER_OF_CARDS.POT; i++) {
                     if (i % 3 === 0) {
                         currentMixedPots.firstPot.push(currentThreePots.firstPot[i]);
                     }
@@ -250,7 +171,7 @@ var Game = (function () {
                         currentMixedPots.thirdPot.push(currentThreePots.firstPot[i]);
                     }
                 }
-                for (var i = 0; i < NUMBER_OF_CARDS.POT; i++) {
+                for (i = 0; i < NUMBER_OF_CARDS.POT; i++) {
                     if (i % 3 === 0) {
                         currentMixedPots.firstPot.push(currentThreePots.secondPot[i]);
                     }
@@ -261,7 +182,7 @@ var Game = (function () {
                         currentMixedPots.thirdPot.push(currentThreePots.secondPot[i]);
                     }
                 }
-                for (var i = 0; i < NUMBER_OF_CARDS.POT; i++) {
+                for (i = 0; i < NUMBER_OF_CARDS.POT; i++) {
                     if (i % 3 === 0) {
                         currentMixedPots.firstPot.push(currentThreePots.thirdPot[i]);
                     }
@@ -437,7 +358,7 @@ var Game = (function () {
         var giveFinalCards = setInterval(function () {
             finalCardsTimer();
         }, TIMERS.GIVE_FINAL_CARDS_MS);
-        var i = 0;
+        i = 0;
 
         function finalCardsTimer() {
             if (i === magicValue - 1) {
