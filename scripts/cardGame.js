@@ -122,13 +122,13 @@ var Game = (function () {
         var j = 0;
 
         function magicCardTimer() {
-
+            potToDraw[magicValue-1].Sound= Card.playCardGameSound('sounds/Win.mp3');
             var zoomedMagiCard = setInterval(function () {
                 magicCardZoomTimer();
             }, TIMERS.ZOOM_MAGIC_CARD_MS);
 
             function magicCardZoomTimer() {
-
+             
                 potToDraw[magicValue - 1].drawCard( context, CARD_POS.MAGIC_DECK_START_X + (magicValue - 1) * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH + j, CARD_DIM.HEIGHT + (j * 1.33));
                 j++;
                 if (j === 78) {
