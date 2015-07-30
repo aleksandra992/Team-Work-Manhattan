@@ -39,7 +39,7 @@ function CustomAlert() {
     dialogAlertFooter.style.borderBottomRightRadius = '10px';
     document.body.appendChild(dialogOverLay);
     document.body.appendChild(dialogBox);
-    this.render = function(dialog) {
+    this.render = function (dialog) {
         var winW = window.innerWidth;
         var winH = window.innerHeight;
 
@@ -54,7 +54,7 @@ function CustomAlert() {
         var btnOK = document.getElementById('btnOK');
         btnOK.addEventListener('click', this.ok);
     },
-        this.ok = function() {
+        this.ok = function () {
             dialogBox.style.display = "none";
             dialogOverLay.style.display = "none";
         };

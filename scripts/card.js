@@ -20,24 +20,26 @@ var Card=(function(){
             if (context) {
 
                 if (this) {
+
                     var currentImage = new Image();
+                    currentImage.src = this.Picture;
                     currentImage.onload = function() {
                         context.drawImage(currentImage, alignX, alignY, width, height);
                     };
-                    currentImage.src = this.Picture;
+
 
                     this.playCardGameSound(this.Sound);
                 }
             }
         },
         drawCardBack: function(context, alignX, alignY, width, height) {
-
+        var that=this;
             if (context) {
                 var cardBack = new Image();
                 cardBack.src = 'images/back.jpg';
                 cardBack.onload = function() {
                     context.drawImage(cardBack, alignX, alignY, width, height);
-                    Card.playCardGameSound('sounds/cardPlace1.wav');
+                    that.playCardGameSound('sounds/cardPlace1.wav');
                 };
             }
         },

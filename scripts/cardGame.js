@@ -1,9 +1,9 @@
 var Game = (function () {
 
-    var deck=Object.create(Deck).init('Manhattan');
+    var deck = Object.create(Deck).init('Manhattan');
 
 
-       var magicValue,
+    var magicValue,
         selectedButton = null,
         potTurns,
         magicValueIsCorrect,
@@ -26,7 +26,9 @@ var Game = (function () {
         cardCanvas = document.getElementById("cardCanvas"),
         context = cardCanvas.getContext("2d"),
         wrapper = document.getElementById('wrapper'),
-        redirectionToTheAnswer = new CustomEvent("theAnswer");
+        redirectionToTheAnswer = new CustomEvent("theAnswer"),
+        alert = new CustomAlert();
+
 
     function checkMagicValue(magicValue) {
         if (magicValue < MAGIC_VALUE.MIN || magicValue > MAGIC_VALUE.MAX
@@ -46,10 +48,6 @@ var Game = (function () {
             "<br>" + 'Choose the pot with your card (3x)';
         alert.render(msg);
     }
-
-
-
-    var alert = new CustomAlert();
 
 
     function drawText(currentCard, context) {
@@ -83,7 +81,7 @@ var Game = (function () {
         function finalCardsTimer() {
             if (i === magicValue - 1) {
 
-                potToDraw[i].drawCard( context, CARD_POS.MAGIC_DECK_START_X + i * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                potToDraw[i].drawCard(context, CARD_POS.MAGIC_DECK_START_X + i * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
             } else {
                 Card.drawCardBack(context, CARD_POS.MAGIC_DECK_START_X + i * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
             }
@@ -94,7 +92,7 @@ var Game = (function () {
         }
 
         var turnTheCards = setTimeout(function () {
-           turnCards();
+            turnCards();
         }, TIMERS.GIVE_FINAL_CARDS_MS * NUMBER_OF_CARDS.DECK + TIMERS.WAIT_BEFORE_TURN_CARDS_MS);
         var k = 0;
 
@@ -114,7 +112,7 @@ var Game = (function () {
                 }
             }
         }
-        
+
 
         var magicCard = setTimeout(function () {
             magicCardTimer();
@@ -129,7 +127,7 @@ var Game = (function () {
 
             function magicCardZoomTimer() {
 
-                potToDraw[magicValue - 1].drawCard( context, CARD_POS.MAGIC_DECK_START_X + (magicValue - 1) * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH + j, CARD_DIM.HEIGHT + (j * 1.33));
+                potToDraw[magicValue - 1].drawCard(context, CARD_POS.MAGIC_DECK_START_X + (magicValue - 1) * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH + j, CARD_DIM.HEIGHT + (j * 1.33));
                 j++;
                 if (j === 78) {
                     clearInterval(zoomedMagiCard);
@@ -198,9 +196,9 @@ var Game = (function () {
             var deckIndex = 0;
 
             function cardsTimer() {
-                currentCard = deck.getRandomCard(currentCardDeck);
-                currentCard.drawCard( context, CARD_POS.MAIN_DECK_START_X + deckIndex * CARD_POS.MAIN_DECK_SPACING, CARD_POS.MAIN_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
-                currentCardDeck = deck.deleteDrawedCard(currentCardDeck, currentCard);
+                currentCard = Deck.getRandomCard(currentCardDeck);
+                currentCard.drawCard(context, CARD_POS.MAIN_DECK_START_X + deckIndex * CARD_POS.MAIN_DECK_SPACING, CARD_POS.MAIN_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                currentCardDeck = Deck.deleteDrawedCard(currentCardDeck, currentCard);
                 deckIndex++;
                 if (deckIndex === NUMBER_OF_CARDS.DECK) {
                     clearInterval(giveCards);
@@ -327,50 +325,7 @@ var Game = (function () {
             infoBox.appendChild(playButton);
             container.appendChild(infoBox);
 
-            function enterNumber() {
 
-                var btn1 = document.getElementById('btnDrawCard');
-                var btn2 = document.getElementById('btnDrawPots');
-                var btn3 = document.getElementById('btnAnswer');
-                var popup1 = document.getElementById('popUpLink');
-                btn1.addEventListener('mouseout', onButtonMouseOut, false);
-                btn1.addEventListener('mouseover', onButtonMouseOver, false);
-                btn2.addEventListener('mouseout', onButtonMouseOut, false);
-                btn2.addEventListener('mouseover', onButtonMouseOver, false);
-                btn3.addEventListener('mouseout', onButtonMouseOut, false);
-                btn3.addEventListener('mouseover', onButtonMouseOver, false);
-                submitButton.addEventListener('mouseover', onButtonMouseOver, false);
-                submitButton.addEventListener('mouseout', onButtonMouseOut, false);
-                popup1.addEventListener('mouseover', infoOnMouseOver, false);
-                popup1.addEventListener('mouseout', infoOnMouseOut, false);
-                var choosePot1 = document.getElementById('btnChoosePot1');
-
-                function infoOnMouseOver(event) {
-                    if (selectedButton !== this) {
-                        this.nextSibling.style.display = 'block';
-                    }
-                }
-
-                function infoOnMouseOut(event) {
-                    if (selectedButton !== this) {
-                        this.nextSibling.style.display = 'none';
-                    }
-                }
-
-                function onButtonMouseOver(event) {
-                    if (selectedButton !== this) {
-                        this.style.background = 'gray';
-                        this.style.color = 'white';
-                    }
-                }
-
-                function onButtonMouseOut(event) {
-                    if (selectedButton !== this) {
-                        this.style.background = '';
-                        this.style.color = 'black';
-                    }
-                }
-            }
         }
     };
     return Game;

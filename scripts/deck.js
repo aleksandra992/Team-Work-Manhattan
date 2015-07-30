@@ -39,20 +39,20 @@ var Deck=(function(){
 
 
         },
-        getRandomCard: function(deck) {
-            var currentCard = deck[Math.floor(Math.random() * deck.length)];
+        getRandomCard: function(cards) {
+            var currentCard = deckOfCard[Math.floor(Math.random() * deckOfCard.length)];
             return currentCard;
         },
-        deleteDrawedCard: function(deck, currentCard) {
+        deleteDrawedCard: function(cards, currentCard) {
             var currentIndex;
-            deck.some(function(item, index) {
+            cards.some(function(item, index) {
                 currentIndex = index;
                 return currentCard.Name === item.Name && currentCard.SuitType === item.SuitType;
             });
             if (currentIndex > -1) {
-                deck.splice(currentIndex, 1);
+                cards.splice(currentIndex, 1);
             }
-            return deck.slice();
+            return cards.slice();
         }
 
     };
