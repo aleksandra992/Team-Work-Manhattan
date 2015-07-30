@@ -1,55 +1,5 @@
 var Game = (function () {
 
-    var MAX_SHUFFLES = 3,
-        MAGIC_VALUE = {
-            MIN: 1,
-            MAX: 27
-        };
-
-    var CARD_DIM = {
-        WIDTH: 100,
-        HEIGHT: 145
-    };
-
-    var CARD_POS = {
-        MAIN_DECK_START_X: 27,
-        POTS_START_X: 20,
-        MAGIC_DECK_START_X: 30,
-        MAIN_DECK_Y: 220,
-        POT_1_Y: 40,
-        POT_2_Y: 210,
-        POT_3_Y: 380,
-        MAGIC_DECK_Y: 220,
-        ROTATED_CARD_Y: 50,
-        MAIN_DECK_SPACING: 30,
-        POTS_SPACING: 35,
-        MAGIC_DECK_SPACING: 26,
-    };
-
-    var suitType = {
-        Diamond: 'Diamond',
-        Heart: 'Heart',
-        Spade: 'Spade',
-        Clubs: 'Club'
-    };
-
-    var NUMBER_OF_CARDS = {
-        DECK: 27,
-        POT: 9
-    };
-
-    var TIMERS = {
-        GIVE_CARDS_MS: 100,
-        GIVE_POTS_MS: 100,
-        GIVE_FINAL_CARDS_MS: 200,
-        TURN_CARDS_MS: 1,
-        ZOOM_MAGIC_CARD_MS: 10,
-        WAIT_BEFORE_TURN_CARDS_MS: 500,
-        WAIT_BEFORE_ZOOM_MAGIC_CARD_MS: 1100,
-        WAIT_BEFORE_ROTATE_MAGIC_CARD_MS: 3000,
-        ROTATION_SPEED_FPS: (1000 / 100),
-    };
-
     var Card = (function () {
         var Card = {
             init: function (name, suitType, cardValue, picture, sound) {
