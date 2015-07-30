@@ -327,50 +327,7 @@ var Game = (function () {
             infoBox.appendChild(playButton);
             container.appendChild(infoBox);
 
-            function enterNumber() {
 
-                var btn1 = document.getElementById('btnDrawCard');
-                var btn2 = document.getElementById('btnDrawPots');
-                var btn3 = document.getElementById('btnAnswer');
-                var popup1 = document.getElementById('popUpLink');
-                btn1.addEventListener('mouseout', onButtonMouseOut, false);
-                btn1.addEventListener('mouseover', onButtonMouseOver, false);
-                btn2.addEventListener('mouseout', onButtonMouseOut, false);
-                btn2.addEventListener('mouseover', onButtonMouseOver, false);
-                btn3.addEventListener('mouseout', onButtonMouseOut, false);
-                btn3.addEventListener('mouseover', onButtonMouseOver, false);
-                submitButton.addEventListener('mouseover', onButtonMouseOver, false);
-                submitButton.addEventListener('mouseout', onButtonMouseOut, false);
-                popup1.addEventListener('mouseover', infoOnMouseOver, false);
-                popup1.addEventListener('mouseout', infoOnMouseOut, false);
-                var choosePot1 = document.getElementById('btnChoosePot1');
-
-                function infoOnMouseOver(event) {
-                    if (selectedButton !== this) {
-                        this.nextSibling.style.display = 'block';
-                    }
-                }
-
-                function infoOnMouseOut(event) {
-                    if (selectedButton !== this) {
-                        this.nextSibling.style.display = 'none';
-                    }
-                }
-
-                function onButtonMouseOver(event) {
-                    if (selectedButton !== this) {
-                        this.style.background = 'gray';
-                        this.style.color = 'white';
-                    }
-                }
-
-                function onButtonMouseOut(event) {
-                    if (selectedButton !== this) {
-                        this.style.background = '';
-                        this.style.color = 'black';
-                    }
-                }
-            }
         }
     };
     return Game;
