@@ -67,11 +67,12 @@ var Game = (function () {
         $("#btnChoosePot2").remove();
         $("#btnChoosePot3").remove();
 
-        var pot = currentThreePots.firstPot;
-        for (var i = 0; i < NUMBER_OF_CARDS.POT; i += 1) {
+        var pot = currentThreePots.firstPot,
+            i;
+        for (i = 0; i < NUMBER_OF_CARDS.POT; i += 1) {
             pot.push(currentThreePots.secondPot[i]);
         }
-        for (var i = 0; i < NUMBER_OF_CARDS.POT; i += 1) {
+        for (i = 0; i < NUMBER_OF_CARDS.POT; i += 1) {
             pot.push(currentThreePots.thirdPot[i]);
         }
         var potToDraw = pot.slice(0);
