@@ -1,7 +1,7 @@
 var Game = (function () {
 
     var deck=Object.create(Deck).init('Manhattan');
-    var threePots = Object.create(ThreePots).init();
+
 
        var magicValue,
         selectedButton = null,
@@ -10,7 +10,7 @@ var Game = (function () {
         areShuffled,
         buttonClickCount = 0,
         cardDeck = deck.fillDeckWithCards(),
-        threePots = threePots.getThreePots(cardDeck, deck),
+        threePots = ThreePots.getThreePots(cardDeck, deck),
         currentPotTurns,
         gameInstructionsCounter = 0,
         currentMixedPots = {
