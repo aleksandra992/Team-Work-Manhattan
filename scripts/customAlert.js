@@ -5,7 +5,6 @@ function CustomAlert() {
         dialogAlertHeader = document.createElement('div'),
         dialogAlertBody = document.createElement('div'),
         dialogAlertFooter = document.createElement('div');
-
     dialogBox.appendChild(nestedDialogBox);
     nestedDialogBox.appendChild(dialogAlertHeader);
     nestedDialogBox.appendChild(dialogAlertBody);
@@ -41,20 +40,20 @@ function CustomAlert() {
     document.body.appendChild(dialogOverLay);
     document.body.appendChild(dialogBox);
     this.render = function(dialog) {
-            var winW = window.innerWidth;
-            var winH = window.innerHeight;
+        var winW = window.innerWidth;
+        var winH = window.innerHeight;
 
-            dialogOverLay.style.display = "block";
-            dialogOverLay.style.height = winH + "px";
-            dialogBox.style.left = (winW / 2) - (550 * .5) + "px";
-            dialogBox.style.top = "100px";
-            dialogBox.style.display = "block";
-            dialogAlertHeader.innerHTML = "Message from the magician:";
-            dialogAlertBody.innerHTML = dialog;
-            dialogAlertFooter.innerHTML = '<button id="btnOK">OK</button>';
-            var btnOK = document.getElementById('btnOK');
-            btnOK.addEventListener('click', alert.ok);
-        },
+        dialogOverLay.style.display = "block";
+        dialogOverLay.style.height = winH + "px";
+        dialogBox.style.left = (winW / 2) - (550 * .5) + "px";
+        dialogBox.style.top = "100px";
+        dialogBox.style.display = "block";
+        dialogAlertHeader.innerHTML = "Message from the magician:";
+        dialogAlertBody.innerHTML = dialog;
+        dialogAlertFooter.innerHTML = '<button id="btnOK">OK</button>';
+        var btnOK = document.getElementById('btnOK');
+        btnOK.addEventListener('click', this.ok);
+    },
         this.ok = function() {
             dialogBox.style.display = "none";
             dialogOverLay.style.display = "none";

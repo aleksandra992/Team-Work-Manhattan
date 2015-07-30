@@ -1,4 +1,4 @@
-function threePotsObj() {
+var ThreePots=(function(){
     var ThreePots = {
         init: function() {
 
@@ -209,4 +209,4 @@ function threePotsObj() {
         }
     };
     return ThreePots;
-}
+}());

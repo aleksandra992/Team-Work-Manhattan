@@ -1,10 +1,10 @@
-function deckObj() {
+var Deck=(function(){
     var Deck = {
         init: function(name) {
             this.name = name;
             return this;
         },
-        fillDeckWithCards: function(Card) {
+        fillDeckWithCards: function() {
             var deckOfCard = [];
             deckOfCard.push(Object.create(Card).init('Ace', suitType.Diamond, 14, 'Images/classic-cards/01_of_diamonds_A.svg', 'sounds/cardPlace1.wav'));
             deckOfCard.push(Object.create(Card).init('Ace', suitType.Clubs, 14, 'Images/classic-cards/01_of_clubs_A.svg', 'sounds/cardPlace2.wav'));
@@ -56,4 +56,4 @@ function deckObj() {
 
     };
     return Deck;
-}
+}());

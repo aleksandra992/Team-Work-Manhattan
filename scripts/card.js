@@ -1,4 +1,4 @@
-function cardObj() {
+var Card=(function(){
     var Card = {
         init: function(name, suitType, cardValue, picture, sound) {
             this.Name = name;
@@ -78,4 +78,5 @@ function cardObj() {
         }
     };
     return Card;
-}
+
+}());

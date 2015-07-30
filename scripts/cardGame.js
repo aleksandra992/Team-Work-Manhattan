@@ -1,21 +1,16 @@
 var Game = (function () {
 
-    var Card = cardObj();
+    var deck=Object.create(Deck).init('Manhattan');
+    var threePots = Object.create(ThreePots).init();
 
-    var Deck = deckObj();
-
-    var ThreePots = threePotsObj();
-
-    Deck.init('Manhattan');
-
-    var magicValue,
+       var magicValue,
         selectedButton = null,
         potTurns,
         magicValueIsCorrect,
         areShuffled,
         buttonClickCount = 0,
-        cardDeck = Deck.fillDeckWithCards(Card),
-        threePots = ThreePots.getThreePots(cardDeck, Deck),
+        cardDeck = deck.fillDeckWithCards(),
+        threePots = threePots.getThreePots(cardDeck, deck),
         currentPotTurns,
         gameInstructionsCounter = 0,
         currentMixedPots = {
@@ -52,7 +47,10 @@ var Game = (function () {
         alert.render(msg);
     }
 
+
+
     var alert = new CustomAlert();
+
 
     function drawText(currentCard, context) {
         context.clearRect(0, 0, context.canvas.width, context.canvas.height);
@@ -197,9 +195,9 @@ var Game = (function () {
             var deckIndex = 0;
 
             function cardsTimer() {
-                currentCard = Deck.getRandomCard(currentCardDeck);
+                currentCard = deck.getRandomCard(currentCardDeck);
                 Card.drawCard(currentCard, context, CARD_POS.MAIN_DECK_START_X + deckIndex * CARD_POS.MAIN_DECK_SPACING, CARD_POS.MAIN_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
-                currentCardDeck = Deck.deleteDrawedCard(currentCardDeck, currentCard);
+                currentCardDeck = deck.deleteDrawedCard(currentCardDeck, currentCard);
                 deckIndex++;
                 if (deckIndex === NUMBER_OF_CARDS.DECK) {
                     clearInterval(giveCards);
