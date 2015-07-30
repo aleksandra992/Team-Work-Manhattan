@@ -94,30 +94,27 @@ var Game = (function () {
         }
 
         var turnTheCards = setTimeout(function () {
-           // turnCards();
+           turnCards();
         }, TIMERS.GIVE_FINAL_CARDS_MS * NUMBER_OF_CARDS.DECK + TIMERS.WAIT_BEFORE_TURN_CARDS_MS);
         var k = 0;
 
-      /*  function turnCards() {
+        function turnCards() {
 
             var getTurnedCards = setInterval(function () {
                 turnCardsTimer();
             }, TIMERS.TURN_CARDS_MS);
 
             function turnCardsTimer() {
-
-                console.log(potToDraw[k]);
-                throw Error();
                 potToDraw[k].drawCard(context, CARD_POS.MAGIC_DECK_START_X + k * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
 
                 k++;
 
                 if (k === NUMBER_OF_CARDS.DECK) {
-                    clearInterval(turnTheCards);
+                    clearInterval(getTurnedCards);
                 }
             }
         }
-        */
+        
 
         var magicCard = setTimeout(function () {
             magicCardTimer();
