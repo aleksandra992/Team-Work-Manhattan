@@ -15,7 +15,7 @@ var Card=(function(){
                 currentAudio.play();
             }
         },
-        drawCard: function( context, alignX, alignY, width, height) {
+        drawCard: function(context, alignX, alignY, width, height) {
 
             if (context) {
 

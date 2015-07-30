@@ -61,17 +61,17 @@ var ThreePots=(function(){
             }
             return potTurns;
         },
-        dealThreePots: function(threePots, context, Card) {
+        dealThreePots: function(threePots, context) {
             var firstPot = threePots.firstPot,
                 secondPot = threePots.secondPot,
                 thirdPot = threePots.thirdPot,
                 i = 0;
 
             var giveThreePots = setInterval(function() {
-                threePotsTimer(Card);
+                threePotsTimer();
             }, TIMERS.GIVE_CARDS_MS);
 
-            function threePotsTimer(Card) {
+            function threePotsTimer() {
                 firstPot[i].drawCard(context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_1_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 secondPot[i].drawCard( context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_2_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 thirdPot[i].drawCard( context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_3_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);

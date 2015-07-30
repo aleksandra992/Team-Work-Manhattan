@@ -218,7 +218,7 @@ var Game = (function () {
             $('#submit-btn').css('display', 'none');
             $('#btnDrawPots').css('display', 'none');
             context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-            ThreePots.dealThreePots(threePots, context, Card);
+            ThreePots.dealThreePots(threePots, context);
             $('#canvasContainer').append('<input type="button" class="invisible-button" id="btnChoosePot1" value="1">');
             $('#canvasContainer').append('<input type="button" class="invisible-button" id="btnChoosePot2" value="2">');
             $('#canvasContainer').append('<input type="button" class="invisible-button" id="btnChoosePot3" value="3">');
@@ -246,7 +246,7 @@ var Game = (function () {
                 }
                 else {
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    ThreePots.dealThreePots(currentThreePots, context, Card);
+                    ThreePots.dealThreePots(currentThreePots, context);
                 }
             }, false);
 
@@ -265,7 +265,7 @@ var Game = (function () {
                 }
                 else {
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    ThreePots.dealThreePots(currentThreePots, context, Card);
+                    ThreePots.dealThreePots(currentThreePots, context);
                 }
             }, false);
 
@@ -284,7 +284,7 @@ var Game = (function () {
                 }
                 else {
                     context.clearRect(0, 0, cardCanvas.width, cardCanvas.height);
-                    ThreePots.dealThreePots(currentThreePots, context, Card);
+                    ThreePots.dealThreePots(currentThreePots, context);
                 }
             }, false);
 
