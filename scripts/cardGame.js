@@ -229,6 +229,8 @@ var Game = (function () {
             var buttonChoosePot3 = document.getElementById("btnChoosePot3");
 
             buttonChoosePot1.addEventListener('click', function () {
+                gameInstructions(gameInstructionsCounter);
+                gameInstructionsCounter++;
 
                 ThreePots.PutFirstOnPlace(buttonClickCount, currentPotTurns, currentThreePots, threePots);
 
@@ -248,6 +250,8 @@ var Game = (function () {
             }, false);
 
             buttonChoosePot2.addEventListener('click', function () {
+                gameInstructions(gameInstructionsCounter);
+                gameInstructionsCounter++;
 
                 ThreePots.PutSecondOnPlace(buttonClickCount, currentPotTurns, currentThreePots, threePots);
 
@@ -267,6 +271,9 @@ var Game = (function () {
             }, false);
 
             buttonChoosePot3.addEventListener('click', function () {
+
+                gameInstructions(gameInstructionsCounter);
+                gameInstructionsCounter++;
 
                 ThreePots.PutThirdOnPlace(buttonClickCount, currentPotTurns, currentThreePots, threePots);
 

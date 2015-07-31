@@ -1,6 +1,6 @@
 var ThreePots=(function(){
     var deck=Object.create(Deck).init('Manhattan');
-    var card=Object.create(Card).init();
+    var card = Object.create(Card).init();
     var ThreePots = {
         init: function() {
             return this;
@@ -73,13 +73,12 @@ var ThreePots=(function(){
             function threePotsTimer() {
                 firstPot[i].drawCard(context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_1_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 secondPot[i].drawCard( context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_2_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
-                thirdPot[i].drawCard( context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_3_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
+                thirdPot[i].drawCard(context, CARD_POS.POTS_START_X + i * CARD_POS.POTS_SPACING, CARD_POS.POT_3_Y, CARD_DIM.WIDTH, CARD_DIM.HEIGHT);
                 i++;
                 if (i === NUMBER_OF_CARDS.POT) {
                     clearInterval(giveThreePots);
                 }
             }
-
             return {
                 firstPot: firstPot.slice(),
                 secondPot: secondPot.slice(),
@@ -127,7 +126,7 @@ var ThreePots=(function(){
             threePots.secondPot = currentMixedPots.secondPot.slice();
             threePots.thirdPot = currentMixedPots.thirdPot.slice();
         },
-        PutFirstOnPlace: function(turn, currentPotTurns, currentThreePots, threePots, gameInstructionsCounter) {
+        PutFirstOnPlace: function(turn, currentPotTurns, currentThreePots, threePots) {
 
             if (currentPotTurns[turn] === 'TOP') { //put the current pot on the top
                 console.log('top');
@@ -150,11 +149,9 @@ var ThreePots=(function(){
             threePots.firstPot = currentThreePots.firstPot.slice();
             threePots.secondPot = currentThreePots.secondPot.slice();
             threePots.thirdPot = currentThreePots.thirdPot.slice();
-
-            gameInstructions(gameInstructionsCounter);
-            gameInstructionsCounter++;
         },
-        PutSecondOnPlace: function(turn, currentPotTurns, currentThreePots, threePots, gameInstructionsCounter) {
+
+        PutSecondOnPlace: function(turn, currentPotTurns, currentThreePots, threePots) {
 
             if (currentPotTurns[turn] === 'TOP') { //put the current pot on the top
                 console.log('top');
@@ -177,11 +174,9 @@ var ThreePots=(function(){
             threePots.firstPot = currentThreePots.firstPot.slice();
             threePots.secondPot = currentThreePots.secondPot.slice();
             threePots.thirdPot = currentThreePots.thirdPot.slice();
-
-            gameInstructions(gameInstructionsCounter);
-            gameInstructionsCounter++;
         },
-        PutThirdOnPlace: function(turn, currentPotTurns, currentThreePots, threePots, gameInstructionsCounter) {
+
+        PutThirdOnPlace: function(turn, currentPotTurns, currentThreePots, threePots) {
 
             if (currentPotTurns[turn] === 'TOP') { //put the current pot on the top
                 console.log('top');
@@ -204,9 +199,6 @@ var ThreePots=(function(){
             threePots.firstPot = currentThreePots.firstPot.slice();
             threePots.secondPot = currentThreePots.secondPot.slice();
             threePots.thirdPot = currentThreePots.thirdPot.slice();
-
-            gameInstructions(gameInstructionsCounter);
-            gameInstructionsCounter++;
         }
     };
     return ThreePots;
