@@ -191,8 +191,8 @@ body{
 	height: 23px;
 	background-image: url("../Images/options-btn.png");
 	position: absolute;
-	top: 50px;
-	left: 20px;
+	top: 0px;
+	left: 35px;
 }
 #border-motion{
 	position: absolute;
