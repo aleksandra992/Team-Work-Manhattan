@@ -3,7 +3,6 @@ var ThreePots=(function(){
     var card=Object.create(Card).init();
     var ThreePots = {
         init: function() {
-
             return this;
         },
         getThreePots: function(cardDeck) {

@@ -128,7 +128,7 @@ var Game = (function () {
             }, TIMERS.ZOOM_MAGIC_CARD_MS);
 
             function magicCardZoomTimer() {
-             
+
                 potToDraw[magicValue - 1].drawCard( context, CARD_POS.MAGIC_DECK_START_X + (magicValue - 1) * CARD_POS.MAGIC_DECK_SPACING, CARD_POS.MAGIC_DECK_Y, CARD_DIM.WIDTH + j, CARD_DIM.HEIGHT + (j * 1.33));
                 j++;
                 if (j === 78) {
@@ -332,5 +332,3 @@ var Game = (function () {
     };
     return Game;
 }());
-var game = Object.create(Game).init();
-game.createInputPage('#numberContainer');
