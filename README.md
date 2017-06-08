@@ -1,13 +1,13 @@
 
-#MANHATTAN PROJECT
+# MANHATTAN PROJECT
 
 * An interactive short card game which uses a number prediction to guess an users card.
 
 
-##Task Description.
+## Task Description.
 * Client-side JavaScript application using the HTML graphic APIs – canvas and SVG.
 
-##Achieved General Requirements and used Technologies
+## Achieved General Requirements and used Technologies
 
 * JavaScript OOP
 * jQuery
@@ -16,7 +16,7 @@
 * Raphael.js
 * Cross-browser compatibility
 
-##Additional Requirements achieved
+## Additional Requirements achieved
 
 * Correct naming
 * Data encapsulation
